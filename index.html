@@ -194,114 +194,6 @@ body{
 }
 
 /* =========================================================
-   DECORACIÓN EXTRA
-========================================================= */
-
-.scene:before{
-  content:"";
-  position:absolute;
-  inset:24px;
-  border:1px solid rgba(212,175,55,.18);
-  pointer-events:none;
-  z-index:1;
-}
-
-.scene:after{
-  content:"✦";
-  position:absolute;
-  color:rgba(212,175,55,.55);
-  font-size:12px;
-  letter-spacing:14px;
-  pointer-events:none;
-  z-index:2;
-}
-
-/* pequeños destellos decorativos */
-.inner:before{
-  content:"";
-  position:absolute;
-  width:5px;
-  height:5px;
-  border:1px solid rgba(212,175,55,.65);
-  transform:rotate(45deg);
-  top:-24px;
-  left:13%;
-  box-shadow:
-    70px 12px 0 -1px rgba(212,175,55,.45),
-    -82px 38px 0 -1px rgba(212,175,55,.38),
-    118px 62px 0 -1px rgba(212,175,55,.35);
-  pointer-events:none;
-}
-
-/* =========================================================
-   ORNAMENTO DORADO
-========================================================= */
-
-.ornament{
-  width:170px;
-  height:24px;
-  position:relative;
-  margin:3px auto 14px;
-  opacity:.9;
-}
-
-.ornament:before,
-.ornament:after{
-  content:"";
-  position:absolute;
-  top:11px;
-  width:64px;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--gold)
-  );
-}
-
-.ornament:before{
-  left:0;
-}
-
-.ornament:after{
-  right:0;
-  transform:rotate(180deg);
-}
-
-.ornament span{
-  position:absolute;
-  left:50%;
-  top:4px;
-  transform:translateX(-50%) rotate(45deg);
-  width:14px;
-  height:14px;
-  border:1px solid var(--gold);
-}
-
-.ornament span:before,
-.ornament span:after{
-  content:"";
-  position:absolute;
-  background:var(--gold);
-}
-
-.ornament span:before{
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  left:-12px;
-  top:5px;
-}
-
-.ornament span:after{
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  right:-12px;
-  top:5px;
-}
-
-/* =========================================================
    TIPOGRAFÍA
 ========================================================= */
 
@@ -374,7 +266,6 @@ body{
   height:126px;
   position:relative;
   margin-bottom:22px;
-  filter:drop-shadow(0 7px 10px rgba(126,80,89,.10));
 }
 
 .monogram svg{
@@ -889,6 +780,7 @@ body{
       <path d="M122 115 C105 99 108 82 122 73 C139 84 139 101 122 115Z"
             fill="#91A18A"/>
 
+      <!-- flores -->
       <g>
         <circle cx="180" cy="25" r="15" fill="#A66B74"/>
         <circle cx="164" cy="31" r="12" fill="#C58D96"/>
@@ -906,22 +798,6 @@ body{
         <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
         <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
       </g>
-
-      <!-- FLORES EXTRA -->
-      <g transform="translate(8 80) scale(.55)">
-        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
-        <circle cx="164" cy="31" r="12" fill="#D8B6BC"/>
-        <circle cx="196" cy="31" r="12" fill="#C58D96"/>
-        <circle cx="171" cy="48" r="12" fill="#EAD8DB"/>
-        <circle cx="190" cy="48" r="12" fill="#D8B6BC"/>
-        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
-      </g>
-
-      <path d="M35 250 C62 238 82 235 103 215"
-            fill="none"
-            stroke="#D4AF37"
-            stroke-width="1"
-            opacity=".8"/>
 
     </svg>
   </div>
@@ -948,21 +824,6 @@ body{
       <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
       <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
       <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
-
-      <g transform="translate(7 85) scale(.58)">
-        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
-        <circle cx="164" cy="31" r="12" fill="#D8B6BC"/>
-        <circle cx="196" cy="31" r="12" fill="#C58D96"/>
-        <circle cx="171" cy="48" r="12" fill="#EAD8DB"/>
-        <circle cx="190" cy="48" r="12" fill="#D8B6BC"/>
-        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
-      </g>
-
-      <path d="M35 250 C62 238 82 235 103 215"
-            fill="none"
-            stroke="#D4AF37"
-            stroke-width="1"
-            opacity=".8"/>
 
     </svg>
   </div>
@@ -1005,8 +866,6 @@ body{
     <h1 class="title">ASLY ZABALETA</h1>
 
     <div class="hand">Mi gran día se acerca…</div>
-
-    <div class="ornament"><span></span></div>
 
     <div class="edition">26 · 12 · 2026</div>
 
@@ -1059,15 +918,6 @@ body{
         <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
       </g>
 
-      <g transform="translate(25 55) scale(.45)">
-        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
-        <circle cx="184" cy="39" r="11" fill="#D9B8BD"/>
-        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
-        <circle cx="191" cy="53" r="11" fill="#EAD8DB"/>
-        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
-        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1091,15 +941,6 @@ body{
       <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
       <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
       <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
-
-      <g transform="translate(25 55) scale(.45)">
-        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
-        <circle cx="184" cy="39" r="11" fill="#D9B8BD"/>
-        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
-        <circle cx="191" cy="53" r="11" fill="#EAD8DB"/>
-        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
-        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
-      </g>
 
     </svg>
   </div>
@@ -1129,8 +970,6 @@ body{
     <div class="hand" style="margin-top:12px">
       Y quiero que estés conmigo.
     </div>
-
-    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
 
@@ -1169,15 +1008,6 @@ body{
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(5 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1205,15 +1035,6 @@ body{
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(5 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1239,8 +1060,6 @@ body{
       Porque hay momentos que simplemente no serían iguales
       sin las personas que amamos.
     </p>
-
-    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
 
@@ -1276,15 +1095,6 @@ body{
       <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(92 70) scale(.43)">
-        <circle cx="125" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="110" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="140" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="117" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1309,15 +1119,6 @@ body{
       <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(92 70) scale(.43)">
-        <circle cx="125" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="110" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="140" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="117" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1332,8 +1133,6 @@ body{
     <div class="hand" style="font-size:32px">
       🤍
     </div>
-
-    <div class="ornament"><span></span></div>
 
     <div class="btn-row">
 
@@ -1379,15 +1178,6 @@ body{
       <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(35 170) scale(.52)">
-        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1411,15 +1201,6 @@ body{
       <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
-
-      <g transform="translate(35 170) scale(.52)">
-        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
-      </g>
 
     </svg>
   </div>
@@ -1446,8 +1227,6 @@ body{
     <div class="hand" style="margin-top:15px">
       Hay un lugar para ti.
     </div>
-
-    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
 
@@ -1486,15 +1265,6 @@ body{
       <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
       <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(25 70) scale(.45)">
-        <circle cx="214" cy="35" r="15" fill="#A66B74"/>
-        <circle cx="199" cy="42" r="11" fill="#D9B8BD"/>
-        <circle cx="229" cy="42" r="11" fill="#C58D96"/>
-        <circle cx="206" cy="56" r="11" fill="#EAD8DB"/>
-        <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
-        <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1519,15 +1289,6 @@ body{
       <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
       <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(25 70) scale(.45)">
-        <circle cx="214" cy="35" r="15" fill="#A66B74"/>
-        <circle cx="199" cy="42" r="11" fill="#D9B8BD"/>
-        <circle cx="229" cy="42" r="11" fill="#C58D96"/>
-        <circle cx="206" cy="56" r="11" fill="#EAD8DB"/>
-        <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
-        <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1538,8 +1299,6 @@ body{
     <h2 class="title" style="font-size:38px">
       ROSA VIEJO
     </h2>
-
-    <div class="ornament"><span></span></div>
 
     <div class="color-swatch">
 
@@ -1587,15 +1346,6 @@ body{
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(0 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1620,15 +1370,6 @@ body{
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(0 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1640,8 +1381,6 @@ body{
       Estas imágenes son solo referencias para mostrarte
       el estilo que imagino.
     </p>
-
-    <div class="ornament"><span></span></div>
 
     <div class="dress-grid">
 
@@ -1738,15 +1477,6 @@ body{
       <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
       <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(25 70) scale(.46)">
-        <circle cx="215" cy="34" r="14" fill="#A66B74"/>
-        <circle cx="201" cy="41" r="10" fill="#D9B8BD"/>
-        <circle cx="229" cy="41" r="10" fill="#C58D96"/>
-        <circle cx="207" cy="54" r="10" fill="#EAD8DB"/>
-        <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
-        <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1771,15 +1501,6 @@ body{
       <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
       <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
       <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
-
-      <g transform="translate(25 70) scale(.46)">
-        <circle cx="215" cy="34" r="14" fill="#A66B74"/>
-        <circle cx="201" cy="41" r="10" fill="#D9B8BD"/>
-        <circle cx="229" cy="41" r="10" fill="#C58D96"/>
-        <circle cx="207" cy="54" r="10" fill="#EAD8DB"/>
-        <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
-        <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
-      </g>
 
     </svg>
   </div>
@@ -1835,8 +1556,6 @@ body{
       Escoge el que más te guste y te haga sentir hermosa.
     </p>
 
-    <div class="ornament"><span></span></div>
-
     <div class="tap">Toca para continuar</div>
 
   </div>
@@ -1871,15 +1590,6 @@ body{
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(0 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -1903,15 +1613,6 @@ body{
       <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
       <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-
-      <g transform="translate(0 135) scale(.5)">
-        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
-        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
-        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
-        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
-        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
-        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
-      </g>
 
     </svg>
   </div>
@@ -2042,15 +1743,6 @@ body{
       <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
       <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(25 75) scale(.48)">
-        <circle cx="205" cy="40" r="15" fill="#A66B74"/>
-        <circle cx="190" cy="47" r="11" fill="#D9B8BD"/>
-        <circle cx="220" cy="47" r="11" fill="#C58D96"/>
-        <circle cx="197" cy="61" r="11" fill="#EAD8DB"/>
-        <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
-        <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -2074,15 +1766,6 @@ body{
       <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
       <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
       <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
-
-      <g transform="translate(25 75) scale(.48)">
-        <circle cx="205" cy="40" r="15" fill="#A66B74"/>
-        <circle cx="190" cy="47" r="11" fill="#D9B8BD"/>
-        <circle cx="220" cy="47" r="11" fill="#C58D96"/>
-        <circle cx="197" cy="61" r="11" fill="#EAD8DB"/>
-        <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
-        <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
-      </g>
 
     </svg>
   </div>
@@ -2111,8 +1794,6 @@ body{
     <div class="hand" style="font-size:32px;margin-top:14px">
       ¿Te quedas conmigo?
     </div>
-
-    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
 
@@ -2148,15 +1829,6 @@ body{
       <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(35 170) scale(.52)">
-        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
@@ -2181,21 +1853,10 @@ body{
       <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
       <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
 
-      <g transform="translate(35 170) scale(.52)">
-        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
-        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
-        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
-        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
-        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
-        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
-      </g>
-
     </svg>
   </div>
 
   <div class="inner">
-
-    <div class="ornament"><span></span></div>
 
     <div class="hand">
       Con amor,

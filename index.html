@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asly Zabaleta | Mi gran día</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root{
+  --rose:#A66B74;
+  --rose-dark:#7F4F58;
+  --ivory:#F9F6EE;
+  --gold:#D4AF37;
+  --fuchsia:#E91E8D;
+  --green:#A7B59F;
+  --text:#49363A;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+body{
+  background:#e9e2d9;
+  font-family:'Playfair Display',serif;
+  color:var(--text);
+}
+
+#app{
+  width:100%;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--ivory);
+  padding:30px 24px;
+}
+
+.scene.active{
+  display:flex;
+  animation:appear .65s ease both;
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:scale(1.025);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.scene::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(212,175,55,.45);
+  pointer-events:none;
+}
+
+.content{
+  position:relative;
+  z-index:3;
+  width:min(100%,430px);
+  text-align:center;
+}
+
+.chapter{
+  color:var(--rose);
+  font-size:.72rem;
+  letter-spacing:.25em;
+  margin-bottom:24px;
+  text-transform:uppercase;
+}
+
+.small{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.title{
+  font-size:clamp(2.3rem,10vw,4rem);
+  line-height:1.05;
+  color:var(--rose-dark);
+  font-weight:500;
+}
+
+.script{
+  font-family:'Allura',cursive;
+  color:var(--rose);
+  font-size:2.2rem;
+  line-height:1.1;
+}
+
+.body-text{
+  font-size:1rem;
+  line-height:1.8;
+  color:#594447;
+}
+
+.divider{
+  width:70px;
+  height:1px;
+  background:var(--gold);
+  margin:24px auto;
+}
+
+.tap{
+  margin-top:35px;
+  font-size:.7rem;
+  letter-spacing:.2em;
+  color:var(--rose);
+  text-transform:uppercase;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  50%{opacity:.45}
+}
+
+/* DECORACIÓN */
+
+.flower{
+  position:absolute;
+  font-size:3rem;
+  opacity:.28;
+  z-index:1;
+}
+
+.flower.one{
+  top:8%;
+  left:4%;
+  transform:rotate(-20deg);
+}
+
+.flower.two{
+  bottom:6%;
+  right:2%;
+  transform:rotate(30deg);
+}
+
+.leaf{
+  position:absolute;
+  color:var(--green);
+  opacity:.3;
+  font-size:2rem;
+}
+
+.leaf.one{
+  top:17%;
+  right:8%;
+  transform:rotate(25deg);
+}
+
+.leaf.two{
+  bottom:15%;
+  left:7%;
+  transform:rotate(-25deg);
+}
+
+/* PORTADA */
+
+.cover .content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.cover-date{
+  margin-bottom:28px;
+  color:var(--rose);
+  font-size:.72rem;
+  letter-spacing:.3em;
+}
+
+.cover .title{
+  font-size:clamp(2.5rem,11vw,4.2rem);
+}
+
+.cover .script{
+  margin-top:26px;
+}
+
+.gold-line{
+  width:90px;
+  height:1px;
+  background:var(--gold);
+  margin:25px auto;
+}
+
+/* FOTO */
+
+.photo-frame{
+  width:min(80vw,300px);
+  height:min(80vw,360px);
+  margin:25px auto;
+  padding:8px;
+  border:1px solid rgba(212,175,55,.7);
+  background:white;
+  box-shadow:0 12px 35px rgba(80,50,50,.12);
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* BOTONES */
+
+.buttons{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:30px;
+}
+
+.choice{
+  border:1px solid var(--rose);
+  background:transparent;
+  color:var(--rose-dark);
+  padding:14px 18px;
+  border-radius:30px;
+  font-family:'Playfair Display',serif;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.choice:hover,
+.choice:active{
+  background:var(--rose);
+  color:white;
+}
+
+/* COLOR */
+
+.swatch{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:var(--rose);
+  margin:28px auto;
+  box-shadow:0 12px 30px rgba(100,50,60,.18);
+}
+
+.color-name{
+  color:var(--rose-dark);
+  font-size:2rem;
+}
+
+/* VESTIDOS */
+
+.dress-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+
+.dress{
+  height:150px;
+  background:#d7a0a8;
+  border:1px solid rgba(212,175,55,.45);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom:10px;
+  color:white;
+  font-size:.7rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* REGLAS */
+
+.rules{
+  margin:28px auto;
+  border-top:1px solid rgba(212,175,55,.5);
+}
+
+.rule{
+  display:flex;
+  justify-content:space-between;
+  padding:16px 0;
+  border-bottom:1px solid rgba(212,175,55,.35);
+  font-size:.85rem;
+}
+
+.rule span:first-child{
+  color:var(--rose);
+}
+
+.rule span:last-child{
+  font-weight:600;
+}
+
+/* CALENDARIO */
+
+.calendar{
+  margin:22px auto 0;
+  width:100%;
+}
+
+.month{
+  font-size:1.6rem;
+  color:var(--rose-dark);
+  margin-bottom:15px;
+}
+
+.week,
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+}
+
+.week div{
+  font-size:.55rem;
+  color:var(--rose);
+  padding-bottom:7px;
+}
+
+.days div{
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.72rem;
+  position:relative;
+}
+
+.heart-day{
+  color:white !important;
+  z-index:1;
+}
+
+.heart-day::before{
+  content:"";
+  position:absolute;
+  width:32px;
+  height:32px;
+  background:var(--fuchsia);
+  transform:rotate(-45deg);
+  border-radius:5px;
+  z-index:-1;
+}
+
+.heart-day::after{
+  content:"";
+  position:absolute;
+  width:32px;
+  height:32px;
+  background:var(--fuchsia);
+  border-radius:50%;
+  top:1px;
+  left:calc(50% - 16px);
+  z-index:-1;
+  box-shadow:
+    16px 0 0 var(--fuchsia);
+}
+
+/* FINAL */
+
+.final-line{
+  font-size:1.2rem;
+  line-height:1.8;
+  margin:25px 0;
+}
+
+.signature{
+  font-family:'Allura',cursive;
+  color:var(--rose);
+  font-size:3.2rem;
+  margin-top:20px;
+}
+
+/* INDICADOR */
+
+.progress{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:5px;
+  z-index:10;
+}
+
+.dot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:rgba(166,107,116,.3);
+}
+
+.dot.active{
+  background:var(--rose);
+}
+
+/* MÚSICA */
+
+.music{
+  position:absolute;
+  top:22px;
+  right:24px;
+  z-index:20;
+  width:34px;
+  height:34px;
+  border:1px solid rgba(166,107,116,.5);
+  border-radius:50%;
+  background:rgba(249,246,238,.8);
+  color:var(--rose);
+  font-size:.8rem;
+}
+
+@media(max-height:650px){
+  .scene{
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+
+  .photo-frame{
+    height:250px;
+  }
+
+  .dress{
+    height:115px;
+  }
+
+  .tap{
+    margin-top:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<audio id="music" loop preload="auto">
+  <!-- Luego pondremos aquí la canción -->
+</audio>
+
+<button class="music" onclick="toggleMusic(event)">♪</button>
+
+<!-- 1 PORTADA -->
+
+<section class="scene cover active" onclick="nextScene()">
+  <div class="flower one">✿</div>
+  <div class="flower two">✿</div>
+  <div class="leaf one">❧</div>
+  <div class="leaf two">❧</div>
+
+  <div class="content">
+    <div class="cover-date">26 · 12 · 2026</div>
+
+    <div class="gold-line"></div>
+
+    <h1 class="title">ASLY<br>ZABALETA</h1>
+
+    <div class="gold-line"></div>
+
+    <div class="script">Mi gran día se acerca… 🤍</div>
+
+    <div class="tap">Toca para abrir</div>
+  </div>
+</section>
+
+
+<!-- 2 MENSAJE -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="flower one">✿</div>
+  <div class="flower two">✿</div>
+
+  <div class="content">
+    <div class="chapter">Capítulo I</div>
+
+    <div class="divider"></div>
+
+    <p class="body-text">
+      Hay personas que llegan a nuestra vida y, sin darse cuenta,
+      terminan formando parte de nuestra historia.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="body-text">
+      Cuando imaginé este día, pensé en las personas que quiero
+      tener cerca cuando llegue uno de los momentos más importantes
+      de mi vida.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 3 PERSONA -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">Esta invitación es para ti</div>
+
+    <h2 class="title" id="friendName">Mi amiga</h2>
+
+    <div class="photo-frame">
+      <img id="friendPhoto"
+           src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
+           alt="Fotografía">
+    </div>
+
+    <p class="script">Porque quiero vivir este momento contigo. 🤍</p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 4 PREGUNTA -->
+
+<section class="scene">
+  <div class="content">
+    <div class="chapter">La gran pregunta</div>
+
+    <h2 class="title">¿QUIERES SER<br>MI DAMA<br>DE HONOR?</h2>
+
+    <div class="buttons">
+      <button class="choice" onclick="nextScene()">🤍 SÍ, OBVIO</button>
+      <button class="choice" onclick="nextScene()">✨ ¡CLARO QUE SÍ!</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- 5 REVELACIÓN -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">Hay algo más…</div>
+
+    <h2 class="title">Y AHORA…</h2>
+
+    <div class="divider"></div>
+
+    <p class="script">
+      Hay algo más que quiero contarte. 🤍
+    </p>
+
+    <div class="tap">Toca para descubrirlo</div>
+  </div>
+</section>
+
+
+<!-- 6 COLOR -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">El color de mis damas de honor</div>
+
+    <div class="swatch"></div>
+
+    <div class="color-name">Rosa viejo</div>
+
+    <div class="divider"></div>
+
+    <p class="body-text">
+      Un tono romántico, elegante y especial para compartir
+      este día conmigo.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 7 VESTIDOS -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">Referencias de vestidos</div>
+
+    <p class="body-text">
+      Estas son algunas ideas para inspirarte.
+      No tienes que elegir exactamente uno de ellos.
+    </p>
+
+    <div class="dress-grid">
+      <div class="dress">Referencia 01</div>
+      <div class="dress">Referencia 02</div>
+      <div class="dress">Referencia 03</div>
+      <div class="dress">Referencia 04</div>
+      <div class="dress">Referencia 05</div>
+      <div class="dress">Referencia 06</div>
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 8 REGLAS -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">El vestido</div>
+
+    <div class="rules">
+      <div class="rule">
+        <span>Color</span>
+        <span>Rosa viejo</span>
+      </div>
+
+      <div class="rule">
+        <span>Largo</span>
+        <span>Largo</span>
+      </div>
+
+      <div class="rule">
+        <span>Diseño</span>
+        <span>Libre elección</span>
+      </div>
+
+      <div class="rule">
+        <span>Tela</span>
+        <span>Libre elección</span>
+      </div>
+    </div>
+
+    <p class="body-text">
+      Quiero que elijas un vestido con el que te sientas
+      hermosa, cómoda y tú misma, respetando únicamente
+      el color y el largo.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 9 FECHA -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="content">
+    <div class="chapter">Guarda la fecha</div>
+
+    <div class="calendar">
+
+      <div class="month">Diciembre · 2026</div>
+
+      <div class="week">
+        <div>L</div>
+        <div>M</div>
+        <div>M</div>
+        <div>J</div>
+        <div>V</div>
+        <div>S</div>
+        <div>D</div>
+      </div>
+
+      <div class="days">
+        <div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+        <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
+        <div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
+        <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div class="heart-day">26</div><div>27</div>
+        <div>28</div><div>29</div><div>30</div><div>31</div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="script">26 de diciembre de 2026 🤍</p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 10 FINAL -->
+
+<section class="scene" onclick="nextScene()">
+  <div class="flower one">✿</div>
+  <div class="flower two">✿</div>
+
+  <div class="content">
+    <div class="chapter">Solo falta una cosa…</div>
+
+    <p class="final-line">
+      Que estés conmigo ese día. 🤍
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="body-text">
+      Quiero mirar a mi alrededor y encontrarte ahí.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+  </div>
+</section>
+
+
+<!-- 11 CIERRE -->
+
+<section class="scene">
+  <div class="flower one">✿</div>
+  <div class="flower two">✿</div>
+
+  <div class="content">
+
+    <div class="script">Con amor,</div>
+
+    <div class="signature">Asly</div>
+
+    <div class="gold-line"></div>
+
+    <div class="small">26 · 12 · 2026</div>
+
+    <div class="divider"></div>
+
+    <p class="body-text">
+      🤍
+    </p>
+
+  </div>
+</section>
+
+
+<div class="progress" id="progress"></div>
+
+</div>
+
+<script>
+
+const scenes = document.querySelectorAll('.scene');
+const progress = document.getElementById('progress');
+
+let current = 0;
+let musicStarted = false;
+
+function createDots(){
+  scenes.forEach((_,i)=>{
+    const dot=document.createElement('div');
+    dot.className='dot'+(i===0?' active':'');
+    progress.appendChild(dot);
+  });
+}
+
+function updateDots(){
+  document.querySelectorAll('.dot').forEach((dot,i)=>{
+    dot.classList.toggle('active',i===current);
+  });
+}
+
+function showScene(index){
+
+  if(index<0) index=0;
+  if(index>=scenes.length) index=scenes.length-1;
+
+  scenes[current].classList.remove('active');
+
+  current=index;
+
+  scenes[current].classList.add('active');
+
+  updateDots();
+
+  startMusic();
+}
+
+function nextScene(){
+  if(current < scenes.length-1){
+    showScene(current+1);
+  }
+}
+
+function previousScene(){
+  if(current > 0){
+    showScene(current-1);
+  }
+}
+
+function startMusic(){
+
+  if(musicStarted) return;
+
+  const audio=document.getElementById('music');
+
+  if(audio && audio.src){
+    audio.play().catch(()=>{});
+    musicStarted=true;
+  }
+}
+
+function toggleMusic(event){
+
+  event.stopPropagation();
+
+  const audio=document.getElementById('music');
+
+  if(!audio.src) return;
+
+  if(audio.paused){
+    audio.play();
+  }else{
+    audio.pause();
+  }
+}
+
+/* NOMBRE PERSONALIZADO */
+
+const params = new URLSearchParams(window.location.search);
+
+const dama = params.get('dama');
+
+const nombres = {
+  "1":"Nombre de tu dama 1",
+  "2":"Nombre de tu dama 2",
+  "3":"Nombre de tu dama 3",
+  "4":"Nombre de tu dama 4",
+  "5":"Nombre de tu dama 5",
+  "6":"Nombre de tu dama 6"
+};
+
+if(dama && nombres[dama]){
+  document.getElementById('friendName').textContent=nombres[dama];
+}
+
+/* NAVEGACIÓN CON TECLADO */
+
+document.addEventListener('keydown',(e)=>{
+
+  if(e.key==='ArrowRight' || e.key==='Enter' || e.key===' '){
+    e.preventDefault();
+    nextScene();
+  }
+
+  if(e.key==='ArrowLeft'){
+    e.preventDefault();
+    previousScene();
+  }
+
+});
+
+/* DESLIZAR EN CELULAR */
+
+let startX=0;
+let startY=0;
+
+document.addEventListener('touchstart',(e)=>{
+  startX=e.touches[0].clientX;
+  startY=e.touches[0].clientY;
+},{passive:true});
+
+document.addEventListener('touchend',(e)=>{
+
+  const endX=e.changedTouches[0].clientX;
+  const endY=e.changedTouches[0].clientY;
+
+  const dx=endX-startX;
+  const dy=endY-startY;
+
+  if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)){
+
+    if(dx<0){
+      nextScene();
+    }else{
+      previousScene();
+    }
+
+  }
+
+},{passive:true});
+
+createDots();
+
+</script>
+
+</body>
+</html>

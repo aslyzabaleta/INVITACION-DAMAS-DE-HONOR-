@@ -1,2149 +1,2532 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ASLY ZABALETA | Damas de Honor</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --ivory:#F9F6EE;
-      --ivory2:#F4EEE2;
-      --rose:#A66B74;
-      --rose-dark:#7D4B55;
-      --rose-light:#C9969D;
-      --green:#A7B59F;
-      --green-dark:#71816B;
-      --gold:#D4AF37;
-      --gold-light:#E7D28A;
-      --fuchsia:#E91E8D;
-      --ink:#513A3D;
-      --white:#FFFDF8;
-    }
-
-    *{
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    html,body{
-      width:100%;
-      height:100%;
-      margin:0;
-      overflow:hidden;
-      background:var(--ivory);
-    }
-
-    body{
-      font-family:"DM Sans",sans-serif;
-      color:var(--ink);
-    }
-
-    button{
-      font:inherit;
-    }
-
-    #book{
-      width:100%;
-      height:100dvh;
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,.75), transparent 45%),
-        var(--ivory);
-    }
-
-    .scene{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      opacity:0;
-      visibility:hidden;
-      transform:scale(1.025);
-      transition:
-        opacity .65s ease,
-        transform .75s cubic-bezier(.22,.61,.36,1),
-        visibility .65s;
-    }
-
-    .scene.active{
-      opacity:1;
-      visibility:visible;
-      transform:scale(1);
-    }
-
-    .paper{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 15% 15%,rgba(212,175,55,.08) 0 1px,transparent 2px),
-        radial-gradient(circle at 80% 70%,rgba(166,107,116,.06) 0 1px,transparent 2px),
-        var(--ivory);
-      background-size:38px 38px,47px 47px,auto;
-    }
-
-    .paper:after{
-      content:"";
-      position:absolute;
-      inset:14px;
-      border:1px solid rgba(166,107,116,.22);
-      pointer-events:none;
-    }
-
-    .content{
-      position:relative;
-      z-index:20;
-      width:min(92%,520px);
-      height:100%;
-      margin:auto;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:38px 22px;
-    }
-
-    .eyebrow{
-      font-size:9px;
-      letter-spacing:.32em;
-      color:var(--rose);
-      font-weight:600;
-      margin-bottom:12px;
-      text-transform:uppercase;
-    }
-
-    h1,h2,h3,p{
-      margin:0;
-    }
-
-    .title{
-      font-family:"Playfair Display",serif;
-      color:var(--rose-dark);
-      font-weight:500;
-      line-height:1.05;
-    }
-
-    .script{
-      font-family:"Allura",cursive;
-      color:var(--rose);
-      font-size:34px;
-      line-height:1;
-    }
-
-    .gold-line{
-      width:88px;
-      height:1px;
-      background:linear-gradient(90deg,transparent,var(--gold),transparent);
-      margin:17px auto;
-      position:relative;
-    }
-
-    .gold-line:before,
-    .gold-line:after{
-      content:"";
-      position:absolute;
-      top:-3px;
-      width:6px;
-      height:6px;
-      border:1px solid var(--gold);
-      transform:rotate(45deg);
-      background:var(--ivory);
-    }
-
-    .gold-line:before{left:13px}
-    .gold-line:after{right:13px}
-
-    .tiny-heart{
-      color:var(--fuchsia);
-      font-size:12px;
-    }
-
-    .tap{
-      position:absolute;
-      bottom:24px;
-      z-index:50;
-      font-size:8px;
-      letter-spacing:.25em;
-      color:var(--rose);
-      text-transform:uppercase;
-      opacity:.8;
-    }
-
-    .page-number{
-      position:absolute;
-      top:25px;
-      right:27px;
-      z-index:50;
-      font-family:"Playfair Display",serif;
-      font-size:10px;
-      color:var(--gold);
-      letter-spacing:.12em;
-    }
-
-    /* =====================================================
-       FLORAL SVG SYSTEM
-    ===================================================== */
-
-    .floral{
-      position:absolute;
-      z-index:5;
-      pointer-events:none;
-    }
-
-    .floral svg{
-      width:100%;
-      height:100%;
-      overflow:visible;
-    }
-
-    .stroke-gold{
-      fill:none;
-      stroke:var(--gold);
-      stroke-width:1.25;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .stroke-rose{
-      fill:none;
-      stroke:var(--rose);
-      stroke-width:1.4;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .stroke-green{
-      fill:none;
-      stroke:var(--green-dark);
-      stroke-width:1.25;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .leaf{
-      fill:var(--green);
-      opacity:.9;
-    }
-
-    .leaf-dark{
-      fill:var(--green-dark);
-      opacity:.7;
-    }
-
-    .petal{
-      fill:var(--rose-light);
-    }
-
-    .petal-dark{
-      fill:var(--rose);
-    }
-
-    .flower-center{
-      fill:var(--gold);
-    }
-
-    /* COVER */
-    .cover .content{
-      justify-content:center;
-      padding-top:25px;
-    }
-
-    .cover-name{
-      font-family:"Playfair Display",serif;
-      font-size:31px;
-      letter-spacing:.08em;
-      color:var(--rose-dark);
-      font-weight:600;
-    }
-
-    .cover-sub{
-      font-family:"Allura",cursive;
-      color:var(--rose);
-      font-size:31px;
-      margin-top:9px;
-    }
-
-    .date-edition{
-      margin-top:18px;
-      font-size:8px;
-      letter-spacing:.35em;
-      color:var(--gold);
-    }
-
-    .seal{
-      width:125px;
-      height:125px;
-      margin-bottom:23px;
-      position:relative;
-    }
-
-    .seal svg{
-      width:100%;
-      height:100%;
-    }
-
-    .az-a{
-      font-family:"Playfair Display",serif;
-      font-size:31px;
-      fill:var(--rose-dark);
-    }
-
-    .az-z{
-      font-family:"Playfair Display",serif;
-      font-size:37px;
-      fill:var(--rose);
-    }
-
-    .cover-floral-left{
-      width:190px;
-      height:300px;
-      left:-12px;
-      top:-20px;
-    }
-
-    .cover-floral-right{
-      width:190px;
-      height:300px;
-      right:-12px;
-      bottom:-12px;
-      transform:rotate(180deg);
-    }
-
-    .cover-bottom{
-      position:absolute;
-      width:330px;
-      height:130px;
-      bottom:-20px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:4;
-    }
-
-    /* MESSAGE */
-    .message .content{
-      padding-top:25px;
-    }
-
-    .message-box{
-      width:100%;
-      padding:25px 19px 27px;
-      border:1px solid rgba(212,175,55,.55);
-      position:relative;
-      background:rgba(255,253,248,.62);
-      box-shadow:0 10px 35px rgba(125,75,85,.08);
-    }
-
-    .message-box:before,
-    .message-box:after{
-      content:"";
-      position:absolute;
-      width:44px;
-      height:44px;
-      border:1px solid var(--gold);
-    }
-
-    .message-box:before{
-      left:-7px;
-      top:-7px;
-      border-right:0;
-      border-bottom:0;
-    }
-
-    .message-box:after{
-      right:-7px;
-      bottom:-7px;
-      border-left:0;
-      border-top:0;
-    }
-
-    .message-title{
-      font-size:28px;
-      margin-bottom:19px;
-    }
-
-    .message-text{
-      font-family:"Playfair Display",serif;
-      font-size:17px;
-      line-height:1.75;
-      color:var(--ink);
-    }
-
-    .message-text strong{
-      color:var(--rose-dark);
-      font-weight:500;
-    }
-
-    .message-floral{
-      width:155px;
-      height:220px;
-      left:-18px;
-      bottom:-10px;
-    }
-
-    .message-garland{
-      width:260px;
-      height:100px;
-      right:-40px;
-      top:55px;
-      transform:rotate(12deg);
-    }
-
-    /* PHOTO */
-    .photo-scene .content{
-      justify-content:center;
-    }
-
-    .photo-title{
-      font-size:28px;
-      margin-bottom:16px;
-    }
-
-    .photo-name{
-      font-family:"Allura",cursive;
-      font-size:38px;
-      color:var(--rose);
-      margin-bottom:18px;
-    }
-
-    .photo-frame{
-      width:min(68vw,260px);
-      aspect-ratio:3/4;
-      position:relative;
-      padding:8px;
-      background:var(--white);
-      border:1px solid var(--gold);
-      box-shadow:
-        0 14px 35px rgba(81,58,61,.14),
-        8px 8px 0 rgba(166,107,116,.13);
-    }
-
-    .photo-frame:before{
-      content:"";
-      position:absolute;
-      inset:4px;
-      border:1px solid rgba(166,107,116,.35);
-      pointer-events:none;
-      z-index:4;
-    }
-
-    .photo-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:none;
-    }
-
-    .photo-placeholder{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      background:
-        linear-gradient(145deg,rgba(166,107,116,.15),rgba(167,181,159,.2)),
-        #eee5dc;
-      color:var(--rose-dark);
-      font-family:"Playfair Display",serif;
-    }
-
-    .photo-placeholder .mini{
-      font-family:"Allura",cursive;
-      font-size:31px;
-      margin-bottom:5px;
-    }
-
-    .photo-corner{
-      position:absolute;
-      width:90px;
-      height:90px;
-      z-index:6;
-    }
-
-    .photo-corner.one{
-      left:-52px;
-      top:-40px;
-    }
-
-    .photo-corner.two{
-      right:-53px;
-      bottom:-36px;
-      transform:rotate(180deg);
-    }
-
-    /* QUESTION */
-    .question .content{
-      justify-content:center;
-    }
-
-    .question-title{
-      font-size:38px;
-      max-width:360px;
-      text-transform:uppercase;
-    }
-
-    .question-script{
-      font-size:39px;
-      margin-top:12px;
-    }
-
-    .question-buttons{
-      display:flex;
-      flex-direction:column;
-      gap:11px;
-      margin-top:27px;
-      width:min(280px,80vw);
-      z-index:30;
-    }
-
-    .choice{
-      border:1px solid var(--gold);
-      background:rgba(255,253,248,.82);
-      color:var(--rose-dark);
-      padding:13px 18px;
-      border-radius:40px;
-      font-family:"Playfair Display",serif;
-      font-size:14px;
-      letter-spacing:.02em;
-      box-shadow:0 6px 18px rgba(166,107,116,.10);
-      cursor:pointer;
-      transition:.25s;
-    }
-
-    .choice:active{
-      transform:scale(.97);
-      background:#fff;
-    }
-
-    .question-arch{
-      width:330px;
-      height:420px;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-49%);
-      z-index:3;
-    }
-
-    /* REVEAL */
-    .reveal .content{
-      justify-content:center;
-    }
-
-    .reveal-card{
-      width:100%;
-      padding:34px 22px;
-      position:relative;
-      background:rgba(255,253,248,.7);
-      border-top:1px solid var(--gold);
-      border-bottom:1px solid var(--gold);
-    }
-
-    .reveal-big{
-      font-family:"Playfair Display",serif;
-      font-size:27px;
-      line-height:1.25;
-      color:var(--rose-dark);
-      max-width:370px;
-    }
-
-    .reveal-small{
-      margin-top:22px;
-      font-family:"Playfair Display",serif;
-      font-size:17px;
-      line-height:1.6;
-    }
-
-    .reveal-place{
-      margin-top:20px;
-      font-family:"Allura",cursive;
-      color:var(--rose);
-      font-size:35px;
-    }
-
-    .bouquet-left{
-      width:190px;
-      height:240px;
-      left:-20px;
-      bottom:-8px;
-    }
-
-    .bouquet-right{
-      width:175px;
-      height:230px;
-      right:-12px;
-      top:-5px;
-      transform:scaleX(-1);
-    }
-
-    /* COLOR */
-    .color .content{
-      justify-content:center;
-    }
-
-    .color-title{
-      font-size:25px;
-      max-width:330px;
-    }
-
-    .color-name{
-      font-family:"Playfair Display",serif;
-      font-size:42px;
-      color:var(--rose);
-      letter-spacing:.05em;
-      margin-top:15px;
-    }
-
-    .swatch-wrap{
-      margin-top:19px;
-      display:flex;
-      align-items:center;
-      gap:13px;
-      padding:9px 15px 9px 9px;
-      border:1px solid rgba(212,175,55,.65);
-      background:rgba(255,255,255,.55);
-    }
-
-    .swatch{
-      width:54px;
-      height:54px;
-      background:var(--rose);
-      border:4px solid var(--white);
-      box-shadow:0 0 0 1px rgba(212,175,55,.55);
-    }
-
-    .hex{
-      font-size:10px;
-      letter-spacing:.18em;
-      color:var(--rose-dark);
-    }
-
-    .color-description{
-      font-family:"Allura",cursive;
-      color:var(--rose-dark);
-      font-size:31px;
-      margin-top:19px;
-    }
-
-    .color-floral-top{
-      width:270px;
-      height:140px;
-      right:-20px;
-      top:-4px;
-      transform:rotate(8deg);
-    }
-
-    .color-floral-bottom{
-      width:270px;
-      height:155px;
-      left:-25px;
-      bottom:-5px;
-      transform:scaleX(-1);
-    }
-
-    /* DRESSES */
-    .dresses .content{
-      justify-content:flex-start;
-      padding-top:58px;
-      padding-bottom:34px;
-    }
-
-    .dress-title{
-      font-size:24px;
-      margin-bottom:6px;
-    }
-
-    .dress-intro{
-      font-family:"Playfair Display",serif;
-      font-size:12px;
-      line-height:1.5;
-      max-width:360px;
-      margin-bottom:12px;
-    }
-
-    .dress-grid{
-      width:100%;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-      margin-top:3px;
-    }
-
-    .dress-card{
-      aspect-ratio:3/4.2;
-      background:
-        linear-gradient(180deg,#eee3df,#e4d6d1);
-      border:1px solid rgba(212,175,55,.6);
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 4px 12px rgba(81,58,61,.08);
-    }
-
-    .dress-card:after{
-      content:"";
-      position:absolute;
-      inset:4px;
-      border:1px solid rgba(255,255,255,.65);
-      pointer-events:none;
-    }
-
-    .dress-number{
-      position:absolute;
-      top:5px;
-      left:6px;
-      font-size:7px;
-      color:var(--gold);
-      z-index:5;
-    }
-
-    .dress-svg{
-      width:100%;
-      height:100%;
-    }
-
-    .dress-note{
-      font-family:"Allura",cursive;
-      color:var(--rose);
-      font-size:24px;
-      margin-top:8px;
-    }
-
-    .dress-vine{
-      width:130px;
-      height:150px;
-      position:absolute;
-      left:-20px;
-      top:30px;
-      z-index:2;
-      opacity:.85;
-    }
-
-    .dress-vine-right{
-      width:125px;
-      height:155px;
-      position:absolute;
-      right:-18px;
-      bottom:-2px;
-      z-index:2;
-      transform:scaleX(-1);
-    }
-
-    /* RULES */
-    .rules .content{
-      justify-content:center;
-      padding-top:40px;
-    }
-
-    .rules-title{
-      font-size:27px;
-      max-width:330px;
-    }
-
-    .rules-script{
-      font-size:33px;
-      margin-top:5px;
-    }
-
-    .rules-layout{
-      width:100%;
-      margin-top:17px;
-      display:grid;
-      grid-template-columns:105px 1fr;
-      gap:13px;
-      align-items:center;
-    }
-
-    .fashion-sketch{
-      height:215px;
-      border:1px solid var(--gold);
-      background:rgba(255,255,255,.52);
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .fashion-sketch svg{
-      width:90px;
-      height:195px;
-    }
-
-    .rule-list{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-    }
-
-    .rule-card{
-      padding:12px 7px;
-      background:rgba(255,255,255,.67);
-      border:1px solid rgba(166,107,116,.3);
-      min-height:73px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .rule-card b{
-      font-family:"Playfair Display",serif;
-      color:var(--rose);
-      font-size:12px;
-      margin-bottom:4px;
-    }
-
-    .rule-card span{
-      font-size:9px;
-      line-height:1.35;
-      color:var(--ink);
-    }
-
-    .rules-explanation{
-      margin-top:14px;
-      font-family:"Playfair Display",serif;
-      font-size:13px;
-      line-height:1.55;
-      max-width:370px;
-    }
-
-    .rules-flower{
-      position:absolute;
-      width:190px;
-      height:180px;
-      right:-35px;
-      top:-12px;
-      z-index:3;
-    }
-
-    .rules-flower-bottom{
-      position:absolute;
-      width:210px;
-      height:160px;
-      left:-38px;
-      bottom:-14px;
-      z-index:3;
-      transform:scaleX(-1);
-    }
-
-    /* CALENDAR */
-    .calendar .content{
-      justify-content:center;
-      padding-top:28px;
-    }
-
-    .calendar-title{
-      font-size:29px;
-      margin-bottom:2px;
-    }
-
-    .calendar-sub{
-      font-family:"Allura",cursive;
-      font-size:29px;
-      color:var(--rose);
-      margin-bottom:15px;
-    }
-
-    .calendar-box{
-      width:min(92vw,360px);
-      padding:15px 13px 17px;
-      background:rgba(255,253,248,.82);
-      border:1px solid var(--gold);
-      box-shadow:0 9px 30px rgba(81,58,61,.09);
-      position:relative;
-    }
-
-    .month{
-      font-family:"Playfair Display",serif;
-      color:var(--rose-dark);
-      font-size:21px;
-      letter-spacing:.13em;
-      margin-bottom:12px;
-    }
-
-    .weekdays,
-    .days{
-      display:grid;
-      grid-template-columns:repeat(7,1fr);
-      gap:3px;
-    }
-
-    .weekdays span{
-      font-size:8px;
-      color:var(--gold);
-      font-weight:600;
-      padding-bottom:4px;
-    }
-
-    .day{
-      aspect-ratio:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:"Playfair Display",serif;
-      font-size:12px;
-      color:var(--ink);
-      position:relative;
-    }
-
-    .heart-day svg{
-      position:absolute;
-      width:42px;
-      height:42px;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      overflow:visible;
-    }
-
-    .heart-day span{
-      position:relative;
-      z-index:2;
-      color:#fff;
-      font-family:"Playfair Display",serif;
-      font-size:13px;
-      font-weight:600;
-    }
-
-    .calendar-note{
-      margin-top:13px;
-      font-family:"Playfair Display",serif;
-      font-size:13px;
-      color:var(--rose-dark);
-    }
-
-    .calendar-flower-left{
-      position:absolute;
-      width:155px;
-      height:190px;
-      left:-23px;
-      bottom:-8px;
-      z-index:3;
-    }
-
-    .calendar-flower-right{
-      position:absolute;
-      width:155px;
-      height:190px;
-      right:-23px;
-      top:-4px;
-      z-index:3;
-      transform:scaleX(-1);
-    }
-
-    /* FINAL */
-    .final .content{
-      justify-content:center;
-    }
-
-    .final-title{
-      font-size:28px;
-      color:var(--rose-dark);
-    }
-
-    .final-main{
-      font-family:"Playfair Display",serif;
-      font-size:23px;
-      line-height:1.45;
-      margin-top:17px;
-      max-width:350px;
-    }
-
-    .final-script{
-      font-family:"Allura",cursive;
-      font-size:32px;
-      color:var(--rose);
-      margin-top:19px;
-    }
-
-    .final-question{
-      font-family:"Playfair Display",serif;
-      font-size:19px;
-      color:var(--rose-dark);
-      margin-top:21px;
-    }
-
-    .final-garden{
-      width:370px;
-      height:180px;
-      position:absolute;
-      bottom:-5px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:4;
-    }
-
-    .final-side{
-      position:absolute;
-      width:160px;
-      height:250px;
-      left:-20px;
-      top:45px;
-      z-index:3;
-    }
-
-    .final-side-right{
-      position:absolute;
-      width:160px;
-      height:250px;
-      right:-20px;
-      top:55px;
-      z-index:3;
-      transform:scaleX(-1);
-    }
-
-    /* CLOSING */
-    .closing .content{
-      justify-content:center;
-    }
-
-    .closing-script{
-      font-family:"Allura",cursive;
-      font-size:39px;
-      color:var(--rose);
-    }
-
-    .closing-name{
-      font-family:"Playfair Display",serif;
-      font-size:32px;
-      color:var(--rose-dark);
-      margin-top:7px;
-      letter-spacing:.07em;
-    }
-
-    .closing-date{
-      font-size:8px;
-      letter-spacing:.32em;
-      color:var(--gold);
-      margin-top:13px;
-    }
-
-    .closing-floral{
-      width:400px;
-      height:190px;
-      position:absolute;
-      left:50%;
-      bottom:-12px;
-      transform:translateX(-50%);
-      z-index:4;
-    }
-
-    .closing-floral-top{
-      width:300px;
-      height:125px;
-      position:absolute;
-      right:-30px;
-      top:-5px;
-      transform:rotate(180deg);
-      z-index:4;
-    }
-
-    /* SUBTLE SOMBRERO VUELTIAO */
-    .sombrero{
-      position:absolute;
-      z-index:4;
-      opacity:.5;
-    }
-
-    .sombrero.top-right{
-      width:90px;
-      height:70px;
-      right:17px;
-      top:25px;
-    }
-
-    .sombrero.bottom-left{
-      width:82px;
-      height:65px;
-      left:18px;
-      bottom:25px;
-      transform:rotate(-10deg);
-    }
-
-    /* MUSIC */
-    .music-dot{
-      position:absolute;
-      width:23px;
-      height:23px;
-      right:22px;
-      bottom:20px;
-      z-index:100;
-      border:1px solid rgba(212,175,55,.65);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:"Playfair Display",serif;
-      font-size:11px;
-      color:var(--gold);
-      background:rgba(249,246,238,.8);
-    }
-
-    @media(max-height:700px){
-      .content{
-        padding-top:25px;
-        padding-bottom:28px;
-      }
-
-      .message-text{
-        font-size:15px;
-        line-height:1.6;
-      }
-
-      .message-box{
-        padding:20px 16px 21px;
-      }
-
-      .photo-frame{
-        width:min(58vw,220px);
-      }
-
-      .dress-grid{
-        gap:6px;
-      }
-
-      .rules-layout{
-        margin-top:10px;
-      }
-
-      .fashion-sketch{
-        height:185px;
-      }
-
-      .rule-card{
-        min-height:64px;
-        padding:8px 6px;
-      }
-
-      .calendar-box{
-        width:min(88vw,340px);
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>ASLY ZABALETA | Mi gran día se acerca…</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F9F6EE;
+  --paper:#FFFDF8;
+  --rose:#A66B74;
+  --rose-dark:#7E5059;
+  --rose-soft:#D8B6BC;
+  --rose-pale:#EAD8DB;
+  --gold:#D4AF37;
+  --gold-light:#E8D79F;
+  --green:#A7B59F;
+  --green-dark:#74856F;
+  --fuchsia:#E91E8D;
+  --ink:#4D3B3E;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  background:var(--ivory);
+}
+
+body{
+  font-family:"Playfair Display",serif;
+  color:var(--ink);
+}
+
+#app{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:30px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 50% 50%,#fffdf8 0%,var(--ivory) 70%);
+
+  opacity:0;
+  visibility:hidden;
+  transform:scale(.97);
+  transition:
+    opacity .55s ease,
+    transform .55s ease,
+    visibility .55s ease;
+}
+
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.inner{
+  width:100%;
+  max-width:420px;
+  max-height:100%;
+  position:relative;
+  z-index:10;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* =========================================================
+   MARCOS
+========================================================= */
+
+.frame{
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(212,175,55,.45);
+  pointer-events:none;
+  z-index:3;
+}
+
+.frame:before,
+.frame:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-color:var(--gold);
+}
+
+.frame:before{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.frame:after{
+  right:-1px;
+  bottom:-1px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+/* =========================================================
+   DECORACIÓN FLORAL
+========================================================= */
+
+.floral{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+}
+
+.floral svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.floral-left{
+  width:205px;
+  height:280px;
+  left:-45px;
+  top:-20px;
+}
+
+.floral-right{
+  width:205px;
+  height:280px;
+  right:-45px;
+  bottom:-20px;
+  transform:rotate(180deg);
+}
+
+.floral-top{
+  width:250px;
+  height:145px;
+  top:-20px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.floral-bottom{
+  width:250px;
+  height:145px;
+  bottom:-20px;
+  left:50%;
+  transform:translateX(-50%) rotate(180deg);
+}
+
+.floral-left-middle{
+  width:175px;
+  height:250px;
+  left:-40px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.floral-right-middle{
+  width:175px;
+  height:250px;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%) rotate(180deg);
+}
+
+/* =========================================================
+   DECORACIÓN EXTRA
+========================================================= */
+
+.scene:before{
+  content:"";
+  position:absolute;
+  inset:24px;
+  border:1px solid rgba(212,175,55,.18);
+  pointer-events:none;
+  z-index:1;
+}
+
+.scene:after{
+  content:"✦";
+  position:absolute;
+  color:rgba(212,175,55,.55);
+  font-size:12px;
+  letter-spacing:14px;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* pequeños destellos decorativos */
+.inner:before{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:5px;
+  border:1px solid rgba(212,175,55,.65);
+  transform:rotate(45deg);
+  top:-24px;
+  left:13%;
+  box-shadow:
+    70px 12px 0 -1px rgba(212,175,55,.45),
+    -82px 38px 0 -1px rgba(212,175,55,.38),
+    118px 62px 0 -1px rgba(212,175,55,.35);
+  pointer-events:none;
+}
+
+/* =========================================================
+   ORNAMENTO DORADO
+========================================================= */
+
+.ornament{
+  width:170px;
+  height:24px;
+  position:relative;
+  margin:3px auto 14px;
+  opacity:.9;
+}
+
+.ornament:before,
+.ornament:after{
+  content:"";
+  position:absolute;
+  top:11px;
+  width:64px;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--gold)
+  );
+}
+
+.ornament:before{
+  left:0;
+}
+
+.ornament:after{
+  right:0;
+  transform:rotate(180deg);
+}
+
+.ornament span{
+  position:absolute;
+  left:50%;
+  top:4px;
+  transform:translateX(-50%) rotate(45deg);
+  width:14px;
+  height:14px;
+  border:1px solid var(--gold);
+}
+
+.ornament span:before,
+.ornament span:after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+}
+
+.ornament span:before{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  left:-12px;
+  top:5px;
+}
+
+.ornament span:after{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  right:-12px;
+  top:5px;
+}
+
+/* =========================================================
+   TIPOGRAFÍA
+========================================================= */
+
+.kicker{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.chapter{
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.title{
+  margin:0 0 14px;
+  color:var(--rose-dark);
+  font-size:34px;
+  line-height:1.12;
+  font-weight:500;
+}
+
+.body{
+  max-width:350px;
+  margin:0 auto 13px;
+  color:#5C4B4D;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.small{
+  max-width:340px;
+  color:#786668;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.hand{
+  font-family:"Allura",cursive;
+  color:var(--rose);
+  font-size:34px;
+  line-height:1;
+}
+
+.tap{
+  margin-top:23px;
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  animation:breath 2s infinite;
+}
+
+@keyframes breath{
+  0%,100%{opacity:.45}
+  50%{opacity:1}
+}
+
+/* =========================================================
+   MONOGRAMA AZ
+========================================================= */
+
+.monogram{
+  width:126px;
+  height:126px;
+  position:relative;
+  margin-bottom:22px;
+  filter:drop-shadow(0 7px 10px rgba(126,80,89,.10));
+}
+
+.monogram svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.monogram-letters{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:.63;
+  color:var(--rose-dark);
+}
+
+.monogram-letters .a{
+  font-family:"Allura",cursive;
+  font-size:58px;
+  transform:translate(-9px,7px);
+}
+
+.monogram-letters .z{
+  font-family:"Allura",cursive;
+  font-size:54px;
+  transform:translate(8px,-5px);
+}
+
+.edition{
+  margin-top:19px;
+  color:#927B7E;
+  font-size:8px;
+  letter-spacing:4px;
+}
+
+/* =========================================================
+   FOTO
+========================================================= */
+
+.photo-frame{
+  width:220px;
+  height:285px;
+  padding:8px;
+  background:#fffdf8;
+  border:1px solid rgba(212,175,55,.65);
+  box-shadow:0 15px 35px rgba(82,54,59,.12);
+  transform:rotate(-1.5deg);
+  margin:5px 0 18px;
+}
+
+.photo-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(145deg,#ead8db,#c999a1);
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  line-height:1.7;
+}
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+.btn-row{
+  width:100%;
+  max-width:290px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  margin-top:20px;
+}
+
+.btn{
+  border:1px solid var(--gold);
+  border-radius:30px;
+  padding:13px 20px;
+  background:rgba(255,255,255,.7);
+  color:var(--rose-dark);
+  font-family:"Playfair Display",serif;
+  font-size:12px;
+  box-shadow:0 7px 18px rgba(83,55,59,.07);
+}
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+.color-swatch{
+  width:260px;
+  height:175px;
+  margin:14px 0 19px;
+  position:relative;
+  background:var(--rose);
+  border:8px solid #fffdf8;
+  outline:1px solid rgba(212,175,55,.7);
+  box-shadow:0 18px 35px rgba(80,50,55,.16);
+}
+
+.color-swatch:before,
+.color-swatch:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  border-color:var(--gold);
+}
+
+.color-swatch:before{
+  top:-9px;
+  left:-9px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.color-swatch:after{
+  bottom:-9px;
+  right:-9px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+.color-code{
+  position:absolute;
+  bottom:13px;
+  width:100%;
+  color:white;
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+/* =========================================================
+   VESTIDOS VERTICALES
+========================================================= */
+
+.dress-grid{
+  width:100%;
+  max-width:370px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:10px 0;
+}
+
+.dress-card{
+  height:135px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.55);
+  background:linear-gradient(155deg,#d3a0a7,#96606a);
+}
+
+.dress-card:nth-child(2){
+  background:linear-gradient(155deg,#c48b95,#8e5661);
+}
+
+.dress-card:nth-child(3){
+  background:linear-gradient(155deg,#ddb2b8,#a66b74);
+}
+
+.dress-card:nth-child(4){
+  background:linear-gradient(155deg,#c9929b,#87515c);
+}
+
+.dress-card:nth-child(5){
+  background:linear-gradient(155deg,#dcb0b6,#9d606b);
+}
+
+.dress-card:nth-child(6){
+  background:linear-gradient(155deg,#c88e97,#965964);
+}
+
+.dress-card:nth-child(7){
+  background:linear-gradient(155deg,#dfb7bd,#a46a73);
+}
+
+.dress-card:nth-child(8){
+  background:linear-gradient(155deg,#c58d96,#8e5660);
+}
+
+.dress-card:nth-child(9){
+  background:linear-gradient(155deg,#d7a6ad,#9c616b);
+}
+
+.dress-card:nth-child(10){
+  background:linear-gradient(155deg,#d09aa3,#915761);
+}
+
+.dress-silhouette{
+  position:absolute;
+  width:72%;
+  height:89%;
+  left:14%;
+  bottom:-2%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 10%,
+      rgba(255,255,255,.20) 25%,
+      transparent 37%,
+      rgba(255,255,255,.15) 52%,
+      transparent 70%,
+      rgba(255,255,255,.18) 84%,
+      transparent
+    );
+  clip-path:polygon(
+    40% 0,
+    60% 0,
+    64% 14%,
+    72% 23%,
+    79% 39%,
+    100% 100%,
+    0 100%,
+    21% 39%,
+    28% 23%,
+    36% 14%
+  );
+}
+
+.dress-card:after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:24px;
+  background:rgba(40,25,28,.22);
+}
+
+.dress-label{
+  position:absolute;
+  z-index:5;
+  left:0;
+  right:0;
+  bottom:6px;
+  color:white;
+  font-size:7px;
+  letter-spacing:1px;
+}
+
+/* =========================================================
+   REGLAS
+========================================================= */
+
+.rules{
+  width:100%;
+  max-width:340px;
+  margin:18px 0;
+  border-top:1px solid rgba(212,175,55,.6);
+  border-bottom:1px solid rgba(212,175,55,.6);
+  padding:13px 0;
+}
+
+.rule{
+  display:grid;
+  grid-template-columns:75px 1fr;
+  text-align:left;
+  padding:9px 10px;
+}
+
+.rule strong{
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.rule span{
+  font-size:13px;
+  color:#554547;
+}
+
+/* =========================================================
+   CALENDARIO
+========================================================= */
+
+.calendar{
+  width:100%;
+  max-width:340px;
+  padding:14px 12px;
+  border:1px solid rgba(212,175,55,.55);
+  background:rgba(255,255,255,.5);
+}
+
+.month{
+  color:var(--rose-dark);
+  font-size:19px;
+  letter-spacing:2px;
+  margin-bottom:11px;
+}
+
+.weekdays,
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:3px;
+}
+
+.weekdays span{
+  color:var(--gold);
+  font-size:8px;
+}
+
+.day{
+  height:29px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#675759;
+  font-size:10px;
+}
+
+.heart-day{
+  width:29px;
+  height:29px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.heart-day svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.heart-day span{
+  position:relative;
+  z-index:2;
+  color:white;
+  font-weight:700;
+  font-size:9px;
+}
+
+/* =========================================================
+   CIERRE
+========================================================= */
+
+.signature{
+  font-family:"Allura",cursive;
+  font-size:52px;
+  color:var(--rose-dark);
+  margin-top:3px;
+}
+
+.gold-divider{
+  width:120px;
+  height:1px;
+  margin:21px 0 17px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+/* =========================================================
+   SOMBRERO VUELTIAO
+========================================================= */
+
+.hat{
+  width:115px;
+  height:70px;
+  opacity:.38;
+}
+
+.hat path,
+.hat ellipse{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.3;
+}
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+.progress{
+  position:fixed;
+  z-index:100;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:5px;
+}
+
+.progress i{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:rgba(166,107,116,.25);
+}
+
+.progress i.active{
+  background:var(--rose);
+  transform:scale(1.5);
+}
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+.sound{
+  position:fixed;
+  z-index:100;
+  right:14px;
+  bottom:14px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid rgba(212,175,55,.6);
+  background:rgba(249,246,238,.9);
+  color:var(--rose);
+}
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+========================================================= */
+
+@media(max-height:700px){
+
+  .scene{
+    padding-top:24px;
+    padding-bottom:24px;
+  }
+
+  .monogram{
+    width:98px;
+    height:98px;
+    margin-bottom:15px;
+  }
+
+  .monogram-letters .a{
+    font-size:48px;
+  }
+
+  .monogram-letters .z{
+    font-size:44px;
+  }
+
+  .title{
+    font-size:29px;
+  }
+
+  .body{
+    font-size:12.5px;
+    line-height:1.65;
+  }
+
+  .photo-frame{
+    width:180px;
+    height:235px;
+  }
+
+  .dress-card{
+    height:112px;
+  }
+
+  .calendar{
+    padding:10px;
+  }
+
+  .day{
+    height:25px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-<div id="book">
+<div id="app">
 
-  <!-- =====================================================
-       01 PORTADA
-  ====================================================== -->
-  <section class="scene cover active" data-scene="0">
-    <div class="paper"></div>
+<!-- =====================================================
+     PROGRESO
+===================================================== -->
 
-    <div class="floral cover-floral-left">
-      <svg viewBox="0 0 190 300">
-        <path class="stroke-green" d="M22 292 C38 235 61 185 94 140 C122 102 143 56 157 10"/>
-        <path class="stroke-gold" d="M36 260 C75 220 99 178 111 128"/>
-        <ellipse class="leaf" cx="45" cy="239" rx="9" ry="21" transform="rotate(-52 45 239)"/>
-        <ellipse class="leaf-dark" cx="60" cy="210" rx="8" ry="20" transform="rotate(41 60 210)"/>
-        <ellipse class="leaf" cx="76" cy="181" rx="8" ry="20" transform="rotate(-55 76 181)"/>
-        <ellipse class="leaf-dark" cx="91" cy="152" rx="8" ry="21" transform="rotate(38 91 152)"/>
-        <ellipse class="leaf" cx="110" cy="119" rx="8" ry="21" transform="rotate(-48 110 119)"/>
-        <ellipse class="leaf-dark" cx="125" cy="89" rx="8" ry="20" transform="rotate(43 125 89)"/>
+<div class="progress" id="progress"></div>
 
-        <g transform="translate(47 246)">
-          <ellipse class="petal" cx="0" cy="-13" rx="10" ry="18"/>
-          <ellipse class="petal-dark" cx="13" cy="-3" rx="10" ry="18" transform="rotate(55 13 -3)"/>
-          <ellipse class="petal" cx="9" cy="12" rx="10" ry="18" transform="rotate(110 9 12)"/>
-          <ellipse class="petal-dark" cx="-8" cy="12" rx="10" ry="18" transform="rotate(160 -8 12)"/>
-          <ellipse class="petal" cx="-13" cy="-3" rx="10" ry="18" transform="rotate(220 -13 -3)"/>
-          <circle class="flower-center" r="7"/>
-        </g>
 
-        <g transform="translate(91 154) scale(.8)">
-          <ellipse class="petal-dark" cx="0" cy="-13" rx="10" ry="18"/>
-          <ellipse class="petal" cx="13" cy="-3" rx="10" ry="18" transform="rotate(55 13 -3)"/>
-          <ellipse class="petal-dark" cx="9" cy="12" rx="10" ry="18" transform="rotate(110 9 12)"/>
-          <ellipse class="petal" cx="-8" cy="12" rx="10" ry="18" transform="rotate(160 -8 12)"/>
-          <ellipse class="petal-dark" cx="-13" cy="-3" rx="10" ry="18" transform="rotate(220 -13 -3)"/>
-          <circle class="flower-center" r="7"/>
-        </g>
+<!-- =====================================================
+     1. PORTADA
+===================================================== -->
 
-        <circle class="petal-dark" cx="138" cy="61" r="9"/>
-        <circle class="petal" cx="151" cy="43" r="7"/>
-        <circle class="petal-dark" cx="126" cy="35" r="6"/>
+<section class="scene active" data-scene="1">
+
+  <div class="frame"></div>
+
+  <!-- GRAN COMPOSICIÓN FLORAL IZQUIERDA -->
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C45 225 80 180 125 125 C150 94 164 60 180 25"
+            fill="none" stroke="#74856F" stroke-width="2"/>
+
+      <path d="M50 225 C25 215 18 194 28 176 C49 180 59 201 50 225Z"
+            fill="#A7B59F"/>
+
+      <path d="M73 190 C49 177 47 155 60 142 C80 151 86 170 73 190Z"
+            fill="#91A18A"/>
+
+      <path d="M96 151 C76 137 77 116 91 106 C108 118 111 135 96 151Z"
+            fill="#A7B59F"/>
+
+      <path d="M122 115 C105 99 108 82 122 73 C139 84 139 101 122 115Z"
+            fill="#91A18A"/>
+
+      <g>
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+      <g transform="translate(60 235) scale(.65)">
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+      <!-- FLORES EXTRA -->
+      <g transform="translate(8 80) scale(.55)">
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#D8B6BC"/>
+        <circle cx="196" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#EAD8DB"/>
+        <circle cx="190" cy="48" r="12" fill="#D8B6BC"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+      <path d="M35 250 C62 238 82 235 103 215"
+            fill="none"
+            stroke="#D4AF37"
+            stroke-width="1"
+            opacity=".8"/>
+
+    </svg>
+  </div>
+
+  <!-- FLORES DERECHA -->
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C45 225 80 180 125 125 C150 94 164 60 180 25"
+            fill="none" stroke="#74856F" stroke-width="2"/>
+
+      <path d="M50 225 C25 215 18 194 28 176 C49 180 59 201 50 225Z"
+            fill="#A7B59F"/>
+
+      <path d="M73 190 C49 177 47 155 60 142 C80 151 86 170 73 190Z"
+            fill="#91A18A"/>
+
+      <path d="M96 151 C76 137 77 116 91 106 C108 118 111 135 96 151Z"
+            fill="#A7B59F"/>
+
+      <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+      <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+      <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+      <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+      <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+      <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+
+      <g transform="translate(7 85) scale(.58)">
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#D8B6BC"/>
+        <circle cx="196" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#EAD8DB"/>
+        <circle cx="190" cy="48" r="12" fill="#D8B6BC"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+      <path d="M35 250 C62 238 82 235 103 215"
+            fill="none"
+            stroke="#D4AF37"
+            stroke-width="1"
+            opacity=".8"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <!-- SELLO AZ -->
+    <div class="monogram">
+
+      <svg viewBox="0 0 120 120">
+
+        <circle cx="60" cy="60" r="55"
+                fill="none"
+                stroke="#D4AF37"
+                stroke-width="1.3"/>
+
+        <circle cx="60" cy="60" r="47"
+                fill="none"
+                stroke="#A66B74"
+                stroke-width="1"
+                stroke-dasharray="2 4"/>
+
+        <path d="M60 2 L63 10 L60 15 L57 10Z"
+              fill="#D4AF37"/>
+
+        <path d="M60 105 L63 112 L60 118 L57 112Z"
+              fill="#D4AF37"/>
+
       </svg>
+
+      <div class="monogram-letters">
+        <span class="a">A</span>
+        <span class="z">Z</span>
+      </div>
+
     </div>
 
-    <div class="floral cover-floral-right">
-      <svg viewBox="0 0 190 300">
-        <path class="stroke-green" d="M22 292 C38 235 61 185 94 140 C122 102 143 56 157 10"/>
-        <path class="stroke-gold" d="M36 260 C75 220 99 178 111 128"/>
-        <ellipse class="leaf" cx="45" cy="239" rx="9" ry="21" transform="rotate(-52 45 239)"/>
-        <ellipse class="leaf-dark" cx="60" cy="210" rx="8" ry="20" transform="rotate(41 60 210)"/>
-        <ellipse class="leaf" cx="76" cy="181" rx="8" ry="20" transform="rotate(-55 76 181)"/>
-        <ellipse class="leaf-dark" cx="91" cy="152" rx="8" ry="21" transform="rotate(38 91 152)"/>
-        <ellipse class="leaf" cx="110" cy="119" rx="8" ry="21" transform="rotate(-48 110 119)"/>
-        <g transform="translate(47 246)">
-          <ellipse class="petal" cx="0" cy="-13" rx="10" ry="18"/>
-          <ellipse class="petal-dark" cx="13" cy="-3" rx="10" ry="18" transform="rotate(55 13 -3)"/>
-          <ellipse class="petal" cx="9" cy="12" rx="10" ry="18" transform="rotate(110 9 12)"/>
-          <ellipse class="petal-dark" cx="-8" cy="12" rx="10" ry="18" transform="rotate(160 -8 12)"/>
-          <ellipse class="petal" cx="-13" cy="-3" rx="10" ry="18" transform="rotate(220 -13 -3)"/>
-          <circle class="flower-center" r="7"/>
-        </g>
-      </svg>
-    </div>
+    <div class="kicker">Una invitación especial</div>
 
-    <div class="seal">
-      <svg viewBox="0 0 125 125">
-        <ellipse cx="62.5" cy="62.5" rx="54" ry="57" fill="none" stroke="#D4AF37" stroke-width="1"/>
-        <ellipse cx="62.5" cy="62.5" rx="47" ry="50" fill="none" stroke="#A66B74" stroke-width=".7"/>
-        <path d="M24 43 C39 30 51 25 62 26 C75 25 88 31 101 43" fill="none" stroke="#D4AF37" stroke-width="1"/>
-        <path d="M24 82 C39 94 51 99 62 98 C75 99 88 94 101 82" fill="none" stroke="#D4AF37" stroke-width="1"/>
-        <text x="62" y="65" text-anchor="middle" class="az-a">A</text>
-        <text x="62" y="91" text-anchor="middle" class="az-z">Z</text>
-        <path d="M42 73 C51 67 74 67 84 73" fill="none" stroke="#D4AF37" stroke-width=".9"/>
-        <circle cx="24" cy="62" r="2" fill="#D4AF37"/>
-        <circle cx="101" cy="62" r="2" fill="#D4AF37"/>
-      </svg>
-    </div>
+    <h1 class="title">ASLY ZABALETA</h1>
 
-    <div class="content">
-      <div class="cover-name">ASLY ZABALETA</div>
-      <div class="cover-sub">Mi gran día se acerca… 🤍</div>
-      <div class="gold-line"></div>
-      <div class="date-edition">26 · 12 · 2026</div>
-    </div>
+    <div class="hand">Mi gran día se acerca…</div>
 
-    <div class="cover-bottom">
-      <svg viewBox="0 0 330 130">
-        <path d="M10 125 C60 78 103 67 155 82 C207 67 270 78 320 125" class="stroke-gold"/>
-        <path d="M35 119 C75 89 103 87 130 96" class="stroke-green"/>
-        <path d="M295 119 C255 89 227 87 200 96" class="stroke-green"/>
-        <circle cx="155" cy="82" r="5" fill="none" stroke="#D4AF37"/>
-        <circle cx="155" cy="82" r="1.8" fill="#D4AF37"/>
-        <path d="M150 88 C155 94 160 94 165 88" class="stroke-rose"/>
-      </svg>
-    </div>
+    <div class="ornament"><span></span></div>
 
-    <div class="sombrero top-right">
-      <svg viewBox="0 0 100 70">
-        <ellipse cx="50" cy="49" rx="42" ry="11" fill="none" stroke="#A66B74" stroke-width="1"/>
-        <path d="M27 45 C28 21 37 11 50 11 C63 11 72 21 73 45" fill="none" stroke="#A66B74" stroke-width="1"/>
-        <path d="M31 24 H69 M28 31 H72 M27 38 H73" fill="none" stroke="#D4AF37" stroke-width="1"/>
-      </svg>
-    </div>
+    <div class="edition">26 · 12 · 2026</div>
+
+    <!-- SOMBRERO SUTIL -->
+    <svg class="hat" viewBox="0 0 120 70">
+
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
 
     <div class="tap">Toca para abrir</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       02 MENSAJE
-  ====================================================== -->
-  <section class="scene message" data-scene="1">
-    <div class="paper"></div>
-    <div class="page-number">02 / 11</div>
+<!-- =====================================================
+     2. MENSAJE
+===================================================== -->
 
-    <div class="floral message-floral">
-      <svg viewBox="0 0 155 220">
-        <path d="M15 215 C35 171 58 134 94 97 C117 74 130 42 143 8" class="stroke-green"/>
-        <path d="M25 190 C63 163 81 128 91 96" class="stroke-gold"/>
-        <ellipse class="leaf" cx="38" cy="174" rx="8" ry="19" transform="rotate(-50 38 174)"/>
-        <ellipse class="leaf-dark" cx="51" cy="150" rx="8" ry="19" transform="rotate(45 51 150)"/>
-        <ellipse class="leaf" cx="70" cy="124" rx="8" ry="19" transform="rotate(-45 70 124)"/>
-        <ellipse class="leaf-dark" cx="82" cy="99" rx="7" ry="18" transform="rotate(45 82 99)"/>
-        <g transform="translate(38 174) scale(.7)">
-          <ellipse class="petal-dark" cx="0" cy="-14" rx="10" ry="17"/>
-          <ellipse class="petal" cx="13" cy="-3" rx="10" ry="17" transform="rotate(55 13 -3)"/>
-          <ellipse class="petal-dark" cx="9" cy="12" rx="10" ry="17" transform="rotate(110 9 12)"/>
-          <ellipse class="petal" cx="-9" cy="12" rx="10" ry="17" transform="rotate(160 -9 12)"/>
-          <ellipse class="petal-dark" cx="-13" cy="-3" rx="10" ry="17" transform="rotate(220 -13 -3)"/>
-          <circle class="flower-center" r="7"/>
-        </g>
-        <circle class="petal" cx="113" cy="57" r="9"/>
-        <circle class="petal-dark" cx="126" cy="45" r="7"/>
-        <circle class="petal" cx="133" cy="62" r="5"/>
-      </svg>
+<section class="scene" data-scene="2">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C80 80 130 90 190 35"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M60 92 C42 78 45 62 58 54 C72 64 73 79 60 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M110 79 C94 63 98 48 111 41 C125 53 124 68 110 79Z"
+            fill="#91A18A"/>
+
+      <g>
+        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+        <circle cx="184" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+      </g>
+
+      <g transform="translate(25 55) scale(.45)">
+        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+        <circle cx="184" cy="39" r="11" fill="#D9B8BD"/>
+        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="191" cy="53" r="11" fill="#EAD8DB"/>
+        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C80 80 130 90 190 35"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M60 92 C42 78 45 62 58 54 C72 64 73 79 60 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M110 79 C94 63 98 48 111 41 C125 53 124 68 110 79Z"
+            fill="#91A18A"/>
+
+      <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+      <circle cx="184" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(25 55) scale(.45)">
+        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+        <circle cx="184" cy="39" r="11" fill="#D9B8BD"/>
+        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="191" cy="53" r="11" fill="#EAD8DB"/>
+        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">CAPÍTULO I</div>
+
+    <div style="
+      width:85px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin-bottom:20px;
+    "></div>
+
+    <p class="body">
+      Hay personas que llegan a nuestra vida y, sin darse cuenta,
+      terminan siendo parte de nuestras historias más bonitas.
+    </p>
+
+    <p class="body">
+      Tú eres una de esas personas para mí.
+      Por eso, ahora que estoy a punto de vivir uno de los días
+      más importantes de mi vida, hay algo que quiero preguntarte.
+    </p>
+
+    <div class="hand" style="margin-top:12px">
+      Y quiero que estés conmigo.
     </div>
 
-    <div class="floral message-garland">
-      <svg viewBox="0 0 260 100">
-        <path d="M0 20 C65 76 150 72 260 8" class="stroke-gold"/>
-        <path d="M31 42 C29 65 22 79 12 91" class="stroke-green"/>
-        <path d="M88 64 C87 80 82 91 75 98" class="stroke-green"/>
-        <path d="M168 62 C170 79 176 89 183 97" class="stroke-green"/>
-        <path d="M224 39 C229 58 236 70 247 80" class="stroke-green"/>
-        <circle class="petal-dark" cx="18" cy="87" r="7"/>
-        <circle class="petal" cx="77" cy="95" r="7"/>
-        <circle class="petal-dark" cx="181" cy="94" r="8"/>
-        <circle class="petal" cx="245" cy="77" r="7"/>
-      </svg>
-    </div>
-
-    <div class="content">
-      <div class="eyebrow">CAPÍTULO I</div>
-
-      <div class="message-box">
-        <h2 class="title message-title">Hay personas…</h2>
-
-        <p class="message-text">
-          Hay personas que llegan a nuestras vidas sin darse cuenta,
-          terminan siendo parte de nuestra historia más bonita.
-          <br><br>
-          Tú eres una de esas personas para mí, por eso ahora que estoy
-          a punto de vivir uno de los días más importantes de mi vida,
-          hay algo que quiero preguntarte.
-          <br><br>
-          <strong>Y quiero que estés conmigo.</strong>
-        </p>
-      </div>
-    </div>
+    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       03 PERSONALIZADA
-  ====================================================== -->
-  <section class="scene photo-scene" data-scene="2">
-    <div class="paper"></div>
-    <div class="page-number">03 / 11</div>
+<!-- =====================================================
+     3. ESTA INVITACIÓN ES PARA TI
+===================================================== -->
 
-    <div class="content">
-      <div class="eyebrow">ESTA INVITACIÓN ES PARA TI</div>
-      <h2 class="title photo-title">Mi querida</h2>
-      <div class="photo-name" id="damaNombre">Mi amiga</div>
+<section class="scene" data-scene="3">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(5 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(5 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">ESTA INVITACIÓN ES PARA TI</div>
+
+    <h2 class="title" id="friendName" style="font-size:31px">
+      Mi amiga
+    </h2>
+
+    <div id="friendPhotoContainer">
 
       <div class="photo-frame">
-        <img id="damaFoto" alt="Foto de Asly y su amiga">
-        <div class="photo-placeholder" id="photoPlaceholder">
-          <div class="mini">Nuestra foto</div>
-          <div>tu foto aquí</div>
-        </div>
-
-        <div class="photo-corner one">
-          <svg viewBox="0 0 90 90">
-            <path d="M8 83 C22 56 38 34 75 9" class="stroke-green"/>
-            <ellipse class="leaf" cx="28" cy="54" rx="7" ry="17" transform="rotate(-50 28 54)"/>
-            <ellipse class="leaf-dark" cx="42" cy="39" rx="7" ry="16" transform="rotate(45 42 39)"/>
-            <circle class="petal" cx="68" cy="18" r="8"/>
-            <circle class="petal-dark" cx="78" cy="28" r="6"/>
-            <circle class="flower-center" cx="68" cy="18" r="3"/>
-          </svg>
-        </div>
-
-        <div class="photo-corner two">
-          <svg viewBox="0 0 90 90">
-            <path d="M8 83 C22 56 38 34 75 9" class="stroke-green"/>
-            <ellipse class="leaf" cx="28" cy="54" rx="7" ry="17" transform="rotate(-50 28 54)"/>
-            <ellipse class="leaf-dark" cx="42" cy="39" rx="7" ry="16" transform="rotate(45 42 39)"/>
-            <circle class="petal-dark" cx="68" cy="18" r="8"/>
-            <circle class="petal" cx="78" cy="28" r="6"/>
-          </svg>
+        <div class="photo-placeholder">
+          TU FOTO<br>AQUÍ
         </div>
       </div>
+
     </div>
 
-    <div class="floral" style="width:150px;height:210px;left:-20px;bottom:-10px;">
-      <svg viewBox="0 0 150 210">
-        <path d="M10 207 C31 160 57 121 100 85 C119 68 133 38 142 6" class="stroke-gold"/>
-        <ellipse class="leaf" cx="28" cy="167" rx="8" ry="19" transform="rotate(-50 28 167)"/>
-        <ellipse class="leaf-dark" cx="44" cy="142" rx="8" ry="19" transform="rotate(42 44 142)"/>
-        <ellipse class="leaf" cx="64" cy="115" rx="8" ry="19" transform="rotate(-50 64 115)"/>
-        <circle class="petal-dark" cx="30" cy="169" r="9"/>
-        <circle class="petal" cx="52" cy="133" r="7"/>
-        <circle class="petal-dark" cx="88" cy="83" r="6"/>
-      </svg>
+    <p class="small">
+      Porque hay momentos que simplemente no serían iguales
+      sin las personas que amamos.
+    </p>
+
+    <div class="ornament"><span></span></div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     4. LA GRAN PREGUNTA
+===================================================== -->
+
+<section class="scene" data-scene="4">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(92 70) scale(.43)">
+        <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="110" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="117" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(92 70) scale(.43)">
+        <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="110" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="117" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">LA GRAN PREGUNTA</div>
+
+    <h2 class="title" style="font-size:32px">
+      ¿QUIERES SER MI<br>DAMA DE HONOR?
+    </h2>
+
+    <div class="hand" style="font-size:32px">
+      🤍
+    </div>
+
+    <div class="ornament"><span></span></div>
+
+    <div class="btn-row">
+
+      <button class="btn" onclick="nextScene()">
+        🤍 SÍ, OBVIO
+      </button>
+
+      <button class="btn" onclick="nextScene()">
+        ✨ ¡CLARO QUE SÍ!
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     5. REVELACIÓN
+===================================================== -->
+
+<section class="scene" data-scene="5">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(35 170) scale(.52)">
+        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(35 170) scale(.52)">
+        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">UN DETALLE ESPECIAL</div>
+
+    <p class="body">
+      Quiero compartir contigo un detalle muy especial.
+    </p>
+
+    <div style="
+      width:100px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin:10px 0 22px;
+    "></div>
+
+    <p class="body">
+      Porque también quiero imaginarte conmigo ese día.
+    </p>
+
+    <div class="hand" style="margin-top:15px">
+      Hay un lugar para ti.
+    </div>
+
+    <div class="ornament"><span></span></div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     6. COLOR
+===================================================== -->
+
+<section class="scene" data-scene="6">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <path d="M155 57 C140 42 143 27 155 19 C170 30 170 44 155 57Z"
+            fill="#A7B59F"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(25 70) scale(.45)">
+        <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+        <circle cx="199" cy="42" r="11" fill="#D9B8BD"/>
+        <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+        <circle cx="206" cy="56" r="11" fill="#EAD8DB"/>
+        <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+        <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(25 70) scale(.45)">
+        <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+        <circle cx="199" cy="42" r="11" fill="#D9B8BD"/>
+        <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+        <circle cx="206" cy="56" r="11" fill="#EAD8DB"/>
+        <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+        <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL COLOR DE MIS DAMAS DE HONOR</div>
+
+    <h2 class="title" style="font-size:38px">
+      ROSA VIEJO
+    </h2>
+
+    <div class="ornament"><span></span></div>
+
+    <div class="color-swatch">
+
+      <div class="color-code">
+        #A66B74
+      </div>
+
+    </div>
+
+    <p class="small">
+      Suave, romántico y atemporal.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     7. REFERENCIAS DE VESTIDOS
+===================================================== -->
+
+<section class="scene" data-scene="7">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(0 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(0 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">REFERENCIAS DE VESTIDOS</div>
+
+    <p class="small">
+      Estas imágenes son solo referencias para mostrarte
+      el estilo que imagino.
+    </p>
+
+    <div class="ornament"><span></span></div>
+
+    <div class="dress-grid">
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 01</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 02</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 03</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 04</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 05</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 06</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 07</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 08</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 09</div>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette"></div>
+        <div class="dress-label">REFERENCIA 10</div>
+      </div>
+
+    </div>
+
+    <div class="small">
+      Solo inspiración 🤍
     </div>
 
     <div class="tap">Toca para continuar</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       04 PREGUNTA
-  ====================================================== -->
-  <section class="scene question" data-scene="3">
-    <div class="paper"></div>
-    <div class="page-number">04 / 11</div>
+<!-- =====================================================
+     8. EL VESTIDO
+===================================================== -->
 
-    <div class="floral question-arch">
-      <svg viewBox="0 0 330 420">
-        <path d="M35 390 C16 280 29 160 83 79 C131 8 198 12 247 72 C299 137 309 255 289 390" class="stroke-gold"/>
-        <path d="M51 378 C36 278 50 173 95 105 C136 44 190 43 229 98 C272 157 285 275 271 378" class="stroke-rose"/>
+<section class="scene" data-scene="8">
 
-        <ellipse class="leaf" cx="47" cy="315" rx="10" ry="25" transform="rotate(-35 47 315)"/>
-        <ellipse class="leaf-dark" cx="49" cy="275" rx="9" ry="23" transform="rotate(30 49 275)"/>
-        <ellipse class="leaf" cx="57" cy="226" rx="9" ry="23" transform="rotate(-35 57 226)"/>
-        <ellipse class="leaf-dark" cx="68" cy="180" rx="9" ry="23" transform="rotate(28 68 180)"/>
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
 
-        <ellipse class="leaf" cx="282" cy="315" rx="10" ry="25" transform="rotate(35 282 315)"/>
-        <ellipse class="leaf-dark" cx="281" cy="275" rx="9" ry="23" transform="rotate(-30 281 275)"/>
-        <ellipse class="leaf" cx="273" cy="226" rx="9" ry="23" transform="rotate(35 273 226)"/>
-        <ellipse class="leaf-dark" cx="262" cy="180" rx="9" ry="23" transform="rotate(-28 262 180)"/>
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
 
-        <g transform="translate(69 177) scale(.72)">
-          <ellipse class="petal-dark" cx="0" cy="-15" rx="11" ry="20"/>
-          <ellipse class="petal" cx="14" cy="-4" rx="11" ry="20" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal-dark" cx="10" cy="13" rx="11" ry="20" transform="rotate(110 10 13)"/>
-          <ellipse class="petal" cx="-10" cy="13" rx="11" ry="20" transform="rotate(160 -10 13)"/>
-          <ellipse class="petal-dark" cx="-14" cy="-4" rx="11" ry="20" transform="rotate(220 -14 -4)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
 
-        <g transform="translate(261 177) scale(.72)">
-          <ellipse class="petal" cx="0" cy="-15" rx="11" ry="20"/>
-          <ellipse class="petal-dark" cx="14" cy="-4" rx="11" ry="20" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal" cx="10" cy="13" rx="11" ry="20" transform="rotate(110 10 13)"/>
-          <ellipse class="petal-dark" cx="-10" cy="13" rx="11" ry="20" transform="rotate(160 -10 13)"/>
-          <ellipse class="petal" cx="-14" cy="-4" rx="11" ry="20" transform="rotate(220 -14 -4)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
 
-        <circle class="petal" cx="82" cy="82" r="9"/>
-        <circle class="petal-dark" cx="105" cy="57" r="7"/>
-        <circle class="petal" cx="229" cy="57" r="7"/>
-        <circle class="petal-dark" cx="248" cy="83" r="9"/>
-      </svg>
-    </div>
+      <path d="M160 55 C144 40 147 24 160 16 C174 28 175 42 160 55Z"
+            fill="#A7B59F"/>
 
-    <div class="content">
-      <div class="eyebrow">Y AHORA…</div>
-      <h2 class="title question-title">¿Quieres ser mi dama de honor?</h2>
-      <div class="script question-script">🤍</div>
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
 
-      <div class="question-buttons">
-        <button class="choice" onclick="event.stopPropagation();goTo(4)">🤍 SÍ, OBVIO</button>
-        <button class="choice" onclick="event.stopPropagation();goTo(4)">✨ ¡CLARO QUE SÍ!</button>
-      </div>
-    </div>
-  </section>
+      <g transform="translate(25 70) scale(.46)">
+        <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+        <circle cx="201" cy="41" r="10" fill="#D9B8BD"/>
+        <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+        <circle cx="207" cy="54" r="10" fill="#EAD8DB"/>
+        <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+        <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+      </g>
 
+    </svg>
+  </div>
 
-  <!-- =====================================================
-       05 REVELACIÓN
-  ====================================================== -->
-  <section class="scene reveal" data-scene="4">
-    <div class="paper"></div>
-    <div class="page-number">05 / 11</div>
+  <!-- decoración inferior -->
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
 
-    <div class="floral bouquet-left">
-      <svg viewBox="0 0 190 240">
-        <path d="M22 237 C52 181 77 131 122 91 C146 69 166 37 178 8" class="stroke-green"/>
-        <path d="M36 215 C74 184 98 144 111 108" class="stroke-gold"/>
-        <ellipse class="leaf" cx="45" cy="191" rx="9" ry="22" transform="rotate(-48 45 191)"/>
-        <ellipse class="leaf-dark" cx="59" cy="167" rx="9" ry="21" transform="rotate(43 59 167)"/>
-        <ellipse class="leaf" cx="79" cy="140" rx="9" ry="21" transform="rotate(-48 79 140)"/>
-        <ellipse class="leaf-dark" cx="94" cy="116" rx="8" ry="20" transform="rotate(42 94 116)"/>
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
 
-        <g transform="translate(44 190) scale(.8)">
-          <ellipse class="petal" cx="0" cy="-14" rx="11" ry="19"/>
-          <ellipse class="petal-dark" cx="14" cy="-4" rx="11" ry="19" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal" cx="10" cy="13" rx="11" ry="19" transform="rotate(110 10 13)"/>
-          <ellipse class="petal-dark" cx="-10" cy="13" rx="11" ry="19" transform="rotate(160 -10 13)"/>
-          <ellipse class="petal" cx="-14" cy="-4" rx="11" ry="19" transform="rotate(220 -14 -4)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
 
-        <g transform="translate(91 112) scale(.6)">
-          <ellipse class="petal-dark" cx="0" cy="-14" rx="11" ry="19"/>
-          <ellipse class="petal" cx="14" cy="-4" rx="11" ry="19" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal-dark" cx="10" cy="13" rx="11" ry="19" transform="rotate(110 10 13)"/>
-          <ellipse class="petal" cx="-10" cy="13" rx="11" ry="19" transform="rotate(160 -10 13)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
-      </svg>
-    </div>
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
 
-    <div class="floral bouquet-right">
-      <svg viewBox="0 0 175 230">
-        <path d="M20 228 C50 177 74 132 113 93 C137 69 153 38 165 6" class="stroke-green"/>
-        <ellipse class="leaf" cx="43" cy="185" rx="9" ry="21" transform="rotate(-48 43 185)"/>
-        <ellipse class="leaf-dark" cx="59" cy="157" rx="8" ry="20" transform="rotate(42 59 157)"/>
-        <ellipse class="leaf" cx="78" cy="131" rx="8" ry="20" transform="rotate(-45 78 131)"/>
-        <circle class="petal-dark" cx="44" cy="185" r="9"/>
-        <circle class="petal" cx="75" cy="126" r="8"/>
-        <circle class="petal-dark" cx="111" cy="88" r="7"/>
-      </svg>
-    </div>
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
 
-    <div class="content">
-      <div class="reveal-card">
-        <div class="eyebrow">UN DETALLE MUY ESPECIAL</div>
+      <g transform="translate(25 70) scale(.46)">
+        <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+        <circle cx="201" cy="41" r="10" fill="#D9B8BD"/>
+        <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+        <circle cx="207" cy="54" r="10" fill="#EAD8DB"/>
+        <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+        <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+      </g>
 
-        <h2 class="reveal-big">
-          QUIERO COMPARTIR CONTIGO
-          UN DETALLE MUY ESPECIAL.
-        </h2>
+    </svg>
+  </div>
 
-        <div class="gold-line"></div>
+  <div class="inner">
 
-        <p class="reveal-small">
-          Porque también quiero imaginarte conmigo ese día.
-        </p>
+    <div class="chapter">EL VESTIDO</div>
 
-        <div class="reveal-place">Hay un lugar para ti.</div>
-      </div>
-    </div>
+    <div style="
+      width:100%;
+      max-width:320px;
+      padding:13px 0;
+      border-top:1px solid rgba(212,175,55,.6);
+      border-bottom:1px solid rgba(212,175,55,.6);
+      margin-bottom:16px;
+    ">
 
-    <div class="tap">Toca para continuar</div>
-  </section>
-
-
-  <!-- =====================================================
-       06 COLOR
-  ====================================================== -->
-  <section class="scene color" data-scene="5">
-    <div class="paper"></div>
-    <div class="page-number">06 / 11</div>
-
-    <div class="floral color-floral-top">
-      <svg viewBox="0 0 270 140">
-        <path d="M8 28 C69 57 117 78 183 65 C222 57 248 35 266 8" class="stroke-gold"/>
-        <path d="M52 51 C47 73 42 92 28 113" class="stroke-green"/>
-        <path d="M122 74 C122 95 116 112 105 129" class="stroke-green"/>
-        <path d="M201 60 C207 78 219 95 235 108" class="stroke-green"/>
-        <ellipse class="leaf" cx="42" cy="91" rx="7" ry="18" transform="rotate(-43 42 91)"/>
-        <ellipse class="leaf-dark" cx="113" cy="109" rx="7" ry="18" transform="rotate(42 113 109)"/>
-        <ellipse class="leaf" cx="222" cy="94" rx="7" ry="18" transform="rotate(-42 222 94)"/>
-        <circle class="petal-dark" cx="31" cy="112" r="9"/>
-        <circle class="petal" cx="104" cy="128" r="8"/>
-        <circle class="petal-dark" cx="235" cy="108" r="9"/>
-      </svg>
-    </div>
-
-    <div class="floral color-floral-bottom">
-      <svg viewBox="0 0 270 155">
-        <path d="M10 148 C58 108 99 90 146 86 C198 82 231 53 263 12" class="stroke-green"/>
-        <ellipse class="leaf" cx="55" cy="111" rx="9" ry="21" transform="rotate(-45 55 111)"/>
-        <ellipse class="leaf-dark" cx="87" cy="94" rx="8" ry="20" transform="rotate(42 87 94)"/>
-        <ellipse class="leaf" cx="124" cy="88" rx="8" ry="20" transform="rotate(-40 124 88)"/>
-        <ellipse class="leaf-dark" cx="171" cy="77" rx="8" ry="20" transform="rotate(40 171 77)"/>
-        <circle class="petal" cx="55" cy="111" r="9"/>
-        <circle class="petal-dark" cx="125" cy="88" r="8"/>
-        <circle class="petal" cx="204" cy="62" r="7"/>
-      </svg>
-    </div>
-
-    <div class="content">
-      <div class="eyebrow">EL COLOR DE MIS DAMAS DE HONOR</div>
-      <h2 class="title color-name">ROSA VIEJO</h2>
-
-      <div class="swatch-wrap">
-        <div class="swatch"></div>
-        <div class="hex">#A66B74</div>
+      <div class="hand" style="font-size:31px">
+        Lo importante es
       </div>
 
-      <div class="color-description">Suave, romántico y atemporal.</div>
-    </div>
-
-    <div class="tap">Toca para continuar</div>
-  </section>
-
-
-  <!-- =====================================================
-       07 REFERENCIAS
-  ====================================================== -->
-  <section class="scene dresses" data-scene="6">
-    <div class="paper"></div>
-    <div class="page-number">07 / 11</div>
-
-    <div class="floral dress-vine">
-      <svg viewBox="0 0 130 150">
-        <path d="M8 148 C32 111 49 78 85 50 C103 36 117 20 124 3" class="stroke-green"/>
-        <ellipse class="leaf" cx="25" cy="119" rx="7" ry="17" transform="rotate(-45 25 119)"/>
-        <ellipse class="leaf-dark" cx="42" cy="93" rx="7" ry="17" transform="rotate(42 42 93)"/>
-        <ellipse class="leaf" cx="61" cy="70" rx="7" ry="17" transform="rotate(-42 61 70)"/>
-        <circle class="petal-dark" cx="26" cy="119" r="7"/>
-        <circle class="petal" cx="61" cy="70" r="7"/>
-      </svg>
-    </div>
-
-    <div class="floral dress-vine-right">
-      <svg viewBox="0 0 125 155">
-        <path d="M8 153 C32 111 49 78 85 50 C103 36 117 20 124 3" class="stroke-gold"/>
-        <ellipse class="leaf" cx="25" cy="119" rx="7" ry="17" transform="rotate(-45 25 119)"/>
-        <ellipse class="leaf-dark" cx="42" cy="93" rx="7" ry="17" transform="rotate(42 42 93)"/>
-        <ellipse class="leaf" cx="61" cy="70" rx="7" ry="17" transform="rotate(-42 61 70)"/>
-        <circle class="petal-dark" cx="26" cy="119" r="7"/>
-        <circle class="petal" cx="61" cy="70" r="7"/>
-      </svg>
-    </div>
-
-    <div class="content">
-      <div class="eyebrow">UNA IDEA PARA TI</div>
-      <h2 class="title dress-title">REFERENCIAS DE VESTIDOS</h2>
-
-      <p class="dress-intro">
-        Estas imágenes son solo referencias para mostrarte el estilo que imagino.
-        No tienes que escoger exactamente uno de ellos.
-      </p>
-
-      <div class="dress-grid">
-
-        <!-- 1 -->
-        <div class="dress-card">
-          <span class="dress-number">01</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M46 15 C43 23 43 27 45 31 L39 48 L27 69 L21 130 Q50 138 79 130 L73 69 L61 48 L55 31 C57 27 57 23 54 15Z" fill="#A66B74"/>
-            <path d="M39 48 Q50 56 61 48" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M39 48 L29 59 M61 48 L71 59" stroke="#A66B74" stroke-width="7"/>
-          </svg>
-        </div>
-
-        <!-- 2 -->
-        <div class="dress-card">
-          <span class="dress-number">02</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M43 15 C45 25 44 29 42 34 L33 48 L19 74 L16 130 Q50 136 84 130 L81 74 L67 48 L58 34 C56 29 55 25 57 15Z" fill="#B57B83"/>
-            <path d="M33 48 Q50 42 67 48" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M42 34 L31 47 M58 34 L69 47" stroke="#B57B83" stroke-width="6"/>
-          </svg>
-        </div>
-
-        <!-- 3 -->
-        <div class="dress-card">
-          <span class="dress-number">03</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M45 15 C44 24 45 29 47 34 L35 51 L28 72 L12 130 Q50 136 88 130 L72 72 L65 51 L53 34 C55 29 56 24 55 15Z" fill="#9C626B"/>
-            <path d="M35 51 Q50 57 65 51" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M47 34 L37 52 M53 34 L63 52" stroke="#9C626B" stroke-width="6"/>
-          </svg>
-        </div>
-
-        <!-- 4 -->
-        <div class="dress-card">
-          <span class="dress-number">04</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M44 15 C46 25 46 29 43 34 L36 49 L25 69 L18 130 Q50 136 82 130 L75 69 L64 49 L57 34 C54 29 54 25 56 15Z" fill="#C18B92"/>
-            <path d="M36 49 Q50 60 64 49" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M43 34 L34 48 M57 34 L66 48" stroke="#C18B92" stroke-width="6"/>
-          </svg>
-        </div>
-
-        <!-- 5 -->
-        <div class="dress-card">
-          <span class="dress-number">05</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M46 15 C43 24 43 29 46 35 L39 49 L31 67 L20 130 Q50 138 80 130 L69 67 L61 49 L54 35 C57 29 57 24 54 15Z" fill="#A66B74"/>
-            <path d="M39 49 Q50 45 61 49" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M39 49 L29 61 M61 49 L71 61" stroke="#A66B74" stroke-width="7"/>
-          </svg>
-        </div>
-
-        <!-- 6 -->
-        <div class="dress-card">
-          <span class="dress-number">06</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M42 15 C45 25 44 29 41 35 L32 52 L17 72 L12 130 Q50 137 88 130 L83 72 L68 52 L59 35 C56 29 55 25 58 15Z" fill="#B97F87"/>
-            <path d="M32 52 Q50 58 68 52" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M41 35 L29 51 M59 35 L71 51" stroke="#B97F87" stroke-width="6"/>
-          </svg>
-        </div>
-
-        <!-- 7 -->
-        <div class="dress-card">
-          <span class="dress-number">07</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M46 15 C46 24 45 29 43 34 L35 47 L29 69 L15 130 Q50 136 85 130 L71 69 L65 47 L57 34 C55 29 54 24 54 15Z" fill="#A96F78"/>
-            <path d="M35 47 Q50 54 65 47" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M43 34 L34 47 M57 34 L66 47" stroke="#A96F78" stroke-width="6"/>
-          </svg>
-        </div>
-
-        <!-- 8 -->
-        <div class="dress-card">
-          <span class="dress-number">08</span>
-          <svg class="dress-svg" viewBox="0 0 100 140">
-            <path d="M43 15 C44 24 45 29 42 34 L33 49 L21 72 L18 130 Q50 137 82 130 L79 72 L67 49 L58 34 C55 29 56 24 57 15Z" fill="#C38D94"/>
-            <path d="M33 49 Q50 41 67 49" fill="none" stroke="#F9F6EE" stroke-width="2"/>
-            <path d="M42 34 L32 49 M58 34 L68 49" stroke="#C38D94" stroke-width="6"/>
-          </svg>
-        </div>
-
-      </div>
-
-      <div class="dress-note">Solo inspiración 🤍</div>
-    </div>
-
-    <div class="tap">Toca para continuar</div>
-  </section>
-
-
-  <!-- =====================================================
-       08 REGLAS
-  ====================================================== -->
-  <section class="scene rules" data-scene="7">
-    <div class="paper"></div>
-    <div class="page-number">08 / 11</div>
-
-    <div class="floral rules-flower">
-      <svg viewBox="0 0 190 180">
-        <path d="M5 170 C38 125 67 96 108 70 C139 51 165 27 184 4" class="stroke-green"/>
-        <ellipse class="leaf" cx="37" cy="132" rx="9" ry="22" transform="rotate(-50 37 132)"/>
-        <ellipse class="leaf-dark" cx="58" cy="107" rx="9" ry="22" transform="rotate(43 58 107)"/>
-        <ellipse class="leaf" cx="84" cy="87" rx="9" ry="22" transform="rotate(-45 84 87)"/>
-        <ellipse class="leaf-dark" cx="110" cy="68" rx="8" ry="20" transform="rotate(42 110 68)"/>
-        <circle class="petal-dark" cx="38" cy="132" r="9"/>
-        <circle class="petal" cx="84" cy="87" r="9"/>
-        <circle class="petal-dark" cx="127" cy="54" r="7"/>
-      </svg>
-    </div>
-
-    <div class="floral rules-flower-bottom">
-      <svg viewBox="0 0 210 160">
-        <path d="M8 151 C53 113 92 94 135 83 C166 75 190 48 207 9" class="stroke-gold"/>
-        <ellipse class="leaf" cx="42" cy="120" rx="8" ry="20" transform="rotate(-45 42 120)"/>
-        <ellipse class="leaf-dark" cx="76" cy="102" rx="8" ry="20" transform="rotate(40 76 102)"/>
-        <ellipse class="leaf" cx="114" cy="88" rx="8" ry="20" transform="rotate(-40 114 88)"/>
-        <circle class="petal" cx="42" cy="120" r="8"/>
-        <circle class="petal-dark" cx="114" cy="88" r="8"/>
-      </svg>
-    </div>
-
-    <div class="content">
-      <div class="eyebrow">PARA QUE TODO SE SIENTA MUY TÚ</div>
-
-      <h2 class="title rules-title">
-        Lo importante es que te sientas tú.
+      <h2 class="title" style="font-size:29px;margin:2px 0 0">
+        que te sientas tú.
       </h2>
 
-      <div class="rules-script">Sin complicaciones.</div>
+    </div>
 
-      <div class="rules-layout">
+    <div class="rules">
 
-        <div class="fashion-sketch">
-          <svg viewBox="0 0 90 195">
-            <circle cx="45" cy="18" r="10" fill="none" stroke="#A66B74"/>
-            <path d="M35 31 Q45 36 55 31 L59 66 L72 102 L79 181 Q45 188 11 181 L18 102 L31 66Z"
-                  fill="rgba(166,107,116,.12)"
-                  stroke="#A66B74"
-                  stroke-width="1.2"/>
-            <path d="M31 66 Q45 74 59 66" fill="none" stroke="#D4AF37"/>
-            <path d="M32 32 L24 57 M58 32 L66 57" fill="none" stroke="#A66B74"/>
-            <path d="M20 106 Q45 115 70 106" fill="none" stroke="#D4AF37"/>
-          </svg>
-        </div>
-
-        <div class="rule-list">
-          <div class="rule-card">
-            <b>Color</b>
-            <span>Rosa viejo</span>
-          </div>
-
-          <div class="rule-card">
-            <b>Largo</b>
-            <span>Largo</span>
-          </div>
-
-          <div class="rule-card">
-            <b>Diseño</b>
-            <span>Libre elección</span>
-          </div>
-
-          <div class="rule-card">
-            <b>Tela</b>
-            <span>Libre elección</span>
-          </div>
-        </div>
-
+      <div class="rule">
+        <strong>COLOR</strong>
+        <span>Rosa viejo</span>
       </div>
 
-      <p class="rules-explanation">
-        Tienes libre elección en el diseño y la tela.
-        Escoge el que más te guste y te haga sentir hermosa.
-      </p>
+      <div class="rule">
+        <strong>LARGO</strong>
+        <span>Largo</span>
+      </div>
+
+      <div class="rule">
+        <strong>DISEÑO</strong>
+        <span>Libre elección</span>
+      </div>
+
+      <div class="rule">
+        <strong>TELA</strong>
+        <span>Libre elección</span>
+      </div>
+
     </div>
+
+    <p class="small">
+      Escoge el que más te guste y te haga sentir hermosa.
+    </p>
+
+    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       09 CALENDARIO
-  ====================================================== -->
-  <section class="scene calendar" data-scene="8">
-    <div class="paper"></div>
-    <div class="page-number">09 / 11</div>
+<!-- =====================================================
+     9. GUARDA LA FECHA
+===================================================== -->
 
-    <div class="floral calendar-flower-left">
-      <svg viewBox="0 0 155 190">
-        <path d="M8 185 C35 142 58 103 96 75 C121 57 140 31 150 5" class="stroke-green"/>
-        <ellipse class="leaf" cx="28" cy="151" rx="8" ry="20" transform="rotate(-47 28 151)"/>
-        <ellipse class="leaf-dark" cx="45" cy="126" rx="8" ry="20" transform="rotate(43 45 126)"/>
-        <ellipse class="leaf" cx="66" cy="101" rx="8" ry="20" transform="rotate(-45 66 101)"/>
-        <circle class="petal-dark" cx="29" cy="151" r="9"/>
-        <circle class="petal" cx="67" cy="101" r="8"/>
-        <circle class="petal-dark" cx="101" cy="73" r="7"/>
-      </svg>
-    </div>
+<section class="scene" data-scene="9">
 
-    <div class="floral calendar-flower-right">
-      <svg viewBox="0 0 155 190">
-        <path d="M8 185 C35 142 58 103 96 75 C121 57 140 31 150 5" class="stroke-gold"/>
-        <ellipse class="leaf" cx="28" cy="151" rx="8" ry="20" transform="rotate(-47 28 151)"/>
-        <ellipse class="leaf-dark" cx="45" cy="126" rx="8" ry="20" transform="rotate(43 45 126)"/>
-        <ellipse class="leaf" cx="66" cy="101" rx="8" ry="20" transform="rotate(-45 66 101)"/>
-        <circle class="petal" cx="29" cy="151" r="9"/>
-        <circle class="petal-dark" cx="67" cy="101" r="8"/>
-        <circle class="petal" cx="101" cy="73" r="7"/>
-      </svg>
-    </div>
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
 
-    <div class="content">
-      <div class="eyebrow">GUÁRDALO</div>
-      <h2 class="title calendar-title">GUARDA LA FECHA</h2>
-      <div class="calendar-sub">Mi gran día</div>
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
 
-      <div class="calendar-box">
-        <div class="month">DICIEMBRE 2026</div>
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
 
-        <div class="weekdays">
-          <span>D</span>
-          <span>L</span>
-          <span>M</span>
-          <span>M</span>
-          <span>J</span>
-          <span>V</span>
-          <span>S</span>
-        </div>
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
 
-        <div class="days">
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
 
-          <div class="day"></div>
-          <div class="day"></div>
-          <div class="day">1</div>
-          <div class="day">2</div>
-          <div class="day">3</div>
-          <div class="day">4</div>
-          <div class="day">5</div>
+      <g transform="translate(0 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
 
-          <div class="day">6</div>
-          <div class="day">7</div>
-          <div class="day">8</div>
-          <div class="day">9</div>
-          <div class="day">10</div>
-          <div class="day">11</div>
-          <div class="day">12</div>
+    </svg>
+  </div>
 
-          <div class="day">13</div>
-          <div class="day">14</div>
-          <div class="day">15</div>
-          <div class="day">16</div>
-          <div class="day">17</div>
-          <div class="day">18</div>
-          <div class="day">19</div>
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
 
-          <div class="day">20</div>
-          <div class="day">21</div>
-          <div class="day">22</div>
-          <div class="day">23</div>
-          <div class="day">24</div>
-          <div class="day">25</div>
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
 
-          <div class="day heart-day">
-            <svg viewBox="0 0 100 90">
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(0 135) scale(.5)">
+        <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+        <circle cx="132" cy="51" r="10" fill="#D9B8BD"/>
+        <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+        <circle cx="138" cy="64" r="10" fill="#EAD8DB"/>
+        <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+        <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">GUARDA LA FECHA</div>
+
+    <div class="calendar">
+
+      <div class="month">
+        DICIEMBRE 2026
+      </div>
+
+      <div class="weekdays">
+        <span>D</span>
+        <span>L</span>
+        <span>M</span>
+        <span>M</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+      </div>
+
+      <div class="days">
+
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+
+        <div class="day">
+
+          <div class="heart-day">
+
+            <svg viewBox="0 0 100 100">
+
               <path
-                d="M50 82
-                   C44 76 10 55 10 28
-                   C10 12 22 5 35 5
-                   C43 5 48 9 50 16
-                   C52 9 57 5 65 5
-                   C78 5 90 12 90 28
-                   C90 55 56 76 50 82Z"
+                d="
+                M50 88
+                C45 82 12 61 12 35
+                C12 20 23 11 36 11
+                C44 11 50 16 50 24
+                C50 16 56 11 64 11
+                C77 11 88 20 88 35
+                C88 61 55 82 50 88Z"
                 fill="#E91E8D"
               />
+
             </svg>
+
             <span>26</span>
+
           </div>
 
-          <div class="day">27</div>
-          <div class="day">28</div>
-          <div class="day">29</div>
-          <div class="day">30</div>
-          <div class="day">31</div>
         </div>
 
-        <div class="calendar-note">
-          Iglesia · 5:00 p. m.<br>
-          Recepción · 6:00 p. m.
-        </div>
+        <div class="day">27</div>
+
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+
       </div>
+
+    </div>
+
+    <div class="hand" style="font-size:28px;margin-top:15px">
+      26 · 12 · 2026
     </div>
 
     <div class="tap">Toca para continuar</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       10 FINAL
-  ====================================================== -->
-  <section class="scene final" data-scene="9">
-    <div class="paper"></div>
-    <div class="page-number">10 / 11</div>
+<!-- =====================================================
+     10. FINAL
+===================================================== -->
 
-    <div class="floral final-side">
-      <svg viewBox="0 0 160 250">
-        <path d="M10 245 C30 188 53 142 94 100 C122 72 144 35 155 4" class="stroke-green"/>
-        <ellipse class="leaf" cx="31" cy="198" rx="9" ry="22" transform="rotate(-48 31 198)"/>
-        <ellipse class="leaf-dark" cx="47" cy="168" rx="8" ry="21" transform="rotate(43 47 168)"/>
-        <ellipse class="leaf" cx="68" cy="137" rx="8" ry="21" transform="rotate(-46 68 137)"/>
-        <ellipse class="leaf-dark" cx="89" cy="108" rx="8" ry="20" transform="rotate(43 89 108)"/>
-        <circle class="petal-dark" cx="31" cy="198" r="9"/>
-        <circle class="petal" cx="69" cy="137" r="9"/>
-        <circle class="petal-dark" cx="112" cy="81" r="7"/>
-      </svg>
+<section class="scene" data-scene="10">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(25 75) scale(.48)">
+        <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+        <circle cx="190" cy="47" r="11" fill="#D9B8BD"/>
+        <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+        <circle cx="197" cy="61" r="11" fill="#EAD8DB"/>
+        <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+        <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(25 75) scale(.48)">
+        <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+        <circle cx="190" cy="47" r="11" fill="#D9B8BD"/>
+        <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+        <circle cx="197" cy="61" r="11" fill="#EAD8DB"/>
+        <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+        <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">SOLO FALTA UNA COSA…</div>
+
+    <div class="hand" style="font-size:30px;margin-bottom:13px">
+      Que estés conmigo
     </div>
 
-    <div class="floral final-side-right">
-      <svg viewBox="0 0 160 250">
-        <path d="M10 245 C30 188 53 142 94 100 C122 72 144 35 155 4" class="stroke-gold"/>
-        <ellipse class="leaf" cx="31" cy="198" rx="9" ry="22" transform="rotate(-48 31 198)"/>
-        <ellipse class="leaf-dark" cx="47" cy="168" rx="8" ry="21" transform="rotate(43 47 168)"/>
-        <ellipse class="leaf" cx="68" cy="137" rx="8" ry="21" transform="rotate(-46 68 137)"/>
-        <circle class="petal" cx="31" cy="198" r="9"/>
-        <circle class="petal-dark" cx="69" cy="137" r="9"/>
-        <circle class="petal" cx="112" cy="81" r="7"/>
-      </svg>
+    <h2 class="title" style="font-size:31px">
+      ESE DÍA. 🤍
+    </h2>
+
+    <p class="body">
+      Quiero mirar a mi alrededor y encontrarte ahí.
+    </p>
+
+    <p class="body">
+      Compartiendo conmigo uno de los días
+      que voy a guardar para siempre.
+    </p>
+
+    <div class="hand" style="font-size:32px;margin-top:14px">
+      ¿Te quedas conmigo?
     </div>
 
-    <div class="content">
-      <div class="eyebrow">SOLO FALTA UNA COSA…</div>
-
-      <h2 class="title final-title">
-        QUE ESTÉS CONMIGO<br>
-        ESE DÍA. 🤍
-      </h2>
-
-      <div class="gold-line"></div>
-
-      <p class="final-main">
-        Quiero mirar a mi alrededor y encontrarte ahí,
-        compartiendo conmigo uno de los días que voy a guardar para siempre.
-      </p>
-
-      <div class="final-script">
-        ¿Te quedas conmigo?
-      </div>
-    </div>
-
-    <div class="final-garden">
-      <svg viewBox="0 0 370 180">
-        <path d="M10 178 C58 133 98 126 141 140 C183 153 225 139 262 126 C302 112 335 129 360 174" class="stroke-gold"/>
-        <path d="M45 171 C82 142 105 138 130 145" class="stroke-green"/>
-        <path d="M322 171 C291 143 268 139 244 146" class="stroke-green"/>
-        <circle class="petal-dark" cx="48" cy="169" r="10"/>
-        <circle class="petal" cx="92" cy="141" r="8"/>
-        <circle class="petal-dark" cx="276" cy="139" r="9"/>
-        <circle class="petal" cx="320" cy="166" r="10"/>
-        <ellipse class="leaf" cx="70" cy="151" rx="8" ry="19" transform="rotate(-45 70 151)"/>
-        <ellipse class="leaf-dark" cx="302" cy="151" rx="8" ry="19" transform="rotate(45 302 151)"/>
-      </svg>
-    </div>
+    <div class="ornament"><span></span></div>
 
     <div class="tap">Toca para continuar</div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       11 CIERRE
-  ====================================================== -->
-  <section class="scene closing" data-scene="10">
-    <div class="paper"></div>
-    <div class="page-number">11 / 11</div>
+<!-- =====================================================
+     11. CIERRE
+===================================================== -->
 
-    <div class="floral closing-floral-top">
-      <svg viewBox="0 0 300 125">
-        <path d="M4 24 C69 67 133 73 193 58 C235 48 268 28 296 5" class="stroke-gold"/>
-        <path d="M72 63 C67 83 59 100 45 118" class="stroke-green"/>
-        <path d="M153 69 C155 87 163 105 177 120" class="stroke-green"/>
-        <path d="M232 43 C238 60 250 74 267 86" class="stroke-green"/>
-        <circle class="petal-dark" cx="45" cy="118" r="8"/>
-        <circle class="petal" cx="177" cy="120" r="8"/>
-        <circle class="petal-dark" cx="267" cy="86" r="8"/>
-      </svg>
+<section class="scene" data-scene="11">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(35 170) scale(.52)">
+        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+      <g transform="translate(35 170) scale(.52)">
+        <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+        <circle cx="145" cy="62" r="11" fill="#D9B8BD"/>
+        <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+        <circle cx="152" cy="76" r="11" fill="#EAD8DB"/>
+        <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+        <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="ornament"><span></span></div>
+
+    <div class="hand">
+      Con amor,
     </div>
 
-    <div class="content">
-      <div class="closing-script">Con amor,</div>
-      <div class="gold-line"></div>
-      <div class="closing-name">ASLY</div>
-      <div class="closing-date">26 · 12 · 2026</div>
+    <div class="signature">
+      Asly
     </div>
 
-    <div class="closing-floral">
-      <svg viewBox="0 0 400 190">
-        <path d="M10 184 C59 138 104 125 151 139 C199 153 238 147 280 128 C327 107 364 130 390 181" class="stroke-gold"/>
-        <path d="M38 179 C72 143 102 136 129 144" class="stroke-green"/>
-        <path d="M360 179 C328 143 299 136 271 145" class="stroke-green"/>
+    <div class="gold-divider"></div>
 
-        <ellipse class="leaf" cx="65" cy="155" rx="9" ry="22" transform="rotate(-45 65 155)"/>
-        <ellipse class="leaf-dark" cx="98" cy="139" rx="8" ry="21" transform="rotate(42 98 139)"/>
-        <ellipse class="leaf" cx="303" cy="139" rx="8" ry="21" transform="rotate(-42 303 139)"/>
-        <ellipse class="leaf-dark" cx="337" cy="155" rx="9" ry="22" transform="rotate(45 337 155)"/>
-
-        <g transform="translate(63 155) scale(.8)">
-          <ellipse class="petal" cx="0" cy="-15" rx="11" ry="20"/>
-          <ellipse class="petal-dark" cx="14" cy="-4" rx="11" ry="20" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal" cx="10" cy="13" rx="11" ry="20" transform="rotate(110 10 13)"/>
-          <ellipse class="petal-dark" cx="-10" cy="13" rx="11" ry="20" transform="rotate(160 -10 13)"/>
-          <ellipse class="petal" cx="-14" cy="-4" rx="11" ry="20" transform="rotate(220 -14 -4)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
-
-        <g transform="translate(337 155) scale(.8)">
-          <ellipse class="petal-dark" cx="0" cy="-15" rx="11" ry="20"/>
-          <ellipse class="petal" cx="14" cy="-4" rx="11" ry="20" transform="rotate(55 14 -4)"/>
-          <ellipse class="petal-dark" cx="10" cy="13" rx="11" ry="20" transform="rotate(110 10 13)"/>
-          <ellipse class="petal" cx="-10" cy="13" rx="11" ry="20" transform="rotate(160 -10 13)"/>
-          <ellipse class="petal-dark" cx="-14" cy="-4" rx="11" ry="20" transform="rotate(220 -14 -4)"/>
-          <circle class="flower-center" r="8"/>
-        </g>
-
-        <circle class="petal-dark" cx="130" cy="142" r="8"/>
-        <circle class="petal" cx="270" cy="143" r="8"/>
-        <path d="M178 150 C188 138 212 138 222 150" class="stroke-rose"/>
-      </svg>
+    <div class="edition">
+      26 · 12 · 2026
     </div>
 
-    <div class="sombrero bottom-left">
-      <svg viewBox="0 0 100 70">
-        <ellipse cx="50" cy="49" rx="42" ry="11" fill="none" stroke="#A66B74" stroke-width="1"/>
-        <path d="M27 45 C28 21 37 11 50 11 C63 11 72 21 73 45" fill="none" stroke="#A66B74" stroke-width="1"/>
-        <path d="M31 24 H69 M28 31 H72 M27 38 H73" fill="none" stroke="#D4AF37" stroke-width="1"/>
-      </svg>
-    </div>
+    <svg class="hat" viewBox="0 0 120 70">
 
-    <div class="tap">🤍</div>
-  </section>
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MÚSICA
+===================================================== -->
+
+<button class="sound" id="soundBtn">
+  ♫
+</button>
+
+<audio id="music" loop preload="auto"></audio>
 
 </div>
 
-<div class="music-dot">♪</div>
-
-<audio id="music" loop preload="none"></audio>
 
 <script>
-  /* =====================================================
-     PERSONALIZACIÓN
-     Cambia aquí los nombres y fotos cuando las tengas.
-  ====================================================== */
 
-  const damas = {
-    1: {
-      nombre: "Mi amiga",
-      foto: ""
-    },
-    2: {
-      nombre: "Mi amiga",
-      foto: ""
-    },
-    3: {
-      nombre: "Mi amiga",
-      foto: ""
-    },
-    4: {
-      nombre: "Mi amiga",
-      foto: ""
-    },
-    5: {
-      nombre: "Mi amiga",
-      foto: ""
-    },
-    6: {
-      nombre: "Mi amiga",
-      foto: ""
+/* =========================================================
+   DAMAS DE HONOR
+========================================================= */
+
+const damas = {
+
+  1:{
+    nombre:"Mi amiga",
+    foto:""
+  },
+
+  2:{
+    nombre:"Mi amiga",
+    foto:""
+  },
+
+  3:{
+    nombre:"Mi amiga",
+    foto:""
+  },
+
+  4:{
+    nombre:"Mi amiga",
+    foto:""
+  },
+
+  5:{
+    nombre:"Mi amiga",
+    foto:""
+  },
+
+  6:{
+    nombre:"Mi amiga",
+    foto:""
+  }
+
+};
+
+
+/* =========================================================
+   ESCENAS
+========================================================= */
+
+const scenes =
+  [...document.querySelectorAll(".scene")];
+
+let currentScene = 0;
+
+
+/* =========================================================
+   PUNTOS DE PROGRESO
+========================================================= */
+
+const progress =
+  document.getElementById("progress");
+
+scenes.forEach((scene,index)=>{
+
+  const dot =
+    document.createElement("i");
+
+  if(index === 0){
+    dot.classList.add("active");
+  }
+
+  progress.appendChild(dot);
+
+});
+
+
+function updateProgress(){
+
+  [...progress.children].forEach(
+    (dot,index)=>{
+
+      dot.classList.toggle(
+        "active",
+        index === currentScene
+      );
+
     }
-  };
+  );
 
-  /* =====================================================
-     MÚSICA
-     Cuando escojamos la canción, ponemos aquí su URL.
-  ====================================================== */
+}
 
-  const MUSIC_URL = "";
 
-  const params = new URLSearchParams(window.location.search);
-  const damaId = Number(params.get("dama")) || 1;
-  const dama = damas[damaId] || damas[1];
+/* =========================================================
+   CAMBIO DE ESCENA
+========================================================= */
 
-  const scenes = Array.from(document.querySelectorAll(".scene"));
-  const nombre = document.getElementById("damaNombre");
-  const foto = document.getElementById("damaFoto");
-  const placeholder = document.getElementById("photoPlaceholder");
-  const audio = document.getElementById("music");
+function showScene(index){
 
-  nombre.textContent = dama.nombre;
-
-  if (dama.foto && dama.foto.trim() !== "") {
-    foto.src = dama.foto;
-    foto.style.display = "block";
-    placeholder.style.display = "none";
+  if(
+    index < 0 ||
+    index >= scenes.length
+  ){
+    return;
   }
 
-  if (MUSIC_URL.trim() !== "") {
-    audio.src = MUSIC_URL;
+  scenes[currentScene]
+    .classList.remove("active");
+
+  currentScene = index;
+
+  scenes[currentScene]
+    .classList.add("active");
+
+  updateProgress();
+
+}
+
+
+/* =========================================================
+   SIGUIENTE
+========================================================= */
+
+function nextScene(){
+
+  if(
+    currentScene <
+    scenes.length - 1
+  ){
+
+    showScene(
+      currentScene + 1
+    );
+
   }
 
-  let currentScene = 0;
-  let musicStarted = false;
+}
 
-  function startMusic(){
-    if (!musicStarted && MUSIC_URL.trim() !== "") {
-      musicStarted = true;
-      audio.volume = 0.35;
-      audio.play().catch(() => {});
-    }
-  }
 
-  function goTo(index){
-    if(index < 0 || index >= scenes.length) return;
+/* =========================================================
+   TOQUE PARA CONTINUAR
+========================================================= */
 
-    startMusic();
+scenes.forEach(
+  (scene,index)=>{
 
-    scenes[currentScene].classList.remove("active");
+    scene.addEventListener(
+      "click",
+      event=>{
 
-    currentScene = index;
+        if(
+          event.target.closest("button")
+        ){
+          return;
+        }
 
-    scenes[currentScene].classList.add("active");
-  }
+        if(
+          index === currentScene &&
+          currentScene <
+          scenes.length - 1
+        ){
 
-  /* Toda escena narrativa avanza tocando la pantalla.
-     Los botones de la pregunta tienen su propio comportamiento. */
+          nextScene();
 
-  scenes.forEach((scene, index) => {
-    scene.addEventListener("click", function(e){
-      if(e.target.closest("button")) return;
+        }
 
-      if(index === scenes.length - 1) return;
-
-      goTo(index + 1);
-    });
-  });
-
-  /* También permite deslizar hacia la izquierda */
-  let touchStartX = 0;
-
-  document.addEventListener("touchstart", e => {
-    touchStartX = e.changedTouches[0].clientX;
-  }, {passive:true});
-
-  document.addEventListener("touchend", e => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const difference = touchStartX - touchEndX;
-
-    if(Math.abs(difference) > 70){
-      if(difference > 0 && currentScene < scenes.length - 1){
-        goTo(currentScene + 1);
       }
+    );
 
-      if(difference < 0 && currentScene > 0){
-        goTo(currentScene - 1);
-      }
+  }
+);
+
+
+/* =========================================================
+   PERSONALIZACIÓN ?dama=1
+========================================================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const damaNumber =
+  parseInt(
+    params.get("dama") || "1",
+    10
+  );
+
+if(damas[damaNumber]){
+
+  const data =
+    damas[damaNumber];
+
+  const name =
+    document.getElementById(
+      "friendName"
+    );
+
+  const photo =
+    document.getElementById(
+      "friendPhotoContainer"
+    );
+
+  if(name){
+
+    name.textContent =
+      data.nombre || "Mi amiga";
+
+  }
+
+  if(
+    photo &&
+    data.foto
+  ){
+
+    photo.innerHTML = `
+      <div class="photo-frame">
+        <img
+          src="${data.foto}"
+          alt="${data.nombre || "Mi amiga"}"
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+          "
+        >
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+const music =
+  document.getElementById("music");
+
+const soundBtn =
+  document.getElementById("soundBtn");
+
+soundBtn.addEventListener(
+  "click",
+  event=>{
+
+    event.stopPropagation();
+
+    if(!music.src){
+      return;
     }
-  }, {passive:true});
 
-  /* Primera interacción: intenta activar música */
-  document.addEventListener("pointerdown", startMusic, {once:true});
+    if(music.paused){
+
+      music.play();
+
+      soundBtn.textContent = "♫";
+
+    }else{
+
+      music.pause();
+
+      soundBtn.textContent = "♪";
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   EVITAR SCROLL
+========================================================= */
+
+document.addEventListener(
+  "touchmove",
+  event=>{
+    event.preventDefault();
+  },
+  {passive:false}
+);
+
+document.addEventListener(
+  "gesturestart",
+  event=>{
+    event.preventDefault();
+  }
+);
+
 </script>
 
 </body>

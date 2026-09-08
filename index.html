@@ -1,904 +1,1778 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asly Zabaleta | Mi gran día</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-:root{
-  --rose:#A66B74;
-  --rose-dark:#7F4F58;
-  --ivory:#F9F6EE;
-  --gold:#D4AF37;
-  --fuchsia:#E91E8D;
-  --green:#A7B59F;
-  --text:#49363A;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-}
-
-body{
-  background:#e9e2d9;
-  font-family:'Playfair Display',serif;
-  color:var(--text);
-}
-
-#app{
-  width:100%;
-  height:100%;
-  position:relative;
-  overflow:hidden;
-}
-
-.scene{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:var(--ivory);
-  padding:30px 24px;
-}
-
-.scene.active{
-  display:flex;
-  animation:appear .65s ease both;
-}
-
-@keyframes appear{
-  from{
-    opacity:0;
-    transform:scale(1.025);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-.scene::before{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border:1px solid rgba(212,175,55,.45);
-  pointer-events:none;
-}
-
-.content{
-  position:relative;
-  z-index:3;
-  width:min(100%,430px);
-  text-align:center;
-}
-
-.chapter{
-  color:var(--rose);
-  font-size:.72rem;
-  letter-spacing:.25em;
-  margin-bottom:24px;
-  text-transform:uppercase;
-}
-
-.small{
-  font-size:.72rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-
-.title{
-  font-size:clamp(2.3rem,10vw,4rem);
-  line-height:1.05;
-  color:var(--rose-dark);
-  font-weight:500;
-}
-
-.script{
-  font-family:'Allura',cursive;
-  color:var(--rose);
-  font-size:2.2rem;
-  line-height:1.1;
-}
-
-.body-text{
-  font-size:1rem;
-  line-height:1.8;
-  color:#594447;
-}
-
-.divider{
-  width:70px;
-  height:1px;
-  background:var(--gold);
-  margin:24px auto;
-}
-
-.tap{
-  margin-top:35px;
-  font-size:.7rem;
-  letter-spacing:.2em;
-  color:var(--rose);
-  text-transform:uppercase;
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  50%{opacity:.45}
-}
-
-/* DECORACIÓN */
-
-.flower{
-  position:absolute;
-  font-size:3rem;
-  opacity:.28;
-  z-index:1;
-}
-
-.flower.one{
-  top:8%;
-  left:4%;
-  transform:rotate(-20deg);
-}
-
-.flower.two{
-  bottom:6%;
-  right:2%;
-  transform:rotate(30deg);
-}
-
-.leaf{
-  position:absolute;
-  color:var(--green);
-  opacity:.3;
-  font-size:2rem;
-}
-
-.leaf.one{
-  top:17%;
-  right:8%;
-  transform:rotate(25deg);
-}
-
-.leaf.two{
-  bottom:15%;
-  left:7%;
-  transform:rotate(-25deg);
-}
-
-/* PORTADA */
-
-.cover .content{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.cover-date{
-  margin-bottom:28px;
-  color:var(--rose);
-  font-size:.72rem;
-  letter-spacing:.3em;
-}
-
-.cover .title{
-  font-size:clamp(2.5rem,11vw,4.2rem);
-}
-
-.cover .script{
-  margin-top:26px;
-}
-
-.gold-line{
-  width:90px;
-  height:1px;
-  background:var(--gold);
-  margin:25px auto;
-}
-
-/* FOTO */
-
-.photo-frame{
-  width:min(80vw,300px);
-  height:min(80vw,360px);
-  margin:25px auto;
-  padding:8px;
-  border:1px solid rgba(212,175,55,.7);
-  background:white;
-  box-shadow:0 12px 35px rgba(80,50,50,.12);
-}
-
-.photo-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* BOTONES */
-
-.buttons{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  margin-top:30px;
-}
-
-.choice{
-  border:1px solid var(--rose);
-  background:transparent;
-  color:var(--rose-dark);
-  padding:14px 18px;
-  border-radius:30px;
-  font-family:'Playfair Display',serif;
-  font-size:.9rem;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.choice:hover,
-.choice:active{
-  background:var(--rose);
-  color:white;
-}
-
-/* COLOR */
-
-.swatch{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:var(--rose);
-  margin:28px auto;
-  box-shadow:0 12px 30px rgba(100,50,60,.18);
-}
-
-.color-name{
-  color:var(--rose-dark);
-  font-size:2rem;
-}
-
-/* VESTIDOS */
-
-.dress-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:25px;
-}
-
-.dress{
-  height:150px;
-  background:#d7a0a8;
-  border:1px solid rgba(212,175,55,.45);
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding-bottom:10px;
-  color:white;
-  font-size:.7rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-/* REGLAS */
-
-.rules{
-  margin:28px auto;
-  border-top:1px solid rgba(212,175,55,.5);
-}
-
-.rule{
-  display:flex;
-  justify-content:space-between;
-  padding:16px 0;
-  border-bottom:1px solid rgba(212,175,55,.35);
-  font-size:.85rem;
-}
-
-.rule span:first-child{
-  color:var(--rose);
-}
-
-.rule span:last-child{
-  font-weight:600;
-}
-
-/* CALENDARIO */
-
-.calendar{
-  margin:22px auto 0;
-  width:100%;
-}
-
-.month{
-  font-size:1.6rem;
-  color:var(--rose-dark);
-  margin-bottom:15px;
-}
-
-.week,
-.days{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-}
-
-.week div{
-  font-size:.55rem;
-  color:var(--rose);
-  padding-bottom:7px;
-}
-
-.days div{
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:.72rem;
-  position:relative;
-}
-
-.heart-day{
-  color:white !important;
-  z-index:1;
-}
-
-.heart-day::before{
-  content:"";
-  position:absolute;
-  width:32px;
-  height:32px;
-  background:var(--fuchsia);
-  transform:rotate(-45deg);
-  border-radius:5px;
-  z-index:-1;
-}
-
-.heart-day::after{
-  content:"";
-  position:absolute;
-  width:32px;
-  height:32px;
-  background:var(--fuchsia);
-  border-radius:50%;
-  top:1px;
-  left:calc(50% - 16px);
-  z-index:-1;
-  box-shadow:
-    16px 0 0 var(--fuchsia);
-}
-
-/* FINAL */
-
-.final-line{
-  font-size:1.2rem;
-  line-height:1.8;
-  margin:25px 0;
-}
-
-.signature{
-  font-family:'Allura',cursive;
-  color:var(--rose);
-  font-size:3.2rem;
-  margin-top:20px;
-}
-
-/* INDICADOR */
-
-.progress{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:5px;
-  z-index:10;
-}
-
-.dot{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:rgba(166,107,116,.3);
-}
-
-.dot.active{
-  background:var(--rose);
-}
-
-/* MÚSICA */
-
-.music{
-  position:absolute;
-  top:22px;
-  right:24px;
-  z-index:20;
-  width:34px;
-  height:34px;
-  border:1px solid rgba(166,107,116,.5);
-  border-radius:50%;
-  background:rgba(249,246,238,.8);
-  color:var(--rose);
-  font-size:.8rem;
-}
-
-@media(max-height:650px){
-  .scene{
-    padding-top:20px;
-    padding-bottom:20px;
-  }
-
-  .photo-frame{
-    height:250px;
-  }
-
-  .dress{
-    height:115px;
-  }
-
-  .tap{
-    margin-top:20px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Asly Zabaleta | Damas de Honor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --ivory: #F9F6EE;
+      --ivory-dark: #F1EBDD;
+      --rose: #A66B74;
+      --rose-dark: #87545E;
+      --rose-light: #C8949C;
+      --gold: #D4AF37;
+      --gold-soft: #E5CF82;
+      --green: #A7B59F;
+      --green-dark: #76866F;
+      --fuchsia: #E91E8D;
+      --ink: #4A3A3D;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: "Playfair Display", Georgia, serif;
+      touch-action: manipulation;
+    }
+
+    /* =====================================================
+       ESCENA PRINCIPAL
+    ===================================================== */
+
+    #app {
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(212,175,55,.08), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(166,107,116,.08), transparent 30%),
+        var(--ivory);
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      padding: 34px 25px;
+
+      text-align: center;
+
+      opacity: 0;
+      transform: translateX(35px);
+
+      transition:
+        opacity .55s ease,
+        transform .55s ease;
+
+      overflow: hidden;
+    }
+
+    .scene.active {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* =====================================================
+       DECORACIÓN
+    ===================================================== */
+
+    .gold-line {
+      width: 90px;
+      height: 1px;
+      background: var(--gold);
+      margin: 13px auto;
+      opacity: .75;
+    }
+
+    .tiny-heart {
+      color: var(--gold);
+      font-size: 13px;
+      margin: 8px 0;
+    }
+
+    .ornament {
+      position: absolute;
+      pointer-events: none;
+      opacity: .75;
+    }
+
+    .ornament.top-left {
+      top: -8px;
+      left: -8px;
+      width: 145px;
+    }
+
+    .ornament.bottom-right {
+      bottom: -8px;
+      right: -8px;
+      width: 155px;
+      transform: rotate(180deg);
+    }
+
+    .ornament.top-right {
+      top: 12px;
+      right: 8px;
+      width: 80px;
+      opacity: .45;
+      transform: rotate(30deg);
+    }
+
+    .ornament.bottom-left {
+      bottom: 10px;
+      left: 8px;
+      width: 80px;
+      opacity: .45;
+      transform: rotate(-30deg);
+    }
+
+    /* =====================================================
+       SVG FLORES / FOLLAJE
+    ===================================================== */
+
+    .floral-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .stem {
+      fill: none;
+      stroke: var(--green-dark);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+    }
+
+    .leaf {
+      fill: var(--green);
+      opacity: .7;
+    }
+
+    .flower {
+      fill: var(--rose-light);
+      opacity: .8;
+    }
+
+    .flower-center {
+      fill: var(--gold);
+    }
+
+    /* =====================================================
+       PORTADA
+    ===================================================== */
+
+    .cover {
+      background:
+        linear-gradient(rgba(249,246,238,.76), rgba(249,246,238,.76)),
+        radial-gradient(circle at center, #fffdf7 0%, var(--ivory) 70%);
+    }
+
+    .edition {
+      position: absolute;
+      top: 27px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .monogram {
+      width: 105px;
+      height: 105px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+
+      margin: 0 auto 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--rose);
+      font-family: "Allura", cursive;
+      font-size: 54px;
+
+      position: relative;
+    }
+
+    .monogram::before,
+    .monogram::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(212,175,55,.28);
+      border-radius: 50%;
+    }
+
+    .cover-name {
+      font-size: clamp(29px, 9vw, 42px);
+      letter-spacing: 6px;
+      color: var(--rose-dark);
+      font-weight: 500;
+    }
+
+    .cover-subtitle {
+      font-family: "Allura", cursive;
+      color: var(--rose);
+      font-size: 36px;
+      margin-top: 8px;
+    }
+
+    .cover-date {
+      margin-top: 25px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+    }
+
+    .tap-open {
+      margin-top: 40px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      animation: breathe 2s infinite;
+    }
+
+    @keyframes breathe {
+      0%,100% { opacity: .45; }
+      50% { opacity: 1; }
+    }
+
+    /* =====================================================
+       TEXTOS
+    ===================================================== */
+
+    .chapter {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .title {
+      color: var(--rose-dark);
+      font-size: clamp(26px, 7vw, 37px);
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .subtitle {
+      margin-top: 15px;
+      color: var(--rose);
+      font-family: "Allura", cursive;
+      font-size: 31px;
+    }
+
+    .body-text {
+      max-width: 340px;
+      margin: 18px auto 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #5B4A4D;
+    }
+
+    .script {
+      font-family: "Allura", cursive;
+      color: var(--rose);
+      font-size: 32px;
+    }
+
+    /* =====================================================
+       ESCENA 3 FOTO
+    ===================================================== */
+
+    .friend-photo {
+      width: min(76vw, 310px);
+      aspect-ratio: 4 / 5;
+
+      margin: 20px auto;
+
+      border: 1px solid var(--gold);
+      padding: 7px;
+
+      background: var(--white);
+
+      box-shadow: 0 14px 35px rgba(90,60,65,.13);
+
+      position: relative;
+    }
+
+    .friend-photo-inner {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(135deg, rgba(166,107,116,.15), rgba(167,181,159,.15)),
+        var(--ivory-dark);
+
+      color: var(--rose);
+      font-family: "Allura", cursive;
+      font-size: 28px;
+    }
+
+    .friend-name {
+      color: var(--rose-dark);
+      font-size: 28px;
+      margin-top: 5px;
+    }
+
+    /* =====================================================
+       PREGUNTA
+    ===================================================== */
+
+    .question {
+      max-width: 340px;
+    }
+
+    .question .title {
+      font-size: clamp(28px, 8vw, 40px);
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      width: min(290px, 85vw);
+      margin-top: 30px;
+    }
+
+    .choice {
+      border: 1px solid var(--gold);
+      background: rgba(255,255,255,.45);
+      color: var(--rose-dark);
+
+      min-height: 48px;
+
+      border-radius: 999px;
+
+      font-family: "Playfair Display", serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+
+      cursor: pointer;
+
+      transition: all .25s ease;
+    }
+
+    .choice:active {
+      transform: scale(.96);
+      background: var(--rose);
+      color: white;
+    }
+
+    /* =====================================================
+       REVELACIÓN
+    ===================================================== */
+
+    .reveal-card {
+      width: min(350px, 90vw);
+      padding: 35px 25px;
+
+      border: 1px solid rgba(212,175,55,.6);
+
+      background: rgba(255,255,255,.38);
+
+      position: relative;
+    }
+
+    .reveal-card::before,
+    .reveal-card::after {
+      content: "♡";
+      position: absolute;
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .reveal-card::before {
+      top: 9px;
+      left: 12px;
+    }
+
+    .reveal-card::after {
+      bottom: 9px;
+      right: 12px;
+    }
+
+    /* =====================================================
+       COLOR
+    ===================================================== */
+
+    .color-card {
+      margin-top: 25px;
+      width: 220px;
+    }
+
+    .color-swatch {
+      height: 120px;
+      width: 100%;
+
+      background: var(--rose);
+
+      border: 1px solid var(--gold);
+
+      position: relative;
+      box-shadow: 0 10px 25px rgba(80,50,55,.12);
+    }
+
+    .color-swatch::after {
+      content: "ROSA VIEJO";
+
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: rgba(255,255,255,.88);
+
+      font-size: 13px;
+      letter-spacing: 3px;
+    }
+
+    .color-code {
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+
+    /* =====================================================
+       VESTIDOS
+    ===================================================== */
+
+    .dress-scene {
+      justify-content: flex-start;
+      padding-top: 27px;
+    }
+
+    .dress-intro {
+      max-width: 350px;
+      margin-top: 7px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .dress-grid {
+      width: min(370px, 94vw);
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 9px;
+
+      margin-top: 16px;
+    }
+
+    .dress-card {
+      height: 105px;
+
+      border: 1px solid rgba(212,175,55,.55);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(166,107,116,.17),
+          rgba(249,246,238,.85)
+        );
+
+      position: relative;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      padding-bottom: 7px;
+    }
+
+    /*
+      Siluetas editoriales provisionales.
+      Más adelante aquí pondremos tus fotos reales.
+    */
+
+    .dress-silhouette {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 50px;
+      height: 86px;
+    }
+
+    .dress-head {
+      width: 13px;
+      height: 13px;
+      background: #C8A18D;
+      border-radius: 50%;
+      margin: auto;
+    }
+
+    .dress-body {
+      width: 28px;
+      height: 29px;
+      background: var(--rose);
+      margin: 2px auto 0;
+      border-radius: 9px 9px 5px 5px;
+    }
+
+    .dress-skirt {
+      width: 48px;
+      height: 46px;
+
+      background: var(--rose);
+
+      margin: -1px auto 0;
+
+      clip-path: polygon(
+        25% 0,
+        75% 0,
+        100% 100%,
+        0 100%
+      );
+    }
+
+    .dress-label {
+      position: relative;
+      z-index: 2;
+
+      background: rgba(249,246,238,.82);
+
+      padding: 3px 8px;
+
+      font-size: 8px;
+      letter-spacing: 1px;
+      color: var(--rose-dark);
+    }
+
+    .references-note {
+      margin-top: 10px;
+      font-family: "Allura", cursive;
+      color: var(--rose);
+      font-size: 22px;
+    }
+
+    /* =====================================================
+       REGLAS DEL VESTIDO
+    ===================================================== */
+
+    .rules-card {
+      width: min(350px, 90vw);
+
+      border: 1px solid rgba(212,175,55,.6);
+
+      background: rgba(255,255,255,.4);
+
+      padding: 27px 23px;
+
+      margin-top: 20px;
+
+      position: relative;
+    }
+
+    .rule {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+
+      gap: 10px;
+
+      text-align: left;
+
+      padding: 12px 0;
+
+      border-bottom: 1px solid rgba(212,175,55,.25);
+    }
+
+    .rule:last-child {
+      border-bottom: none;
+    }
+
+    .rule strong {
+      color: var(--rose);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .rule span {
+      color: #59484B;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .free-choice {
+      margin-top: 18px;
+      color: var(--rose-dark);
+      font-family: "Allura", cursive;
+      font-size: 25px;
+    }
+
+    /* =====================================================
+       CALENDARIO
+    ===================================================== */
+
+    .calendar {
+      width: min(355px, 92vw);
+      margin-top: 18px;
+    }
+
+    .month {
+      font-size: 24px;
+      color: var(--rose-dark);
+      margin-bottom: 13px;
+    }
+
+    .weekdays,
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .weekday {
+      font-size: 8px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      padding-bottom: 7px;
+    }
+
+    .day {
+      height: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 11px;
+      color: #645255;
+
+      position: relative;
+    }
+
+    /* CORAZÓN REAL PARA EL 26 */
+
+    .special-day {
+      color: white;
+      z-index: 1;
+      font-weight: 600;
+    }
+
+    .special-day::before {
+      content: "";
+
+      position: absolute;
+
+      width: 29px;
+      height: 29px;
+
+      background: var(--fuchsia);
+
+      transform: rotate(-45deg);
+
+      border-radius: 4px;
+
+      z-index: -1;
+    }
+
+    .special-day::after {
+      content: "";
+
+      position: absolute;
+
+      width: 29px;
+      height: 29px;
+
+      background: var(--fuchsia);
+
+      border-radius: 50%;
+
+      top: 2px;
+      left: calc(50% - 14.5px);
+
+      z-index: -1;
+
+      box-shadow:
+        14px 0 0 var(--fuchsia);
+    }
+
+    .calendar-note {
+      margin-top: 18px;
+      font-family: "Allura", cursive;
+      color: var(--rose);
+      font-size: 27px;
+    }
+
+    /* =====================================================
+       FINAL
+    ===================================================== */
+
+    .final-message {
+      max-width: 350px;
+    }
+
+    .final-question {
+      margin-top: 22px;
+
+      font-family: "Allura", cursive;
+
+      font-size: 33px;
+
+      color: var(--rose);
+    }
+
+    .final-body {
+      margin-top: 18px;
+
+      font-size: 15px;
+      line-height: 1.8;
+
+      color: #5B4A4D;
+    }
+
+    /* =====================================================
+       CIERRE
+    ===================================================== */
+
+    .signature {
+      font-family: "Allura", cursive;
+      font-size: 57px;
+      color: var(--rose);
+      margin-top: 8px;
+    }
+
+    .closing-date {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-top: 17px;
+    }
+
+    /* =====================================================
+       SOMBRERO VUELTIAO — DETALLE SUTIL
+    ===================================================== */
+
+    .vueltiao {
+      position: absolute;
+      width: 105px;
+      height: 52px;
+
+      opacity: .15;
+
+      border-top: 2px solid var(--ink);
+      border-radius: 50%;
+
+      transform: rotate(-8deg);
+
+      pointer-events: none;
+    }
+
+    .vueltiao::before {
+      content: "";
+
+      position: absolute;
+
+      width: 80px;
+      height: 25px;
+
+      left: 12px;
+      top: -13px;
+
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+
+      border-radius: 50%;
+    }
+
+    .vueltiao::after {
+      content: "";
+
+      position: absolute;
+
+      width: 90px;
+      height: 7px;
+
+      left: 7px;
+      top: 19px;
+
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+
+      opacity: .7;
+    }
+
+    .cover .vueltiao {
+      right: 16px;
+      bottom: 60px;
+    }
+
+    .closing .vueltiao {
+      left: 17px;
+      top: 65px;
+      transform: rotate(8deg);
+    }
+
+    /* =====================================================
+       INDICADOR DE ESCENA
+    ===================================================== */
+
+    .scene-indicator {
+      position: absolute;
+
+      bottom: 17px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      display: flex;
+      gap: 5px;
+
+      z-index: 20;
+    }
+
+    .dot {
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: var(--gold-soft);
+
+      transition: .3s;
+    }
+
+    .dot.active {
+      width: 15px;
+      border-radius: 10px;
+      background: var(--rose);
+    }
+
+    /* =====================================================
+       MÓVILES MUY PEQUEÑOS
+    ===================================================== */
+
+    @media (max-height: 680px) {
+
+      .scene {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      .friend-photo {
+        width: 190px;
+      }
+
+      .dress-card {
+        height: 88px;
+      }
+
+      .dress-silhouette {
+        transform: translateX(-50%) scale(.82);
+        transform-origin: top center;
+      }
+
+      .rules-card {
+        margin-top: 12px;
+        padding: 17px 18px;
+      }
+
+      .rule {
+        padding: 8px 0;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
 <div id="app">
 
-<audio id="music" loop preload="auto">
-  <!-- Luego pondremos aquí la canción -->
-</audio>
+  <!-- =====================================================
+       ESCENA 1 — PORTADA
+  ===================================================== -->
 
-<button class="music" onclick="toggleMusic(event)">♪</button>
+  <section class="scene active cover" data-scene="0">
 
-<!-- 1 PORTADA -->
+    <div class="edition">
+      EDICIÓN ESPECIAL · 26 · 12 · 2026
+    </div>
 
-<section class="scene cover active" onclick="nextScene()">
-  <div class="flower one">✿</div>
-  <div class="flower two">✿</div>
-  <div class="leaf one">❧</div>
-  <div class="leaf two">❧</div>
+    <svg class="ornament top-left" viewBox="0 0 150 150">
+      <path class="stem" d="M5 135 C35 105, 48 70, 95 20"/>
+      <ellipse class="leaf" cx="35" cy="102" rx="7" ry="16" transform="rotate(-45 35 102)"/>
+      <ellipse class="leaf" cx="52" cy="78" rx="7" ry="17" transform="rotate(50 52 78)"/>
+      <ellipse class="leaf" cx="69" cy="58" rx="6" ry="15" transform="rotate(-35 69 58)"/>
+      <circle class="flower" cx="101" cy="20" r="12"/>
+      <circle class="flower-center" cx="101" cy="20" r="3"/>
+    </svg>
 
-  <div class="content">
-    <div class="cover-date">26 · 12 · 2026</div>
+    <svg class="ornament bottom-right" viewBox="0 0 150 150">
+      <path class="stem" d="M5 135 C35 105, 48 70, 95 20"/>
+      <ellipse class="leaf" cx="35" cy="102" rx="7" ry="16" transform="rotate(-45 35 102)"/>
+      <ellipse class="leaf" cx="52" cy="78" rx="7" ry="17" transform="rotate(50 52 78)"/>
+      <ellipse class="leaf" cx="69" cy="58" rx="6" ry="15" transform="rotate(-35 69 58)"/>
+      <circle class="flower" cx="101" cy="20" r="12"/>
+      <circle class="flower-center" cx="101" cy="20" r="3"/>
+    </svg>
+
+    <div class="vueltiao"></div>
+
+    <div class="cover-content">
+
+      <div class="monogram">
+        A
+      </div>
+
+      <div class="cover-name">
+        ASLY ZABALETA
+      </div>
+
+      <div class="gold-line"></div>
+
+      <div class="cover-subtitle">
+        Mi gran día se acerca…
+      </div>
+
+      <div class="cover-date">
+        Y HAY ALGUIEN A QUIEN QUIERO A MI LADO
+      </div>
+
+      <div class="tap-open">
+        Toca para abrir
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       ESCENA 2 — MENSAJE
+  ===================================================== -->
+
+  <section class="scene" data-scene="1">
+
+    <svg class="ornament top-left" viewBox="0 0 150 150">
+      <path class="stem" d="M5 135 C35 105, 48 70, 95 20"/>
+      <ellipse class="leaf" cx="35" cy="102" rx="7" ry="16" transform="rotate(-45 35 102)"/>
+      <ellipse class="leaf" cx="52" cy="78" rx="7" ry="17" transform="rotate(50 52 78)"/>
+      <circle class="flower" cx="101" cy="20" r="12"/>
+    </svg>
+
+    <div class="chapter">
+      CAPÍTULO I
+    </div>
+
+    <div class="title">
+      Hay personas que hacen<br>
+      que la vida se sienta más bonita.
+    </div>
 
     <div class="gold-line"></div>
 
-    <h1 class="title">ASLY<br>ZABALETA</h1>
+    <p class="body-text">
+      Y cuando imaginé uno de los días más importantes
+      de mi vida, pensé en las personas que han estado
+      presentes en mi historia.
+      <br><br>
+      En ti.
+    </p>
+
+    <div class="script">
+      Por eso quería preguntarte algo…
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       ESCENA 3 — PERSONALIZADA
+  ===================================================== -->
+
+  <section class="scene" data-scene="2">
+
+    <div class="chapter">
+      ESTA INVITACIÓN ES PARA TI
+    </div>
+
+    <div class="friend-photo">
+      <div class="friend-photo-inner" id="friendPhoto">
+        Tu foto aquí
+      </div>
+    </div>
+
+    <div class="friend-name" id="friendName">
+      Mi amiga
+    </div>
 
     <div class="gold-line"></div>
 
-    <div class="script">Mi gran día se acerca… 🤍</div>
-
-    <div class="tap">Toca para abrir</div>
-  </div>
-</section>
-
-
-<!-- 2 MENSAJE -->
-
-<section class="scene" onclick="nextScene()">
-  <div class="flower one">✿</div>
-  <div class="flower two">✿</div>
-
-  <div class="content">
-    <div class="chapter">Capítulo I</div>
-
-    <div class="divider"></div>
-
-    <p class="body-text">
-      Hay personas que llegan a nuestra vida y, sin darse cuenta,
-      terminan formando parte de nuestra historia.
-    </p>
-
-    <div class="divider"></div>
-
-    <p class="body-text">
-      Cuando imaginé este día, pensé en las personas que quiero
-      tener cerca cuando llegue uno de los momentos más importantes
-      de mi vida.
-    </p>
-
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
-
-
-<!-- 3 PERSONA -->
-
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">Esta invitación es para ti</div>
-
-    <h2 class="title" id="friendName">Mi amiga</h2>
-
-    <div class="photo-frame">
-      <img id="friendPhoto"
-           src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
-           alt="Fotografía">
+    <div class="script">
+      Quiero vivir este momento contigo.
     </div>
 
-    <p class="script">Porque quiero vivir este momento contigo. 🤍</p>
-
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+  </section>
 
 
-<!-- 4 PREGUNTA -->
+  <!-- =====================================================
+       ESCENA 4 — PREGUNTA
+  ===================================================== -->
 
-<section class="scene">
-  <div class="content">
-    <div class="chapter">La gran pregunta</div>
+  <section class="scene" data-scene="3">
 
-    <h2 class="title">¿QUIERES SER<br>MI DAMA<br>DE HONOR?</h2>
+    <div class="question">
 
-    <div class="buttons">
-      <button class="choice" onclick="nextScene()">🤍 SÍ, OBVIO</button>
-      <button class="choice" onclick="nextScene()">✨ ¡CLARO QUE SÍ!</button>
+      <div class="chapter">
+        LA GRAN PREGUNTA
+      </div>
+
+      <div class="title">
+        ¿QUIERES SER<br>
+        MI DAMA DE HONOR?
+      </div>
+
+      <div class="gold-line"></div>
+
+      <div class="script">
+        Hay preguntas que solo pueden tener un sí.
+      </div>
+
+      <div class="buttons">
+
+        <button class="choice" onclick="nextScene()">
+          🤍 SÍ, OBVIO
+        </button>
+
+        <button class="choice" onclick="nextScene()">
+          ✨ ¡CLARO QUE SÍ!
+        </button>
+
+      </div>
+
     </div>
-  </div>
-</section>
+
+  </section>
 
 
-<!-- 5 REVELACIÓN -->
+  <!-- =====================================================
+       ESCENA 5 — REVELACIÓN
+  ===================================================== -->
 
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">Hay algo más…</div>
+  <section class="scene" data-scene="4">
 
-    <h2 class="title">Y AHORA…</h2>
+    <div class="reveal-card">
 
-    <div class="divider"></div>
+      <div class="chapter">
+        Y AHORA…
+      </div>
 
-    <p class="script">
-      Hay algo más que quiero contarte. 🤍
-    </p>
+      <div class="title">
+        QUIERO COMPARTIR<br>
+        CONTIGO UN DETALLE<br>
+        MUY ESPECIAL.
+      </div>
 
-    <div class="tap">Toca para descubrirlo</div>
-  </div>
-</section>
+      <div class="gold-line"></div>
 
+      <div class="script">
+        Porque también quiero imaginarte
+        conmigo ese día.
+      </div>
 
-<!-- 6 COLOR -->
+    </div>
 
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">El color de mis damas de honor</div>
-
-    <div class="swatch"></div>
-
-    <div class="color-name">Rosa viejo</div>
-
-    <div class="divider"></div>
-
-    <p class="body-text">
-      Un tono romántico, elegante y especial para compartir
-      este día conmigo.
-    </p>
-
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+  </section>
 
 
-<!-- 7 VESTIDOS -->
+  <!-- =====================================================
+       ESCENA 6 — COLOR
+  ===================================================== -->
 
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">Referencias de vestidos</div>
+  <section class="scene" data-scene="5">
 
-    <p class="body-text">
-      Estas son algunas ideas para inspirarte.
-      No tienes que elegir exactamente uno de ellos.
+    <div class="chapter">
+      EL COLOR DE MIS DAMAS DE HONOR
+    </div>
+
+    <div class="title">
+      ROSA VIEJO
+    </div>
+
+    <div class="color-card">
+
+      <div class="color-swatch"></div>
+
+      <div class="color-code">
+        #A66B74
+      </div>
+
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="script">
+      Suave, romántico y atemporal.
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       ESCENA 7 — REFERENCIAS
+  ===================================================== -->
+
+  <section class="scene dress-scene" data-scene="6">
+
+    <div class="chapter">
+      REFERENCIAS DE VESTIDOS
+    </div>
+
+    <div class="title">
+      Algunas ideas para ti
+    </div>
+
+    <p class="dress-intro">
+      Estas imágenes son solo referencias para mostrar
+      el estilo que imagino. No tienes que escoger
+      exactamente uno de ellos.
     </p>
 
     <div class="dress-grid">
-      <div class="dress">Referencia 01</div>
-      <div class="dress">Referencia 02</div>
-      <div class="dress">Referencia 03</div>
-      <div class="dress">Referencia 04</div>
-      <div class="dress">Referencia 05</div>
-      <div class="dress">Referencia 06</div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 01</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 02</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 03</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 04</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 05</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 06</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 07</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 08</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 09</span>
+      </div>
+
+      <div class="dress-card">
+        <div class="dress-silhouette">
+          <div class="dress-head"></div>
+          <div class="dress-body"></div>
+          <div class="dress-skirt"></div>
+        </div>
+        <span class="dress-label">REFERENCIA 10</span>
+      </div>
+
     </div>
 
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+    <div class="references-note">
+      Solo inspiración 🤍
+    </div>
+
+  </section>
 
 
-<!-- 8 REGLAS -->
+  <!-- =====================================================
+       ESCENA 8 — REGLAS
+  ===================================================== -->
 
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">El vestido</div>
+  <section class="scene" data-scene="7">
 
-    <div class="rules">
+    <div class="chapter">
+      EL VESTIDO
+    </div>
+
+    <div class="title">
+      Lo importante es que<br>
+      te sientas tú.
+    </div>
+
+    <div class="rules-card">
+
       <div class="rule">
-        <span>Color</span>
+        <strong>COLOR</strong>
         <span>Rosa viejo</span>
       </div>
 
       <div class="rule">
-        <span>Largo</span>
+        <strong>LARGO</strong>
         <span>Largo</span>
       </div>
 
       <div class="rule">
-        <span>Diseño</span>
+        <strong>DISEÑO</strong>
         <span>Libre elección</span>
       </div>
 
       <div class="rule">
-        <span>Tela</span>
+        <strong>TELA</strong>
         <span>Libre elección</span>
       </div>
+
     </div>
 
-    <p class="body-text">
-      Quiero que elijas un vestido con el que te sientas
-      hermosa, cómoda y tú misma, respetando únicamente
-      el color y el largo.
-    </p>
+    <div class="free-choice">
+      Escoge el que más te guste y te haga sentir hermosa.
+    </div>
 
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+  </section>
 
 
-<!-- 9 FECHA -->
+  <!-- =====================================================
+       ESCENA 9 — CALENDARIO
+  ===================================================== -->
 
-<section class="scene" onclick="nextScene()">
-  <div class="content">
-    <div class="chapter">Guarda la fecha</div>
+  <section class="scene" data-scene="8">
+
+    <div class="chapter">
+      GUARDA LA FECHA
+    </div>
+
+    <div class="title">
+      Diciembre · 2026
+    </div>
 
     <div class="calendar">
 
-      <div class="month">Diciembre · 2026</div>
+      <div class="month">
+        DICIEMBRE
+      </div>
 
-      <div class="week">
-        <div>L</div>
-        <div>M</div>
-        <div>M</div>
-        <div>J</div>
-        <div>V</div>
-        <div>S</div>
-        <div>D</div>
+      <div class="weekdays">
+        <div class="weekday">L</div>
+        <div class="weekday">M</div>
+        <div class="weekday">X</div>
+        <div class="weekday">J</div>
+        <div class="weekday">V</div>
+        <div class="weekday">S</div>
+        <div class="weekday">D</div>
       </div>
 
       <div class="days">
-        <div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
-        <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
-        <div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
-        <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div class="heart-day">26</div><div>27</div>
-        <div>28</div><div>29</div><div>30</div><div>31</div>
+
+        <div class="day"></div>
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+
+        <div class="day special-day">26</div>
+
+        <div class="day">27</div>
+
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+
       </div>
 
     </div>
 
-    <div class="divider"></div>
+    <div class="calendar-note">
+      26 de diciembre de 2026 🤍
+    </div>
 
-    <p class="script">26 de diciembre de 2026 🤍</p>
-
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+  </section>
 
 
-<!-- 10 FINAL -->
+  <!-- =====================================================
+       ESCENA 10 — FINAL
+  ===================================================== -->
 
-<section class="scene" onclick="nextScene()">
-  <div class="flower one">✿</div>
-  <div class="flower two">✿</div>
+  <section class="scene" data-scene="9">
 
-  <div class="content">
-    <div class="chapter">Solo falta una cosa…</div>
+    <div class="final-message">
 
-    <p class="final-line">
-      Que estés conmigo ese día. 🤍
-    </p>
+      <div class="chapter">
+        SOLO FALTA UNA COSA…
+      </div>
 
-    <div class="divider"></div>
+      <div class="title">
+        QUE ESTÉS CONMIGO<br>
+        ESE DÍA. 🤍
+      </div>
 
-    <p class="body-text">
-      Quiero mirar a mi alrededor y encontrarte ahí.
-    </p>
+      <div class="gold-line"></div>
 
-    <div class="tap">Toca para continuar</div>
-  </div>
-</section>
+      <div class="final-body">
+        Quiero mirar a mi alrededor,
+        respirar profundo y encontrarte ahí.
+        <br><br>
+        Compartiendo conmigo uno de los días
+        que voy a guardar para siempre.
+      </div>
+
+      <div class="final-question">
+        ¿Te quedas conmigo?
+      </div>
+
+    </div>
+
+  </section>
 
 
-<!-- 11 CIERRE -->
+  <!-- =====================================================
+       ESCENA 11 — CIERRE
+  ===================================================== -->
 
-<section class="scene">
-  <div class="flower one">✿</div>
-  <div class="flower two">✿</div>
+  <section class="scene closing" data-scene="10">
 
-  <div class="content">
+    <svg class="ornament top-left" viewBox="0 0 150 150">
+      <path class="stem" d="M5 135 C35 105, 48 70, 95 20"/>
+      <ellipse class="leaf" cx="35" cy="102" rx="7" ry="16" transform="rotate(-45 35 102)"/>
+      <ellipse class="leaf" cx="52" cy="78" rx="7" ry="17" transform="rotate(50 52 78)"/>
+      <circle class="flower" cx="101" cy="20" r="12"/>
+      <circle class="flower-center" cx="101" cy="20" r="3"/>
+    </svg>
 
-    <div class="script">Con amor,</div>
+    <div class="vueltiao"></div>
 
-    <div class="signature">Asly</div>
+    <div class="chapter">
+      CON TODO MI AMOR
+    </div>
+
+    <div class="script">
+      Con amor,
+    </div>
+
+    <div class="signature">
+      Asly
+    </div>
 
     <div class="gold-line"></div>
 
-    <div class="small">26 · 12 · 2026</div>
+    <div class="closing-date">
+      26 · 12 · 2026
+    </div>
 
-    <div class="divider"></div>
+    <div class="tiny-heart">
+      ♡
+    </div>
 
-    <p class="body-text">
-      🤍
-    </p>
-
-  </div>
-</section>
+  </section>
 
 
-<div class="progress" id="progress"></div>
+  <!-- INDICADORES -->
+
+  <div class="scene-indicator" id="indicator"></div>
 
 </div>
 
+
 <script>
 
-const scenes = document.querySelectorAll('.scene');
-const progress = document.getElementById('progress');
+  /* =====================================================
+     PERSONALIZACIÓN
+  ===================================================== */
 
-let current = 0;
-let musicStarted = false;
+  /*
+    Más adelante aquí pondremos las seis damas.
 
-function createDots(){
-  scenes.forEach((_,i)=>{
-    const dot=document.createElement('div');
-    dot.className='dot'+(i===0?' active':'');
-    progress.appendChild(dot);
+    Ejemplo:
+
+    ?dama=1
+
+    ?dama=2
+
+    etc.
+
+    También pondremos las fotos reales.
+  */
+
+  const damas = {
+
+    1: {
+      nombre: "Mi amiga",
+      foto: ""
+    },
+
+    2: {
+      nombre: "Mi amiga",
+      foto: ""
+    },
+
+    3: {
+      nombre: "Mi amiga",
+      foto: ""
+    },
+
+    4: {
+      nombre: "Mi amiga",
+      foto: ""
+    },
+
+    5: {
+      nombre: "Mi amiga",
+      foto: ""
+    },
+
+    6: {
+      nombre: "Mi amiga",
+      foto: ""
+    }
+
+  };
+
+
+  const params = new URLSearchParams(window.location.search);
+
+  const damaSeleccionada = params.get("dama") || "1";
+
+  const datos = damas[damaSeleccionada] || damas[1];
+
+
+  document.getElementById("friendName").textContent = datos.nombre;
+
+
+  if (datos.foto) {
+
+    const photo = document.getElementById("friendPhoto");
+
+    photo.innerHTML = `
+      <img
+        src="${datos.foto}"
+        alt="Foto de Asly y su amiga"
+        style="
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          display:block;
+        "
+      >
+    `;
+
+  }
+
+
+  /* =====================================================
+     ESCENAS
+  ===================================================== */
+
+  const scenes = document.querySelectorAll(".scene");
+
+  const indicator = document.getElementById("indicator");
+
+  let currentScene = 0;
+
+
+  scenes.forEach((scene, index) => {
+
+    const dot = document.createElement("div");
+
+    dot.className = "dot";
+
+    if (index === 0) {
+      dot.classList.add("active");
+    }
+
+    indicator.appendChild(dot);
+
   });
-}
 
-function updateDots(){
-  document.querySelectorAll('.dot').forEach((dot,i)=>{
-    dot.classList.toggle('active',i===current);
-  });
-}
 
-function showScene(index){
+  const dots = document.querySelectorAll(".dot");
 
-  if(index<0) index=0;
-  if(index>=scenes.length) index=scenes.length-1;
 
-  scenes[current].classList.remove('active');
+  function updateScene() {
 
-  current=index;
+    scenes.forEach((scene, index) => {
 
-  scenes[current].classList.add('active');
+      scene.classList.remove("active");
 
-  updateDots();
+      if (index === currentScene) {
 
-  startMusic();
-}
+        scene.classList.add("active");
 
-function nextScene(){
-  if(current < scenes.length-1){
-    showScene(current+1);
-  }
-}
+      }
 
-function previousScene(){
-  if(current > 0){
-    showScene(current-1);
-  }
-}
+    });
 
-function startMusic(){
 
-  if(musicStarted) return;
+    dots.forEach((dot, index) => {
 
-  const audio=document.getElementById('music');
+      dot.classList.toggle(
+        "active",
+        index === currentScene
+      );
 
-  if(audio && audio.src){
-    audio.play().catch(()=>{});
-    musicStarted=true;
-  }
-}
+    });
 
-function toggleMusic(event){
-
-  event.stopPropagation();
-
-  const audio=document.getElementById('music');
-
-  if(!audio.src) return;
-
-  if(audio.paused){
-    audio.play();
-  }else{
-    audio.pause();
-  }
-}
-
-/* NOMBRE PERSONALIZADO */
-
-const params = new URLSearchParams(window.location.search);
-
-const dama = params.get('dama');
-
-const nombres = {
-  "1":"Nombre de tu dama 1",
-  "2":"Nombre de tu dama 2",
-  "3":"Nombre de tu dama 3",
-  "4":"Nombre de tu dama 4",
-  "5":"Nombre de tu dama 5",
-  "6":"Nombre de tu dama 6"
-};
-
-if(dama && nombres[dama]){
-  document.getElementById('friendName').textContent=nombres[dama];
-}
-
-/* NAVEGACIÓN CON TECLADO */
-
-document.addEventListener('keydown',(e)=>{
-
-  if(e.key==='ArrowRight' || e.key==='Enter' || e.key===' '){
-    e.preventDefault();
-    nextScene();
   }
 
-  if(e.key==='ArrowLeft'){
-    e.preventDefault();
-    previousScene();
-  }
 
-});
+  function nextScene() {
 
-/* DESLIZAR EN CELULAR */
+    if (currentScene < scenes.length - 1) {
 
-let startX=0;
-let startY=0;
+      currentScene++;
 
-document.addEventListener('touchstart',(e)=>{
-  startX=e.touches[0].clientX;
-  startY=e.touches[0].clientY;
-},{passive:true});
+      updateScene();
 
-document.addEventListener('touchend',(e)=>{
-
-  const endX=e.changedTouches[0].clientX;
-  const endY=e.changedTouches[0].clientY;
-
-  const dx=endX-startX;
-  const dy=endY-startY;
-
-  if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)){
-
-    if(dx<0){
-      nextScene();
-    }else{
-      previousScene();
     }
 
   }
 
-},{passive:true});
 
-createDots();
+  function previousScene() {
+
+    if (currentScene > 0) {
+
+      currentScene--;
+
+      updateScene();
+
+    }
+
+  }
+
+
+  /* =====================================================
+     TOQUE PARA AVANZAR
+  ===================================================== */
+
+  document.getElementById("app").addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target.tagName === "BUTTON" ||
+        event.target.closest("button")
+      ) {
+        return;
+      }
+
+      nextScene();
+
+    }
+  );
+
+
+  /* =====================================================
+     SWIPE
+  ===================================================== */
+
+  let startX = 0;
+  let startY = 0;
+
+
+  document.addEventListener(
+    "touchstart",
+    function(event) {
+
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+
+    },
+    { passive: true }
+  );
+
+
+  document.addEventListener(
+    "touchend",
+    function(event) {
+
+      const endX = event.changedTouches[0].clientX;
+      const endY = event.changedTouches[0].clientY;
+
+      const diffX = endX - startX;
+      const diffY = endY - startY;
+
+
+      if (Math.abs(diffX) > 55 && Math.abs(diffX) > Math.abs(diffY)) {
+
+        if (diffX < 0) {
+
+          nextScene();
+
+        } else {
+
+          previousScene();
+
+        }
+
+      }
+
+    },
+    { passive: true }
+  );
+
+
+  /* =====================================================
+     MÚSICA
+  ===================================================== */
+
+  /*
+    Cuando tengamos la canción elegida,
+    pondremos aquí el archivo.
+
+    La música se activará después del primer toque
+    para respetar las restricciones de los celulares.
+  */
+
+
+  let musicStarted = false;
+
+
+  function startMusic() {
+
+    if (musicStarted) return;
+
+    musicStarted = true;
+
+    /*
+      Aquí irá posteriormente:
+
+      const music = new Audio("musica.mp3");
+      music.loop = true;
+      music.volume = 0.45;
+      music.play();
+    */
+
+  }
+
+
+  document.addEventListener(
+    "click",
+    startMusic,
+    { once: true }
+  );
+
+
+  document.addEventListener(
+    "touchstart",
+    startMusic,
+    { once: true }
+  );
+
 
 </script>
 

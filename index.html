@@ -602,6 +602,17 @@ body{
   border:1px solid rgba(212,175,55,.6);
   background:rgba(249,246,238,.9);
   color:var(--rose);
+  cursor:pointer;
+  font-family:"Playfair Display",serif;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.sound.playing{
+  background:rgba(166,107,116,.12);
+  border-color:rgba(166,107,116,.7);
 }
 
 @media(max-height:700px){
@@ -1755,11 +1766,13 @@ body{
 
 </section>
 
-<button class="sound" id="soundBtn">
+<button class="sound" id="soundBtn" aria-label="Activar o pausar música">
   ♫
 </button>
 
-<audio id="music" loop preload="auto"></audio>
+<audio id="music" loop preload="auto">
+  <source src="Wedding%20Invitation.mp3" type="audio/mpeg">
+</audio>
 
 </div>
 
@@ -2018,30 +2031,62 @@ const music =
 const soundBtn =
   document.getElementById("soundBtn");
 
+
 soundBtn.addEventListener(
   "click",
-  event=>{
+  async event=>{
 
     event.stopPropagation();
 
-    if(!music.src){
-      return;
-    }
-
     if(music.paused){
 
-      music.play();
+      try{
 
-      soundBtn.textContent = "♫";
+        await music.play();
+
+        soundBtn.textContent = "♫";
+        soundBtn.classList.add("playing");
+
+      }catch(error){
+
+        console.log(
+          "No fue posible reproducir la música:",
+          error
+        );
+
+      }
 
     }else{
 
       music.pause();
 
       soundBtn.textContent = "♪";
+      soundBtn.classList.remove("playing");
 
     }
 
+  }
+);
+
+
+/*
+  Mantener el estado correcto del botón
+  si la reproducción termina o es pausada.
+*/
+
+music.addEventListener(
+  "play",
+  ()=>{
+    soundBtn.textContent = "♫";
+    soundBtn.classList.add("playing");
+  }
+);
+
+music.addEventListener(
+  "pause",
+  ()=>{
+    soundBtn.textContent = "♪";
+    soundBtn.classList.remove("playing");
   }
 );
 

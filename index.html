@@ -238,6 +238,7 @@ body{
   letter-spacing:3px;
   text-transform:uppercase;
   animation:breath 2s infinite;
+  cursor:pointer;
 }
 
 @keyframes breath{
@@ -375,33 +376,58 @@ body{
   border-bottom:2px solid;
 }
 
+
 /* =========================================================
    VESTIDOS — REFERENCIAS REALES
 ========================================================= */
 
+.scene[data-scene="7"]{
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-items:flex-start;
+  justify-content:center;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.scene[data-scene="7"]::-webkit-scrollbar{
+  display:none;
+}
+
+.scene[data-scene="7"] .inner{
+  max-height:none;
+  min-height:100%;
+  padding-top:18px;
+  padding-bottom:40px;
+  justify-content:flex-start;
+}
+
 .dress-grid{
   width:100%;
-  max-width:370px;
+  max-width:350px;
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:10px 0;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px 12px;
+  margin:16px 0 14px;
 }
 
 .dress-card{
-  height:135px;
+  width:100%;
+  height:225px;
   position:relative;
   overflow:hidden;
   border:1px solid rgba(212,175,55,.7);
-  background:#ead8db;
-  box-shadow:0 5px 12px rgba(82,54,59,.10);
+  background:#fffdf8;
+  box-shadow:0 7px 16px rgba(82,54,59,.12);
 }
 
 .dress-card img{
   display:block;
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
+  object-position:center;
+  background:#fffdf8;
 }
 
 .dress-card:after{
@@ -411,8 +437,8 @@ body{
   background:
     linear-gradient(
       to bottom,
-      transparent 65%,
-      rgba(40,25,28,.28) 100%
+      transparent 72%,
+      rgba(40,25,28,.20) 100%
     );
   pointer-events:none;
 }
@@ -613,8 +639,24 @@ body{
     height:235px;
   }
 
+  .scene[data-scene="7"]{
+    padding-top:24px;
+    padding-bottom:24px;
+  }
+
+  .scene[data-scene="7"] .inner{
+    padding-top:12px;
+    padding-bottom:35px;
+  }
+
+  .dress-grid{
+    max-width:340px;
+    gap:12px 10px;
+    margin-top:14px;
+  }
+
   .dress-card{
-    height:112px;
+    height:205px;
   }
 
   .calendar{
@@ -623,6 +665,19 @@ body{
 
   .day{
     height:25px;
+  }
+
+}
+
+@media(max-width:360px){
+
+  .dress-grid{
+    max-width:310px;
+    gap:10px 8px;
+  }
+
+  .dress-card{
+    height:190px;
   }
 
 }
@@ -1859,13 +1914,34 @@ scenes.forEach(
           return;
         }
 
-        if(
-          index === currentScene &&
-          currentScene <
-          scenes.length - 1
-        ){
+        /*
+          La escena 7 contiene desplazamiento vertical.
+          Por eso solo avanza cuando se toca
+          específicamente "Toca para continuar".
+        */
 
-          nextScene();
+        if(index === currentScene){
+
+          if(currentScene === 6){
+
+            if(
+              event.target.closest(".tap")
+            ){
+              nextScene();
+            }
+
+            return;
+
+          }
+
+          if(
+            currentScene <
+            scenes.length - 1
+          ){
+
+            nextScene();
+
+          }
 
         }
 
@@ -1971,16 +2047,30 @@ soundBtn.addEventListener(
 
 
 /* =========================================================
-   EVITAR SCROLL
+   EVITAR SCROLL GENERAL
 ========================================================= */
 
 document.addEventListener(
   "touchmove",
   event=>{
+
+    /*
+      Permitimos desplazamiento únicamente
+      dentro de la escena 7.
+    */
+
+    if(
+      event.target.closest('.scene[data-scene="7"]')
+    ){
+      return;
+    }
+
     event.preventDefault();
+
   },
   {passive:false}
 );
+
 
 document.addEventListener(
   "gesturestart",

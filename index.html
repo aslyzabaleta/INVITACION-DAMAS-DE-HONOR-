@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -95,10 +96,6 @@ body{
   justify-content:center;
 }
 
-/* =========================================================
-   MARCOS
-========================================================= */
-
 .frame{
   position:absolute;
   inset:13px;
@@ -129,10 +126,6 @@ body{
   border-right:2px solid;
   border-bottom:2px solid;
 }
-
-/* =========================================================
-   DECORACIÓN FLORAL
-========================================================= */
 
 .floral{
   position:absolute;
@@ -192,10 +185,6 @@ body{
   top:50%;
   transform:translateY(-50%) rotate(180deg);
 }
-
-/* =========================================================
-   TIPOGRAFÍA
-========================================================= */
 
 .kicker{
   color:var(--gold);
@@ -257,10 +246,6 @@ body{
   50%{opacity:1}
 }
 
-/* =========================================================
-   MONOGRAMA AZ
-========================================================= */
-
 .monogram{
   width:126px;
   height:126px;
@@ -305,10 +290,6 @@ body{
   letter-spacing:4px;
 }
 
-/* =========================================================
-   FOTO
-========================================================= */
-
 .photo-frame{
   width:220px;
   height:285px;
@@ -334,10 +315,6 @@ body{
   line-height:1.7;
 }
 
-/* =========================================================
-   BOTÓN
-========================================================= */
-
 .btn-row{
   width:100%;
   max-width:290px;
@@ -357,10 +334,6 @@ body{
   font-size:12px;
   box-shadow:0 7px 18px rgba(83,55,59,.07);
 }
-
-/* =========================================================
-   COLOR
-========================================================= */
 
 .color-swatch{
   width:260px;
@@ -404,10 +377,6 @@ body{
   font-size:10px;
   letter-spacing:3px;
 }
-
-/* =========================================================
-   VESTIDOS VERTICALES
-========================================================= */
 
 .dress-grid{
   width:100%;
@@ -514,10 +483,6 @@ body{
   letter-spacing:1px;
 }
 
-/* =========================================================
-   REGLAS
-========================================================= */
-
 .rules{
   width:100%;
   max-width:340px;
@@ -544,10 +509,6 @@ body{
   font-size:13px;
   color:#554547;
 }
-
-/* =========================================================
-   CALENDARIO
-========================================================= */
 
 .calendar{
   width:100%;
@@ -609,10 +570,6 @@ body{
   font-size:9px;
 }
 
-/* =========================================================
-   CIERRE
-========================================================= */
-
 .signature{
   font-family:"Allura",cursive;
   font-size:52px;
@@ -627,10 +584,6 @@ body{
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
 
-/* =========================================================
-   SOMBRERO VUELTIAO
-========================================================= */
-
 .hat{
   width:115px;
   height:70px;
@@ -643,10 +596,6 @@ body{
   stroke:var(--gold);
   stroke-width:1.3;
 }
-
-/* =========================================================
-   PROGRESO
-========================================================= */
 
 .progress{
   position:fixed;
@@ -670,10 +619,6 @@ body{
   transform:scale(1.5);
 }
 
-/* =========================================================
-   MÚSICA
-========================================================= */
-
 .sound{
   position:fixed;
   z-index:100;
@@ -686,10 +631,6 @@ body{
   background:rgba(249,246,238,.9);
   color:var(--rose);
 }
-
-/* =========================================================
-   MÓVILES PEQUEÑOS
-========================================================= */
 
 @media(max-height:700px){
 
@@ -746,22 +687,12 @@ body{
 
 <div id="app">
 
-<!-- =====================================================
-     PROGRESO
-===================================================== -->
-
 <div class="progress" id="progress"></div>
-
-
-<!-- =====================================================
-     1. PORTADA
-===================================================== -->
 
 <section class="scene active" data-scene="1">
 
   <div class="frame"></div>
 
-  <!-- GRAN COMPOSICIÓN FLORAL IZQUIERDA -->
   <div class="floral floral-left">
     <svg viewBox="0 0 220 300">
 
@@ -780,7 +711,6 @@ body{
       <path d="M122 115 C105 99 108 82 122 73 C139 84 139 101 122 115Z"
             fill="#91A18A"/>
 
-      <!-- flores -->
       <g>
         <circle cx="180" cy="25" r="15" fill="#A66B74"/>
         <circle cx="164" cy="31" r="12" fill="#C58D96"/>
@@ -802,7 +732,6 @@ body{
     </svg>
   </div>
 
-  <!-- FLORES DERECHA -->
   <div class="floral floral-right">
     <svg viewBox="0 0 220 300">
 
@@ -830,7 +759,6 @@ body{
 
   <div class="inner">
 
-    <!-- SELLO AZ -->
     <div class="monogram">
 
       <svg viewBox="0 0 120 120">
@@ -869,7 +797,6 @@ body{
 
     <div class="edition">26 · 12 · 2026</div>
 
-    <!-- SOMBRERO SUTIL -->
     <svg class="hat" viewBox="0 0 120 70">
 
       <ellipse cx="60" cy="48" rx="48" ry="10"/>
@@ -887,11 +814,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     2. MENSAJE
-===================================================== -->
 
 <section class="scene" data-scene="2">
 
@@ -976,11 +898,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     3. ESTA INVITACIÓN ES PARA TI
-===================================================== -->
 
 <section class="scene" data-scene="3">
 
@@ -1067,11 +984,6 @@ body{
 
 </section>
 
-
-<!-- =====================================================
-     4. LA GRAN PREGUNTA
-===================================================== -->
-
 <section class="scene" data-scene="4">
 
   <div class="floral floral-top">
@@ -1149,11 +1061,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     5. REVELACIÓN
-===================================================== -->
 
 <section class="scene" data-scene="5">
 
@@ -1234,11 +1141,6 @@ body{
 
 </section>
 
-
-<!-- =====================================================
-     6. COLOR
-===================================================== -->
-
 <section class="scene" data-scene="6">
 
   <div class="floral floral-top">
@@ -1318,11 +1220,6 @@ body{
 
 </section>
 
-
-<!-- =====================================================
-     7. REFERENCIAS DE VESTIDOS
-===================================================== -->
-
 <section class="scene" data-scene="7">
 
   <div class="floral floral-left-middle">
@@ -1384,55 +1281,16 @@ body{
 
     <div class="dress-grid">
 
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 01</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 02</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 03</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 04</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 05</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 06</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 07</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 08</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 09</div>
-      </div>
-
-      <div class="dress-card">
-        <div class="dress-silhouette"></div>
-        <div class="dress-label">REFERENCIA 10</div>
-      </div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 01</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 02</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 03</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 04</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 05</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 06</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 07</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 08</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 09</div></div>
+      <div class="dress-card"><div class="dress-silhouette"></div><div class="dress-label">REFERENCIA 10</div></div>
 
     </div>
 
@@ -1445,11 +1303,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     8. EL VESTIDO
-===================================================== -->
 
 <section class="scene" data-scene="8">
 
@@ -1480,7 +1333,6 @@ body{
     </svg>
   </div>
 
-  <!-- decoración inferior -->
   <div class="floral floral-bottom">
     <svg viewBox="0 0 250 145">
 
@@ -1562,11 +1414,6 @@ body{
 
 </section>
 
-
-<!-- =====================================================
-     9. GUARDA LA FECHA
-===================================================== -->
-
 <section class="scene" data-scene="9">
 
   <div class="floral floral-left-middle">
@@ -1644,7 +1491,6 @@ body{
         <div class="day">3</div>
         <div class="day">4</div>
         <div class="day">5</div>
-
         <div class="day">6</div>
         <div class="day">7</div>
         <div class="day">8</div>
@@ -1652,7 +1498,6 @@ body{
         <div class="day">10</div>
         <div class="day">11</div>
         <div class="day">12</div>
-
         <div class="day">13</div>
         <div class="day">14</div>
         <div class="day">15</div>
@@ -1660,7 +1505,6 @@ body{
         <div class="day">17</div>
         <div class="day">18</div>
         <div class="day">19</div>
-
         <div class="day">20</div>
         <div class="day">21</div>
         <div class="day">22</div>
@@ -1669,11 +1513,8 @@ body{
         <div class="day">25</div>
 
         <div class="day">
-
           <div class="heart-day">
-
             <svg viewBox="0 0 100 100">
-
               <path
                 d="
                 M50 88
@@ -1685,17 +1526,12 @@ body{
                 C88 61 55 82 50 88Z"
                 fill="#E91E8D"
               />
-
             </svg>
-
             <span>26</span>
-
           </div>
-
         </div>
 
         <div class="day">27</div>
-
         <div class="day">28</div>
         <div class="day">29</div>
         <div class="day">30</div>
@@ -1714,11 +1550,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     10. FINAL
-===================================================== -->
 
 <section class="scene" data-scene="10">
 
@@ -1800,11 +1631,6 @@ body{
   </div>
 
 </section>
-
-
-<!-- =====================================================
-     11. CIERRE
-===================================================== -->
 
 <section class="scene" data-scene="11">
 
@@ -1888,11 +1714,6 @@ body{
 
 </section>
 
-
-<!-- =====================================================
-     MÚSICA
-===================================================== -->
-
 <button class="sound" id="soundBtn">
   ♫
 </button>
@@ -1900,7 +1721,6 @@ body{
 <audio id="music" loop preload="auto"></audio>
 
 </div>
-
 
 <script>
 
@@ -1911,33 +1731,33 @@ body{
 const damas = {
 
   1:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Ada Cárdenas",
+    foto:"ada.jpg"
   },
 
   2:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Karen",
+    foto:"karen.jpg"
   },
 
   3:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Anyi",
+    foto:"anyi.jpg"
   },
 
   4:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Cande",
+    foto:"cande.jpg"
   },
 
   5:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Laura",
+    foto:"laura.jpg"
   },
 
   6:{
-    nombre:"Mi amiga",
-    foto:""
+    nombre:"Rosa",
+    foto:"rosa.jpg"
   }
 
 };
@@ -2192,3 +2012,4 @@ document.addEventListener(
 
 </body>
 </html>
+```

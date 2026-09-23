@@ -1,51 +1,4327 @@
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<base href="../">
+
+<title>ASLY ZABALETA | Una pregunta especial para Karen</title>
+
+<!-- PREVIEW PARA WHATSAPP Y REDES -->
+<meta property="og:type" content="website">
+
+<meta property="og:title" content="ASLY ZABALETA | Una pregunta especial para Karen">
+
+<meta property="og:description" content="Tengo una pregunta muy especial para ti, Karen. 🤍">
+
+<meta property="og:url" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/karen/">
+
+<meta property="og:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
+
+<meta property="og:image:alt" content="Invitación especial de Asly Zabaleta">
+
+<meta property="og:image:type" content="image/jpeg">
+
+<meta property="og:image:width" content="1200">
+
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="ASLY ZABALETA | Una pregunta especial para Karen">
+
+<meta name="twitter:description" content="Tengo una pregunta muy especial para ti, Karen. 🤍">
+
+<meta name="twitter:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>ASLY ZABALETA | Una pregunta especial para Karen</title>
+<title>ASLY ZABALETA | Mi gran día se acerca…</title>
 
-  <meta name="description" content="Una invitación especial de Asly Zabaleta para Karen. 🤍">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ASLY ZABALETA | Una pregunta especial para Karen">
-  <meta property="og:description" content="Tengo una pregunta muy especial para ti. 🤍">
-  <meta property="og:url" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/karen/">
-  <meta property="og:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
-  <meta property="og:image:alt" content="Invitación especial de Asly Zabaleta">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
+<style>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ASLY ZABALETA | Una pregunta especial para Karen">
-  <meta name="twitter:description" content="Tengo una pregunta muy especial para ti. 🤍">
-  <meta name="twitter:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
+:root{
+  --ivory:#F9F6EE;
+  --paper:#FFFDF8;
+  --rose:#A66B74;
+  --rose-dark:#7E5059;
+  --rose-soft:#D8B6BC;
+  --rose-pale:#EAD8DB;
+  --gold:#D4AF37;
+  --gold-light:#E8D79F;
+  --green:#A7B59F;
+  --green-dark:#74856F;
+  --fuchsia:#E91E8D;
+  --ink:#4D3B3E;
+}
 
-  <meta http-equiv="refresh" content="0; url=../?dama=2">
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-  <style>
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#F9F6EE;
-      color:#52363B;
-      font-family:Georgia,serif;
-      text-align:center;
-    }
-    p{padding:24px;font-size:18px;}
-    a{color:#A66B74;}
-  </style>
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  background:var(--ivory);
+}
+
+body{
+  font-family:"Playfair Display",serif;
+  color:var(--ink);
+}
+
+#app{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:30px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 50% 50%,#fffdf8 0%,var(--ivory) 70%);
+
+  opacity:0;
+  visibility:hidden;
+  transform:scale(.97);
+  transition:
+    opacity .55s ease,
+    transform .55s ease,
+    visibility .55s ease;
+}
+
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.inner{
+  width:100%;
+  max-width:420px;
+  max-height:100%;
+  position:relative;
+  z-index:10;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.frame{
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(212,175,55,.45);
+  pointer-events:none;
+  z-index:3;
+}
+
+.frame:before,
+.frame:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-color:var(--gold);
+}
+
+.frame:before{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.frame:after{
+  right:-1px;
+  bottom:-1px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+.floral{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+}
+
+.floral svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.floral-left{
+  width:205px;
+  height:280px;
+  left:-45px;
+  top:-20px;
+}
+
+.floral-right{
+  width:205px;
+  height:280px;
+  right:-45px;
+  bottom:-20px;
+  transform:rotate(180deg);
+}
+
+.floral-top{
+  width:250px;
+  height:145px;
+  top:-20px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.floral-bottom{
+  width:250px;
+  height:145px;
+  bottom:-20px;
+  left:50%;
+  transform:translateX(-50%) rotate(180deg);
+}
+
+.floral-left-middle{
+  width:175px;
+  height:250px;
+  left:-40px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.floral-right-middle{
+  width:175px;
+  height:250px;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%) rotate(180deg);
+}
+
+.kicker{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.chapter{
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.title{
+  margin:0 0 14px;
+  color:var(--rose-dark);
+  font-size:34px;
+  line-height:1.12;
+  font-weight:500;
+}
+
+.body{
+  max-width:350px;
+  margin:0 auto 13px;
+  color:#5C4B4D;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.small{
+  max-width:340px;
+  color:#786668;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.hand{
+  font-family:"Allura",cursive;
+  color:var(--rose);
+  font-size:34px;
+  line-height:1;
+}
+
+.tap{
+  margin-top:23px;
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  animation:breath 2s infinite;
+  cursor:pointer;
+}
+
+@keyframes breath{
+  0%,100%{opacity:.45}
+  50%{opacity:1}
+}
+
+.monogram{
+  width:126px;
+  height:126px;
+  position:relative;
+  margin-bottom:22px;
+}
+
+.monogram svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.monogram-letters{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:.63;
+  color:var(--rose-dark);
+}
+
+.monogram-letters .a{
+  font-family:"Allura",cursive;
+  font-size:58px;
+  transform:translate(-9px,7px);
+}
+
+.monogram-letters .z{
+  font-family:"Allura",cursive;
+  font-size:54px;
+  transform:translate(8px,-5px);
+}
+
+.edition{
+  margin-top:19px;
+  color:#927B7E;
+  font-size:8px;
+  letter-spacing:4px;
+}
+
+.photo-frame{
+  width:220px;
+  height:285px;
+  padding:8px;
+  background:#fffdf8;
+  border:1px solid rgba(212,175,55,.65);
+  box-shadow:0 15px 35px rgba(82,54,59,.12);
+  transform:rotate(-1.5deg);
+  margin:5px 0 18px;
+}
+
+.photo-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(145deg,#ead8db,#c999a1);
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  line-height:1.7;
+}
+
+.photo-frame img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.btn-row{
+  width:100%;
+  max-width:290px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  margin-top:20px;
+}
+
+.btn{
+  border:1px solid var(--gold);
+  border-radius:30px;
+  padding:13px 20px;
+  background:rgba(255,255,255,.7);
+  color:var(--rose-dark);
+  font-family:"Playfair Display",serif;
+  font-size:12px;
+  box-shadow:0 7px 18px rgba(83,55,59,.07);
+}
+
+.color-swatch{
+  width:260px;
+  height:175px;
+  margin:14px 0 19px;
+  position:relative;
+  background:var(--rose);
+  border:8px solid #fffdf8;
+  outline:1px solid rgba(212,175,55,.7);
+  box-shadow:0 18px 35px rgba(80,50,55,.16);
+}
+
+.color-swatch:before,
+.color-swatch:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  border-color:var(--gold);
+}
+
+.color-swatch:before{
+  top:-9px;
+  left:-9px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.color-swatch:after{
+  bottom:-9px;
+  right:-9px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+
+/* =========================================================
+   VESTIDOS — REFERENCIAS REALES
+========================================================= */
+
+.scene[data-scene="7"]{
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-items:flex-start;
+  justify-content:center;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.scene[data-scene="7"]::-webkit-scrollbar{
+  display:none;
+}
+
+.scene[data-scene="7"] .inner{
+  max-height:none;
+  min-height:100%;
+  padding-top:18px;
+  padding-bottom:40px;
+  justify-content:flex-start;
+}
+
+.dress-grid{
+  width:100%;
+  max-width:350px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px 12px;
+  margin:16px 0 14px;
+}
+
+.dress-card{
+  width:100%;
+  height:225px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.7);
+  background:#fffdf8;
+  box-shadow:0 7px 16px rgba(82,54,59,.12);
+}
+
+.dress-card img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  background:#fffdf8;
+}
+
+.dress-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 72%,
+      rgba(40,25,28,.20) 100%
+    );
+  pointer-events:none;
+}
+
+.dress-label{
+  position:absolute;
+  z-index:5;
+  left:0;
+  right:0;
+  bottom:6px;
+  color:white;
+  font-size:7px;
+  letter-spacing:1px;
+  text-shadow:0 1px 4px rgba(40,25,28,.6);
+}
+
+.rules{
+  width:100%;
+  max-width:340px;
+  margin:18px 0;
+  border-top:1px solid rgba(212,175,55,.6);
+  border-bottom:1px solid rgba(212,175,55,.6);
+  padding:13px 0;
+}
+
+.rule{
+  display:grid;
+  grid-template-columns:75px 1fr;
+  text-align:left;
+  padding:9px 10px;
+}
+
+.rule strong{
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.rule span{
+  font-size:13px;
+  color:#554547;
+}
+
+.calendar{
+  width:100%;
+  max-width:340px;
+  padding:14px 12px;
+  border:1px solid rgba(212,175,55,.55);
+  background:rgba(255,255,255,.5);
+}
+
+.month{
+  color:var(--rose-dark);
+  font-size:19px;
+  letter-spacing:2px;
+  margin-bottom:11px;
+}
+
+.weekdays,
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:3px;
+}
+
+.weekdays span{
+  color:var(--gold);
+  font-size:8px;
+}
+
+.day{
+  height:29px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#675759;
+  font-size:10px;
+}
+
+.heart-day{
+  width:29px;
+  height:29px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.heart-day svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.heart-day span{
+  position:relative;
+  z-index:2;
+  color:white;
+  font-weight:700;
+  font-size:9px;
+}
+
+.signature{
+  font-family:"Allura",cursive;
+  font-size:52px;
+  color:var(--rose-dark);
+  margin-top:3px;
+}
+
+.gold-divider{
+  width:120px;
+  height:1px;
+  margin:21px 0 17px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+.hat{
+  width:115px;
+  height:70px;
+  opacity:.38;
+}
+
+.hat path,
+.hat ellipse{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.3;
+}
+
+.progress{
+  position:fixed;
+  z-index:100;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:5px;
+}
+
+.progress i{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:rgba(166,107,116,.25);
+}
+
+.progress i.active{
+  background:var(--rose);
+  transform:scale(1.5);
+}
+
+.sound{
+  position:fixed;
+  z-index:100;
+  right:14px;
+  bottom:14px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid rgba(212,175,55,.6);
+  background:rgba(249,246,238,.9);
+  color:var(--rose);
+  cursor:pointer;
+  font-family:"Playfair Display",serif;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.sound.playing{
+  background:rgba(166,107,116,.12);
+  border-color:rgba(166,107,116,.7);
+}
+
+@media(max-height:700px){
+
+  .scene{
+    padding-top:24px;
+    padding-bottom:24px;
+  }
+
+  .monogram{
+    width:98px;
+    height:98px;
+    margin-bottom:15px;
+  }
+
+  .monogram-letters .a{
+    font-size:48px;
+  }
+
+  .monogram-letters .z{
+    font-size:44px;
+  }
+
+  .title{
+    font-size:29px;
+  }
+
+  .body{
+    font-size:12.5px;
+    line-height:1.65;
+  }
+
+  .photo-frame{
+    width:180px;
+    height:235px;
+  }
+
+  .scene[data-scene="7"]{
+    padding-top:24px;
+    padding-bottom:24px;
+  }
+
+  .scene[data-scene="7"] .inner{
+    padding-top:12px;
+    padding-bottom:35px;
+  }
+
+  .dress-grid{
+    max-width:340px;
+    gap:12px 10px;
+    margin-top:14px;
+  }
+
+  .dress-card{
+    height:205px;
+  }
+
+  .calendar{
+    padding:10px;
+  }
+
+  .day{
+    height:25px;
+  }
+
+}
+
+@media(max-width:360px){
+
+  .dress-grid{
+    max-width:310px;
+    gap:10px 8px;
+  }
+
+  .dress-card{
+    height:190px;
+  }
+
+}
+
+</style>
 </head>
-<body>
-  <p>Abriendo tu invitación especial… 🤍<br><a href="../?dama=2">Toca aquí si no se abre automáticamente</a></p>
 
-  <script>
-    window.location.replace("../?dama=2");
-  </script>
+<body>
+
+<div id="app">
+
+<div class="progress" id="progress"></div>
+
+<section class="scene active" data-scene="1">
+
+  <div class="frame"></div>
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C45 225 80 180 125 125 C150 94 164 60 180 25"
+            fill="none" stroke="#74856F" stroke-width="2"/>
+
+      <path d="M50 225 C25 215 18 194 28 176 C49 180 59 201 50 225Z"
+            fill="#A7B59F"/>
+
+      <path d="M73 190 C49 177 47 155 60 142 C80 151 86 170 73 190Z"
+            fill="#91A18A"/>
+
+      <path d="M96 151 C76 137 77 116 91 106 C108 118 111 135 96 151Z"
+            fill="#A7B59F"/>
+
+      <path d="M122 115 C105 99 108 82 122 73 C139 84 139 101 122 115Z"
+            fill="#91A18A"/>
+
+      <g>
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+      <g transform="translate(60 235) scale(.65)">
+        <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+        <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+        <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+        <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+        <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C45 225 80 180 125 125 C150 94 164 60 180 25"
+            fill="none" stroke="#74856F" stroke-width="2"/>
+
+      <path d="M50 225 C25 215 18 194 28 176 C49 180 59 201 50 225Z"
+            fill="#A7B59F"/>
+
+      <path d="M73 190 C49 177 47 155 60 142 C80 151 86 170 73 190Z"
+            fill="#91A18A"/>
+
+      <path d="M96 151 C76 137 77 116 91 106 C108 118 111 135 96 151Z"
+            fill="#A7B59F"/>
+
+      <circle cx="180" cy="25" r="15" fill="#A66B74"/>
+      <circle cx="164" cy="31" r="12" fill="#C58D96"/>
+      <circle cx="196" cy="32" r="12" fill="#C58D96"/>
+      <circle cx="171" cy="48" r="12" fill="#D9B8BD"/>
+      <circle cx="190" cy="48" r="12" fill="#D9B8BD"/>
+      <circle cx="181" cy="38" r="6" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="monogram">
+
+      <svg viewBox="0 0 120 120">
+
+        <circle cx="60" cy="60" r="55"
+                fill="none"
+                stroke="#D4AF37"
+                stroke-width="1.3"/>
+
+        <circle cx="60" cy="60" r="47"
+                fill="none"
+                stroke="#A66B74"
+                stroke-width="1"
+                stroke-dasharray="2 4"/>
+
+        <path d="M60 2 L63 10 L60 15 L57 10Z"
+              fill="#D4AF37"/>
+
+        <path d="M60 105 L63 112 L60 118 L57 112Z"
+              fill="#D4AF37"/>
+
+      </svg>
+
+      <div class="monogram-letters">
+        <span class="a">A</span>
+        <span class="z">Z</span>
+      </div>
+
+    </div>
+
+    <div class="kicker">Una invitación especial</div>
+
+    <h1 class="title">ASLY ZABALETA</h1>
+
+    <div class="hand">Mi gran día se acerca…</div>
+
+    <div class="edition">26 · 12 · 2026</div>
+
+    <svg class="hat" viewBox="0 0 120 70">
+
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
+
+    <div class="tap">Toca para abrir</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="2">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C80 80 130 90 190 35"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M60 92 C42 78 45 62 58 54 C72 64 73 79 60 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M110 79 C94 63 98 48 111 41 C125 53 124 68 110 79Z"
+            fill="#91A18A"/>
+
+      <g>
+        <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+        <circle cx="184" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+        <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+        <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C80 80 130 90 190 35"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M60 92 C42 78 45 62 58 54 C72 64 73 79 60 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M110 79 C94 63 98 48 111 41 C125 53 124 68 110 79Z"
+            fill="#91A18A"/>
+
+      <circle cx="198" cy="32" r="14" fill="#A66B74"/>
+      <circle cx="184" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">CAPÍTULO I</div>
+
+    <div style="
+      width:85px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin-bottom:20px;
+    "></div>
+
+    <p class="body">
+      Hay personas que llegan a nuestra vida y, sin darse cuenta,
+      terminan siendo parte de nuestras historias más bonitas.
+    </p>
+
+    <p class="body">
+      Tú eres una de esas personas para mí.
+      Por eso, ahora que estoy a punto de vivir uno de los días
+      más importantes de mi vida, hay algo que quiero preguntarte.
+    </p>
+
+    <div class="hand" style="margin-top:12px">
+      Y quiero que estés conmigo.
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="3">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">ESTA INVITACIÓN ES PARA TI</div>
+
+    <h2 class="title" id="friendName" style="font-size:31px">
+      Mi amiga
+    </h2>
+
+    <div id="friendPhotoContainer">
+
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          TU FOTO<br>AQUÍ
+        </div>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Porque hay momentos que simplemente no serían iguales
+      sin las personas que amamos.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="4">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">LA GRAN PREGUNTA</div>
+
+    <h2 class="title" style="font-size:32px">
+      ¿QUIERES SER MI<br>DAMA DE HONOR?
+    </h2>
+
+    <div class="hand" style="font-size:32px">
+      🤍
+    </div>
+
+    <div class="btn-row">
+
+      <button class="btn" onclick="nextScene()">
+        🤍 SÍ, OBVIO
+      </button>
+
+      <button class="btn" onclick="nextScene()">
+        ✨ ¡CLARO QUE SÍ!
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="5">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">UN DETALLE ESPECIAL</div>
+
+    <p class="body">
+      Quiero compartir contigo un detalle muy especial.
+    </p>
+
+    <div style="
+      width:100px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin:10px 0 22px;
+    "></div>
+
+    <p class="body">
+      Porque también quiero imaginarte conmigo ese día.
+    </p>
+
+    <div class="hand" style="margin-top:15px">
+      Hay un lugar para ti.
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="6">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <path d="M155 57 C140 42 143 27 155 19 C170 30 170 44 155 57Z"
+            fill="#A7B59F"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL COLOR DE MIS DAMAS DE HONOR</div>
+
+    <h2 class="title" style="font-size:38px">
+      ROSA VIEJO
+    </h2>
+
+    <div class="color-swatch">
+
+      <div class="color-code">
+        #A66B74
+      </div>
+
+    </div>
+
+    <p class="small">
+      Suave, romántico y atemporal.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="7">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">REFERENCIAS DE VESTIDOS</div>
+
+    <p class="small">
+      Estas imágenes son solo referencias para mostrarte
+      el estilo que imagino.
+    </p>
+
+    <div class="dress-grid">
+
+      <div class="dress-card">
+        <img src="vestido1.jpg" alt="Referencia de vestido 1">
+        <div class="dress-label">REFERENCIA 01</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido2.jpg" alt="Referencia de vestido 2">
+        <div class="dress-label">REFERENCIA 02</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido3.jpg" alt="Referencia de vestido 3">
+        <div class="dress-label">REFERENCIA 03</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido4.jpg" alt="Referencia de vestido 4">
+        <div class="dress-label">REFERENCIA 04</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido5.jpg" alt="Referencia de vestido 5">
+        <div class="dress-label">REFERENCIA 05</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido6.jpg" alt="Referencia de vestido 6">
+        <div class="dress-label">REFERENCIA 06</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido7.jpg" alt="Referencia de vestido 7">
+        <div class="dress-label">REFERENCIA 07</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido8.jpg" alt="Referencia de vestido 8">
+        <div class="dress-label">REFERENCIA 08</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido9.jpg" alt="Referencia de vestido 9">
+        <div class="dress-label">REFERENCIA 09</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido10.jpg" alt="Referencia de vestido 10">
+        <div class="dress-label">REFERENCIA 10</div>
+      </div>
+
+    </div>
+
+    <div class="small">
+      Solo inspiración 🤍
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="8">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <path d="M160 55 C144 40 147 24 160 16 C174 28 175 42 160 55Z"
+            fill="#A7B59F"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL VESTIDO</div>
+
+    <div style="
+      width:100%;
+      max-width:320px;
+      padding:13px 0;
+      border-top:1px solid rgba(212,175,55,.6);
+      border-bottom:1px solid rgba(212,175,55,.6);
+      margin-bottom:16px;
+    ">
+
+      <div class="hand" style="font-size:31px">
+        Lo importante es
+      </div>
+
+      <h2 class="title" style="font-size:29px;margin:2px 0 0">
+        que te sientas tú.
+      </h2>
+
+    </div>
+
+    <div class="rules">
+
+      <div class="rule">
+        <strong>COLOR</strong>
+        <span>Rosa viejo</span>
+      </div>
+
+      <div class="rule">
+        <strong>LARGO</strong>
+        <span>Largo</span>
+      </div>
+
+      <div class="rule">
+        <strong>DISEÑO</strong>
+        <span>Libre elección</span>
+      </div>
+
+      <div class="rule">
+        <strong>TELA</strong>
+        <span>Libre elección</span>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Escoge el que más te guste y te haga sentir hermosa.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="9">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">GUARDA LA FECHA</div>
+
+    <div class="calendar">
+
+      <div class="month">
+        DICIEMBRE 2026
+      </div>
+
+      <div class="weekdays">
+        <span>D</span>
+        <span>L</span>
+        <span>M</span>
+        <span>M</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+      </div>
+
+      <div class="days">
+
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+
+        <div class="day">
+          <div class="heart-day">
+            <svg viewBox="0 0 100 100">
+              <path
+                d="
+                M50 88
+                C45 82 12 61 12 35
+                C12 20 23 11 36 11
+                C44 11 50 16 50 24
+                C50 16 56 11 64 11
+                C77 11 88 20 88 35
+                C88 61 55 82 50 88Z"
+                fill="#E91E8D"
+              />
+            </svg>
+            <span>26</span>
+          </div>
+        </div>
+
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+
+      </div>
+
+    </div>
+
+    <div class="hand" style="font-size:28px;margin-top:15px">
+      26 · 12 · 2026
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="10">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">SOLO FALTA UNA COSA…</div>
+
+    <div class="hand" style="font-size:30px;margin-bottom:13px">
+      Que estés conmigo
+    </div>
+
+    <h2 class="title" style="font-size:31px">
+      ESE DÍA. 🤍
+    </h2>
+
+    <p class="body">
+      Quiero mirar a mi alrededor y encontrarte ahí.
+    </p>
+
+    <p class="body">
+      Compartiendo conmigo uno de los días
+      que voy a guardar para siempre.
+    </p>
+
+    <div class="hand" style="font-size:32px;margin-top:14px">
+      ¿Te quedas conmigo?
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="11">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="hand">
+      Con amor,
+    </div>
+
+    <div class="signature">
+      Asly
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <div class="edition">
+      26 · 12 · 2026
+    </div>
+
+    <svg class="hat" viewBox="0 0 120 70">
+
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
+
+  </div>
+
+</section>
+
+<button class="sound" id="soundBtn" aria-label="Activar o pausar música">
+  ♫
+</button>
+
+<audio id="music" loop preload="auto">
+  <source src="Wedding%20Invitation.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+/* =========================================================
+   DAMAS DE HONOR
+========================================================= */
+
+const damas = {
+
+  1:{
+    nombre:"Ada Cárdenas",
+    foto:"ada.jpg"
+  },
+
+  2:{
+    nombre:"Karen",
+    foto:"karen.jpg"
+  },
+
+  3:{
+    nombre:"Anyi",
+    foto:"anyi.jpg"
+  },
+
+  4:{
+    nombre:"Cande",
+    foto:"cande.jpg"
+  },
+
+  5:{
+    nombre:"Laura",
+    foto:"laura.jpg"
+  },
+
+  6:{
+    nombre:"Rosa",
+    foto:"rosa.jpg"
+  }
+
+};
+
+
+/* =========================================================
+   ESCENAS
+========================================================= */
+
+const scenes =
+  [...document.querySelectorAll(".scene")];
+
+let currentScene = 0;
+
+
+/* =========================================================
+   PUNTOS DE PROGRESO
+========================================================= */
+
+const progress =
+  document.getElementById("progress");
+
+scenes.forEach((scene,index)=>{
+
+  const dot =
+    document.createElement("i");
+
+  if(index === 0){
+    dot.classList.add("active");
+  }
+
+  progress.appendChild(dot);
+
+});
+
+
+function updateProgress(){
+
+  [...progress.children].forEach(
+    (dot,index)=>{
+
+      dot.classList.toggle(
+        "active",
+        index === currentScene
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CAMBIO DE ESCENA
+========================================================= */
+
+function showScene(index){
+
+  if(
+    index < 0 ||
+    index >= scenes.length
+  ){
+    return;
+  }
+
+  scenes[currentScene]
+    .classList.remove("active");
+
+  currentScene = index;
+
+  scenes[currentScene]
+    .classList.add("active");
+
+  updateProgress();
+
+}
+
+
+/* =========================================================
+   SIGUIENTE
+========================================================= */
+
+function nextScene(){
+
+  if(
+    currentScene <
+    scenes.length - 1
+  ){
+
+    showScene(
+      currentScene + 1
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TOQUE PARA CONTINUAR
+========================================================= */
+
+scenes.forEach(
+  (scene,index)=>{
+
+    scene.addEventListener(
+      "click",
+      event=>{
+
+        if(
+          event.target.closest("button")
+        ){
+          return;
+        }
+
+        /*
+          La escena 7 contiene desplazamiento vertical.
+          Por eso solo avanza cuando se toca
+          específicamente "Toca para continuar".
+        */
+
+        if(index === currentScene){
+
+          if(currentScene === 6){
+
+            if(
+              event.target.closest(".tap")
+            ){
+              nextScene();
+            }
+
+            return;
+
+          }
+
+          if(
+            currentScene <
+            scenes.length - 1
+          ){
+
+            nextScene();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   PERSONALIZACIÓN ?dama=1
+========================================================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const damaNumber = 2;
+
+if(damas[damaNumber]){
+
+  const data =
+    damas[damaNumber];
+
+  const name =
+    document.getElementById(
+      "friendName"
+    );
+
+  const photo =
+    document.getElementById(
+      "friendPhotoContainer"
+    );
+
+  if(name){
+
+    name.textContent =
+      data.nombre || "Mi amiga";
+
+  }
+
+  if(
+    photo &&
+    data.foto
+  ){
+
+    photo.innerHTML = `
+      <div class="photo-frame">
+        <img
+          src="${data.foto}"
+          alt="${data.nombre || "Mi amiga"}"
+        >
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+const music =
+  document.getElementById("music");
+
+const soundBtn =
+  document.getElementById("soundBtn");
+
+
+soundBtn.addEventListener(
+  "click",
+  async event=>{
+
+    event.stopPropagation();
+
+    if(music.paused){
+
+      try{
+
+        await music.play();
+
+        soundBtn.textContent = "♫";
+        soundBtn.classList.add("playing");
+
+      }catch(error){
+
+        console.log(
+          "No fue posible reproducir la música:",
+          error
+        );
+
+      }
+
+    }else{
+
+      music.pause();
+
+      soundBtn.textContent = "♪";
+      soundBtn.classList.remove("playing");
+
+    }
+
+  }
+);
+
+
+/*
+  Mantener el estado correcto del botón
+  si la reproducción termina o es pausada.
+*/
+
+music.addEventListener(
+  "play",
+  ()=>{
+    soundBtn.textContent = "♫";
+    soundBtn.classList.add("playing");
+  }
+);
+
+music.addEventListener(
+  "pause",
+  ()=>{
+    soundBtn.textContent = "♪";
+    soundBtn.classList.remove("playing");
+  }
+);
+
+
+/* =========================================================
+   EVITAR SCROLL GENERAL
+========================================================= */
+
+document.addEventListener(
+  "touchmove",
+  event=>{
+
+    /*
+      Permitimos desplazamiento únicamente
+      dentro de la escena 7.
+    */
+
+    if(
+      event.target.closest('.scene[data-scene="7"]')
+    ){
+      return;
+    }
+
+    event.preventDefault();
+
+  },
+  {passive:false}
+);
+
+
+document.addEventListener(
+  "gesturestart",
+  event=>{
+    event.preventDefault();
+  }
+);
+
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>ASLY ZABALETA | Mi gran día se acerca…</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASLY ZABALETA | Mi gran día se acerca…">
+<meta property="og:description" content="Una invitación especial para compartir conmigo uno de los días más importantes de mi vida. 🤍">
+<meta property="og:url" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/">
+<meta property="og:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
+<meta property="og:image:alt" content="Invitación especial de Asly Zabaleta">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ASLY ZABALETA | Mi gran día se acerca…">
+<meta name="twitter:description" content="Una invitación especial para compartir conmigo uno de los días más importantes de mi vida. 🤍">
+<meta name="twitter:image" content="https://aslyzabaleta.github.io/INVITACION-DAMAS-DE-HONOR-/og-image.jpg">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ivory:#F9F6EE;
+  --paper:#FFFDF8;
+  --rose:#A66B74;
+  --rose-dark:#7E5059;
+  --rose-soft:#D8B6BC;
+  --rose-pale:#EAD8DB;
+  --gold:#D4AF37;
+  --gold-light:#E8D79F;
+  --green:#A7B59F;
+  --green-dark:#74856F;
+  --fuchsia:#E91E8D;
+  --ink:#4D3B3E;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  background:var(--ivory);
+}
+
+body{
+  font-family:"Playfair Display",serif;
+  color:var(--ink);
+}
+
+#app{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:30px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 50% 50%,#fffdf8 0%,var(--ivory) 70%);
+
+  opacity:0;
+  visibility:hidden;
+  transform:scale(.97);
+  transition:
+    opacity .55s ease,
+    transform .55s ease,
+    visibility .55s ease;
+}
+
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.inner{
+  width:100%;
+  max-width:420px;
+  max-height:100%;
+  position:relative;
+  z-index:10;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.frame{
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(212,175,55,.45);
+  pointer-events:none;
+  z-index:3;
+}
+
+.frame:before,
+.frame:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-color:var(--gold);
+}
+
+.frame:before{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.frame:after{
+  right:-1px;
+  bottom:-1px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+.floral{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+}
+
+.floral svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.floral-left{
+  width:205px;
+  height:280px;
+  left:-45px;
+  top:-20px;
+}
+
+.floral-right{
+  width:205px;
+  height:280px;
+  right:-45px;
+  bottom:-20px;
+  transform:rotate(180deg);
+}
+
+.floral-top{
+  width:250px;
+  height:145px;
+  top:-20px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.floral-bottom{
+  width:250px;
+  height:145px;
+  bottom:-20px;
+  left:50%;
+  transform:translateX(-50%) rotate(180deg);
+}
+
+.floral-left-middle{
+  width:175px;
+  height:250px;
+  left:-40px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.floral-right-middle{
+  width:175px;
+  height:250px;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%) rotate(180deg);
+}
+
+.kicker{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.chapter{
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.title{
+  margin:0 0 14px;
+  color:var(--rose-dark);
+  font-size:34px;
+  line-height:1.12;
+  font-weight:500;
+}
+
+.body{
+  max-width:350px;
+  margin:0 auto 13px;
+  color:#5C4B4D;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.small{
+  max-width:340px;
+  color:#786668;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.hand{
+  font-family:"Allura",cursive;
+  color:var(--rose);
+  font-size:34px;
+  line-height:1;
+}
+
+.tap{
+  margin-top:23px;
+  color:var(--rose);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  animation:breath 2s infinite;
+  cursor:pointer;
+}
+
+@keyframes breath{
+  0%,100%{opacity:.45}
+  50%{opacity:1}
+}
+
+.monogram{
+  width:126px;
+  height:126px;
+  position:relative;
+  margin-bottom:22px;
+}
+
+.monogram svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.monogram-letters{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:.63;
+  color:var(--rose-dark);
+}
+
+.monogram-letters .a{
+  font-family:"Allura",cursive;
+  font-size:58px;
+  transform:translate(-9px,7px);
+}
+
+.monogram-letters .z{
+  font-family:"Allura",cursive;
+  font-size:54px;
+  transform:translate(8px,-5px);
+}
+
+.edition{
+  margin-top:19px;
+  color:#927B7E;
+  font-size:8px;
+  letter-spacing:4px;
+}
+
+.photo-frame{
+  width:220px;
+  height:285px;
+  padding:8px;
+  background:#fffdf8;
+  border:1px solid rgba(212,175,55,.65);
+  box-shadow:0 15px 35px rgba(82,54,59,.12);
+  transform:rotate(-1.5deg);
+  margin:5px 0 18px;
+}
+
+.photo-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(145deg,#ead8db,#c999a1);
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  line-height:1.7;
+}
+
+.photo-frame img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.btn-row{
+  width:100%;
+  max-width:290px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  margin-top:20px;
+}
+
+.btn{
+  border:1px solid var(--gold);
+  border-radius:30px;
+  padding:13px 20px;
+  background:rgba(255,255,255,.7);
+  color:var(--rose-dark);
+  font-family:"Playfair Display",serif;
+  font-size:12px;
+  box-shadow:0 7px 18px rgba(83,55,59,.07);
+}
+
+.color-code{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:13px;
+  letter-spacing:3px;
+  font-weight:600;
+  text-shadow:0 1px 4px rgba(70,40,45,.35);
+}
+
+.color-swatch{
+  width:260px;
+  height:175px;
+  margin:14px 0 19px;
+  position:relative;
+  background:var(--rose);
+  border:8px solid #fffdf8;
+  outline:1px solid rgba(212,175,55,.7);
+  box-shadow:0 18px 35px rgba(80,50,55,.16);
+}
+
+.color-swatch:before,
+.color-swatch:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  border-color:var(--gold);
+}
+
+.color-swatch:before{
+  top:-9px;
+  left:-9px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.color-swatch:after{
+  bottom:-9px;
+  right:-9px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+}
+
+
+/* =========================================================
+   VESTIDOS — REFERENCIAS REALES
+========================================================= */
+
+.scene[data-scene="7"]{
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-items:flex-start;
+  justify-content:center;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.scene[data-scene="7"]::-webkit-scrollbar{
+  display:none;
+}
+
+.scene[data-scene="7"] .inner{
+  max-height:none;
+  min-height:100%;
+  padding-top:18px;
+  padding-bottom:40px;
+  justify-content:flex-start;
+}
+
+.dress-grid{
+  width:100%;
+  max-width:350px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px 12px;
+  margin:16px 0 14px;
+}
+
+.dress-card{
+  width:100%;
+  height:225px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.7);
+  background:#fffdf8;
+  box-shadow:0 7px 16px rgba(82,54,59,.12);
+}
+        <circle cx="184" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="212" cy="39" r="11" fill="#C58D96"/>
+      <circle cx="191" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="53" r="11" fill="#D9B8BD"/>
+      <circle cx="198" cy="43" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">CAPÍTULO I</div>
+
+    <div style="
+      width:85px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin-bottom:20px;
+    "></div>
+
+    <p class="body">
+      Hay personas que llegan a nuestra vida y, sin darse cuenta,
+      terminan siendo parte de nuestras historias más bonitas.
+    </p>
+
+    <p class="body">
+      Tú eres una de esas personas para mí.
+      Por eso, ahora que estoy a punto de vivir uno de los días
+      más importantes de mi vida, hay algo que quiero preguntarte.
+    </p>
+
+    <div class="hand" style="margin-top:12px">
+      Y quiero que estés conmigo.
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="3">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <path d="M111 116 C94 100 98 82 112 73 C128 86 128 101 111 116Z"
+            fill="#A7B59F"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">ESTA INVITACIÓN ES PARA TI</div>
+
+    <h2 class="title" id="friendName" style="font-size:31px">
+      Mi amiga
+    </h2>
+
+    <div id="friendPhotoContainer">
+
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          TU FOTO<br>AQUÍ
+        </div>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Porque hay momentos que simplemente no serían iguales
+      sin las personas que amamos.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="4">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M20 100 C75 50 145 55 225 105"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M75 72 C55 57 57 40 70 32 C86 43 88 59 75 72Z"
+            fill="#A7B59F"/>
+
+      <path d="M166 75 C149 57 151 42 165 34 C181 45 181 62 166 75Z"
+            fill="#91A18A"/>
+
+      <circle cx="125" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="110" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="140" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="117" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="133" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="125" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">LA GRAN PREGUNTA</div>
+
+    <h2 class="title" style="font-size:32px">
+      ¿QUIERES SER MI<br>DAMA DE HONOR?
+    </h2>
+
+    <div class="hand" style="font-size:32px">
+      🤍
+    </div>
+
+    <div class="btn-row">
+
+      <button class="btn" onclick="nextScene()">
+        🤍 SÍ, OBVIO
+      </button>
+
+      <button class="btn" onclick="nextScene()">
+        ✨ ¡CLARO QUE SÍ!
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="5">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">UN DETALLE ESPECIAL</div>
+
+    <p class="body">
+      Quiero compartir contigo un detalle muy especial.
+    </p>
+
+    <div style="
+      width:100px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+      margin:10px 0 22px;
+    "></div>
+
+    <p class="body">
+      Porque también quiero imaginarte conmigo ese día.
+    </p>
+
+    <div class="hand" style="margin-top:15px">
+      Hay un lugar para ti.
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="6">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <path d="M155 57 C140 42 143 27 155 19 C170 30 170 44 155 57Z"
+            fill="#A7B59F"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 125 C70 85 130 75 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 100 C35 86 37 68 50 58 C66 69 68 85 55 100Z"
+            fill="#A7B59F"/>
+
+      <path d="M92 85 C75 69 77 53 90 44 C105 55 106 70 92 85Z"
+            fill="#91A18A"/>
+
+      <circle cx="214" cy="35" r="15" fill="#A66B74"/>
+      <circle cx="199" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="229" cy="42" r="11" fill="#C58D96"/>
+      <circle cx="206" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="222" cy="56" r="11" fill="#D9B8BD"/>
+      <circle cx="214" cy="45" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL COLOR DE MIS DAMAS DE HONOR</div>
+
+    <h2 class="title" style="font-size:38px">
+      ROSA VIEJO
+    </h2>
+
+    <div class="color-swatch">
+
+      <div class="color-code">
+        #A66B74
+      </div>
+
+    </div>
+
+    <p class="small">
+      Suave, romántico y atemporal.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="7">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 205 80 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M54 205 C30 190 28 170 40 156 C60 166 65 185 54 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M84 158 C62 145 64 125 77 115 C94 127 97 144 84 158Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">REFERENCIAS DE VESTIDOS</div>
+
+    <p class="small">
+      Estas imágenes son solo referencias para mostrarte
+      el estilo que imagino.
+    </p>
+
+    <div class="dress-grid">
+
+      <div class="dress-card">
+        <img src="vestido1.jpg" alt="Referencia de vestido 1">
+        <div class="dress-label">REFERENCIA 01</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido2.jpg" alt="Referencia de vestido 2">
+        <div class="dress-label">REFERENCIA 02</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido3.jpg" alt="Referencia de vestido 3">
+        <div class="dress-label">REFERENCIA 03</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido4.jpg" alt="Referencia de vestido 4">
+        <div class="dress-label">REFERENCIA 04</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido5.jpg" alt="Referencia de vestido 5">
+        <div class="dress-label">REFERENCIA 05</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido6.jpg" alt="Referencia de vestido 6">
+          <div class="dress-label">REFERENCIA 06</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido7.jpg" alt="Referencia de vestido 7">
+        <div class="dress-label">REFERENCIA 07</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido8.jpg" alt="Referencia de vestido 8">
+        <div class="dress-label">REFERENCIA 08</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido9.jpg" alt="Referencia de vestido 9">
+        <div class="dress-label">REFERENCIA 09</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido10.jpg" alt="Referencia de vestido 10">
+        <div class="dress-label">REFERENCIA 10</div>
+      </div>
+
+    </div>
+
+    <div class="small">
+      Solo inspiración 🤍
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="8">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <path d="M160 55 C144 40 147 24 160 16 C174 28 175 42 160 55Z"
+            fill="#A7B59F"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL VESTIDO</div>
+
+    <div style="
+      width:100%;
+      max-width:320px;
+      padding:13px 0;
+      border-top:1px solid rgba(212,175,55,.6);
+      border-bottom:1px solid rgba(212,175,55,.6);
+      margin-bottom:16px;
+    ">
+
+      <div class="hand" style="font-size:31px">
+        Lo importante es
+      </div>
+
+      <h2 class="title" style="font-size:29px;margin:2px 0 0">
+        que te sientas tú.
+      </h2>
+
+    </div>
+
+    <div class="rules">
+
+      <div class="rule">
+        <strong>COLOR</strong>
+        <span>Rosa viejo</span>
+      </div>
+
+      <div class="rule">
+        <strong>LARGO</strong>
+        <span>Largo</span>
+      </div>
+
+      <div class="rule">
+        <strong>DISEÑO</strong>
+        <span>Libre elección</span>
+      </div>
+
+      <div class="rule">
+        <strong>TELA</strong>
+        <span>Libre elección</span>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Escoge el que más te guste y te haga sentir hermosa.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="9">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">GUARDA LA FECHA</div>
+
+    <div class="calendar">
+
+      <div class="month">
+        DICIEMBRE 2026
+      </div>
+
+      <div class="weekdays">
+        <span>D</span>
+        <span>L</span>
+        <span>M</span>
+        <span>M</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+      </div>
+
+      <div class="days">
+
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+
+        <div class="day">
+          <div class="heart-day">
+            <svg viewBox="0 0 100 100">
+              <path
+                d="
+                M50 88
+                C45 82 12 61 12 35
+                C12 20 23 11 36 11
+                C44 11 50 16 50 24
+                C50 16 56 11 64 11
+                C77 11 88 20 88 35
+                C88 61 55 82 50 88Z"
+                fill="#E91E8D"
+              />
+            </svg>
+            <span>26</span>
+          </div>
+        </div>
+
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+
+      </div>
+
+    </div>
+
+    <div class="hand" style="font-size:28px;margin-top:15px">
+      26 · 12 · 2026
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="10">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">SOLO FALTA UNA COSA…</div>
+
+    <div class="hand" style="font-size:30px;margin-bottom:13px">
+      Que estés conmigo
+    </div>
+
+    <h2 class="title" style="font-size:31px">
+      ESE DÍA. 🤍
+    </h2>
+
+    <p class="body">
+      Quiero mirar a mi alrededor y encontrarte ahí.
+    </p>
+
+    <p class="body">
+      Compartiendo conmigo uno de los días
+      que voy a guardar para siempre.
+    </p>
+
+    <div class="hand" style="font-size:32px;margin-top:14px">
+      ¿Te quedas conmigo?
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="11">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="hand">
+      Con amor,
+    </div>
+
+    <div class="signature">
+      Asly
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <div class="edition">
+      26 · 12 · 2026
+    </div>
+
+    <svg class="hat" viewBox="0 0 120 70">
+
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
+
+  </div>
+
+</section>
+
+<button class="sound" id="soundBtn" aria-label="Activar o pausar música">
+  ♫
+</button>
+
+<audio id="music" loop preload="auto">
+          <div class="dress-label">REFERENCIA 06</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido7.jpg" alt="Referencia de vestido 7">
+        <div class="dress-label">REFERENCIA 07</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido8.jpg" alt="Referencia de vestido 8">
+        <div class="dress-label">REFERENCIA 08</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido9.jpg" alt="Referencia de vestido 9">
+        <div class="dress-label">REFERENCIA 09</div>
+      </div>
+
+      <div class="dress-card">
+        <img src="vestido10.jpg" alt="Referencia de vestido 10">
+        <div class="dress-label">REFERENCIA 10</div>
+      </div>
+
+    </div>
+
+    <div class="small">
+      Solo inspiración 🤍
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="8">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <path d="M160 55 C144 40 147 24 160 16 C174 28 175 42 160 55Z"
+            fill="#A7B59F"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M10 115 C65 65 130 70 235 25"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M48 92 C27 78 30 60 43 50 C60 61 62 77 48 92Z"
+            fill="#A7B59F"/>
+
+      <path d="M86 76 C68 60 70 43 83 34 C99 45 100 61 86 76Z"
+            fill="#91A18A"/>
+
+      <circle cx="215" cy="34" r="14" fill="#A66B74"/>
+      <circle cx="201" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="229" cy="41" r="10" fill="#C58D96"/>
+      <circle cx="207" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="223" cy="54" r="10" fill="#D9B8BD"/>
+      <circle cx="215" cy="44" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">EL VESTIDO</div>
+
+    <div style="
+      width:100%;
+      max-width:320px;
+      padding:13px 0;
+      border-top:1px solid rgba(212,175,55,.6);
+      border-bottom:1px solid rgba(212,175,55,.6);
+      margin-bottom:16px;
+    ">
+
+      <div class="hand" style="font-size:31px">
+        Lo importante es
+      </div>
+
+      <h2 class="title" style="font-size:29px;margin:2px 0 0">
+        que te sientas tú.
+      </h2>
+
+    </div>
+
+    <div class="rules">
+
+      <div class="rule">
+        <strong>COLOR</strong>
+        <span>Rosa viejo</span>
+      </div>
+
+      <div class="rule">
+        <strong>LARGO</strong>
+        <span>Largo</span>
+      </div>
+
+      <div class="rule">
+        <strong>DISEÑO</strong>
+        <span>Libre elección</span>
+      </div>
+
+      <div class="rule">
+        <strong>TELA</strong>
+        <span>Libre elección</span>
+      </div>
+
+    </div>
+
+    <p class="small">
+      Escoge el que más te guste y te haga sentir hermosa.
+    </p>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="9">
+
+  <div class="floral floral-left-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right-middle">
+    <svg viewBox="0 0 190 270">
+
+      <path d="M20 255 C60 210 75 150 145 45"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 205 C30 190 28 170 40 156 C60 166 65 185 55 205Z"
+            fill="#A7B59F"/>
+
+      <path d="M82 162 C60 148 61 126 75 116 C92 129 95 145 82 162Z"
+            fill="#91A18A"/>
+
+      <circle cx="145" cy="45" r="14" fill="#A66B74"/>
+      <circle cx="132" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="158" cy="51" r="10" fill="#C58D96"/>
+      <circle cx="138" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="152" cy="64" r="10" fill="#D9B8BD"/>
+      <circle cx="145" cy="55" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">GUARDA LA FECHA</div>
+
+    <div class="calendar">
+
+      <div class="month">
+        DICIEMBRE 2026
+      </div>
+
+      <div class="weekdays">
+        <span>D</span>
+        <span>L</span>
+        <span>M</span>
+        <span>M</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+      </div>
+
+      <div class="days">
+
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+
+        <div class="day">
+          <div class="heart-day">
+            <svg viewBox="0 0 100 100">
+              <path
+                d="
+                M50 88
+                C45 82 12 61 12 35
+                C12 20 23 11 36 11
+                C44 11 50 16 50 24
+                C50 16 56 11 64 11
+                C77 11 88 20 88 35
+                C88 61 55 82 50 88Z"
+                fill="#E91E8D"
+              />
+            </svg>
+            <span>26</span>
+          </div>
+        </div>
+
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+
+      </div>
+
+    </div>
+
+    <div class="hand" style="font-size:28px;margin-top:15px">
+      26 · 12 · 2026
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="10">
+
+  <div class="floral floral-top">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-bottom">
+    <svg viewBox="0 0 250 145">
+
+      <path d="M15 120 C75 65 135 70 235 30"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M55 95 C35 80 38 63 50 53 C67 64 68 81 55 95Z"
+            fill="#A7B59F"/>
+
+      <path d="M95 78 C77 62 79 46 92 37 C108 48 109 64 95 78Z"
+            fill="#91A18A"/>
+
+      <circle cx="205" cy="40" r="15" fill="#A66B74"/>
+      <circle cx="190" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="220" cy="47" r="11" fill="#C58D96"/>
+      <circle cx="197" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="213" cy="61" r="11" fill="#D9B8BD"/>
+      <circle cx="205" cy="50" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="chapter">SOLO FALTA UNA COSA…</div>
+
+    <div class="hand" style="font-size:30px;margin-bottom:13px">
+      Que estés conmigo
+    </div>
+
+    <h2 class="title" style="font-size:31px">
+      ESE DÍA. 🤍
+    </h2>
+
+    <p class="body">
+      Quiero mirar a mi alrededor y encontrarte ahí.
+    </p>
+
+    <p class="body">
+      Compartiendo conmigo uno de los días
+      que voy a guardar para siempre.
+    </p>
+
+    <div class="hand" style="font-size:32px;margin-top:14px">
+      ¿Te quedas conmigo?
+    </div>
+
+    <div class="tap">Toca para continuar</div>
+
+  </div>
+
+</section>
+
+<section class="scene" data-scene="11">
+
+  <div class="floral floral-left">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="floral floral-right">
+    <svg viewBox="0 0 220 300">
+
+      <path d="M25 285 C55 230 80 170 160 55"
+            fill="none"
+            stroke="#74856F"
+            stroke-width="2"/>
+
+      <path d="M58 220 C33 205 31 184 43 170 C63 180 68 199 58 220Z"
+            fill="#A7B59F"/>
+
+      <path d="M91 170 C69 155 71 135 84 124 C101 137 104 153 91 170Z"
+            fill="#91A18A"/>
+
+      <circle cx="160" cy="55" r="15" fill="#A66B74"/>
+      <circle cx="145" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="175" cy="62" r="11" fill="#C58D96"/>
+      <circle cx="152" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="168" cy="76" r="11" fill="#D9B8BD"/>
+      <circle cx="160" cy="65" r="5" fill="#D4AF37"/>
+
+    </svg>
+  </div>
+
+  <div class="inner">
+
+    <div class="hand">
+      Con amor,
+    </div>
+
+    <div class="signature">
+      Asly
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <div class="edition">
+      26 · 12 · 2026
+    </div>
+
+    <svg class="hat" viewBox="0 0 120 70">
+
+      <ellipse cx="60" cy="48" rx="48" ry="10"/>
+
+      <path d="M22 47 C28 18 92 18 98 47"/>
+
+      <path d="M29 39 C45 43 75 43 91 39"/>
+      <path d="M34 32 C47 36 73 36 86 32"/>
+      <path d="M39 25 C50 29 70 29 81 25"/>
+
+    </svg>
+
+  </div>
+
+</section>
+
+<button class="sound" id="soundBtn" aria-label="Activar o pausar música">
+  ♫
+</button>
+
+<audio id="music" loop preload="auto">
+    <source src="Wedding%20Invitation.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+/* =========================================================
+   DAMAS DE HONOR
+========================================================= */
+
+const damas = {
+
+  1:{
+    nombre:"Ada Cárdenas",
+    foto:"ada.jpg"
+  },
+
+  2:{
+    nombre:"Karen",
+    foto:"karen.jpg"
+  },
+
+  3:{
+    nombre:"Anyi",
+    foto:"anyi.jpg"
+  },
+
+  4:{
+    nombre:"Cande",
+    foto:"cande.jpg"
+  },
+
+  5:{
+    nombre:"Laura",
+    foto:"laura.jpg"
+  },
+
+  6:{
+    nombre:"Rosa",
+    foto:"rosa.jpg"
+  }
+
+};
+
+
+/* =========================================================
+   ESCENAS
+========================================================= */
+
+const scenes =
+  [...document.querySelectorAll(".scene")];
+
+let currentScene = 0;
+
+
+/* =========================================================
+   PUNTOS DE PROGRESO
+========================================================= */
+
+const progress =
+  document.getElementById("progress");
+
+scenes.forEach((scene,index)=>{
+
+  const dot =
+    document.createElement("i");
+
+  if(index === 0){
+    dot.classList.add("active");
+  }
+
+  progress.appendChild(dot);
+
+});
+
+
+function updateProgress(){
+
+  [...progress.children].forEach(
+    (dot,index)=>{
+
+      dot.classList.toggle(
+        "active",
+        index === currentScene
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CAMBIO DE ESCENA
+========================================================= */
+
+function showScene(index){
+
+  if(
+    index < 0 ||
+    index >= scenes.length
+  ){
+    return;
+  }
+
+  scenes[currentScene]
+    .classList.remove("active");
+
+  currentScene = index;
+
+  scenes[currentScene]
+    .classList.add("active");
+
+  updateProgress();
+
+}
+
+
+/* =========================================================
+   SIGUIENTE
+========================================================= */
+
+function nextScene(){
+
+  if(
+    currentScene <
+    scenes.length - 1
+  ){
+
+    showScene(
+      currentScene + 1
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TOQUE PARA CONTINUAR
+========================================================= */
+
+scenes.forEach(
+  (scene,index)=>{
+
+    scene.addEventListener(
+      "click",
+      event=>{
+
+        if(
+          event.target.closest("button")
+        ){
+          return;
+        }
+
+        /*
+          La escena 7 contiene desplazamiento vertical.
+          Por eso solo avanza cuando se toca
+          específicamente "Toca para continuar".
+        */
+
+        if(index === currentScene){
+
+          if(currentScene === 6){
+
+            if(
+              event.target.closest(".tap")
+            ){
+              nextScene();
+            }
+
+            return;
+
+          }
+
+          if(
+            currentScene <
+            scenes.length - 1
+          ){
+
+            nextScene();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   PERSONALIZACIÓN ?dama=1
+========================================================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const damaNumber =
+  parseInt(
+    params.get("dama") || "1",
+    10
+  );
+
+if(damas[damaNumber]){
+
+  const data =
+    damas[damaNumber];
+
+  const name =
+    document.getElementById(
+      "friendName"
+    );
+
+  const photo =
+    document.getElementById(
+      "friendPhotoContainer"
+    );
+
+  if(name){
+
+    name.textContent =
+      data.nombre || "Mi amiga";
+
+  }
+
+  if(
+    photo &&
+    data.foto
+  ){
+
+    photo.innerHTML = `
+      <div class="photo-frame">
+        <img
+          src="${data.foto}"
+          alt="${data.nombre || "Mi amiga"}"
+        >
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+const music =
+  document.getElementById("music");
+
+const soundBtn =
+  document.getElementById("soundBtn");
+
+
+soundBtn.addEventListener(
+  "click",
+  async event=>{
+
+    event.stopPropagation();
+
+    if(music.paused){
+
+      try{
+
+        await music.play();
+
+        soundBtn.textContent = "♫";
+        soundBtn.classList.add("playing");
+
+      }catch(error){
+
+        console.log(
+          "No fue posible reproducir la música:",
+          error
+        );
+
+      }
+
+    }else{
+
+      music.pause();
+
+      soundBtn.textContent = "♪";
+      soundBtn.classList.remove("playing");
+
+    }
+
+  }
+);
+
+
+/*
+  Mantener el estado correcto del botón
+  si la reproducción termina o es pausada.
+*/
+
+music.addEventListener(
+  "play",
+  ()=>{
+    soundBtn.textContent = "♫";
+    soundBtn.classList.add("playing");
+  }
+);
+
+music.addEventListener(
+  "pause",
+  ()=>{
+    soundBtn.textContent = "♪";
+    soundBtn.classList.remove("playing");
+  }
+);
+
+
+/* =========================================================
+   EVITAR SCROLL GENERAL
+========================================================= */
+
+document.addEventListener(
+  "touchmove",
+  event=>{
+
+    /*
+      Permitimos desplazamiento únicamente
+      dentro de la escena 7.
+    */
+
+    if(
+      event.target.closest('.scene[data-scene="7"]')
+    ){
+      return;
+    }
+
+    event.preventDefault();
+
+  },
+  {passive:false}
+);
+
+
+document.addEventListener(
+  "gesturestart",
+  event=>{
+    event.preventDefault();
+  }
+);
+
+</script>
+
 </body>
 </html>
